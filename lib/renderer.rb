@@ -36,12 +36,19 @@ cleanup
 
 =end
 			def render	
-			  therapist = Jitterbug::Speach::Therapist.new		
-			  therapist.say "Sir, I am about to start rendering."	
+			  #therapist = Jitterbug::Speach::Therapist.new		
+			  #therapist.say "Sir, I am about to start rendering."	
 				@logger = Jitterbug::Logging::JitterLogger.new(@lm.options,"render.log")
-				@logger.info "ho ha!"				
-				therapist.say "Rendering is complete. Look in the output directory."
+				@logger.info "Prepping renderer"
+				@logger.info "Creating OpenGL context"
+				
+				# at this point we become macruby/cocoa dependent. 
+			  				
+				@logger.info "rendering complete"				
+				#therapist.say "Rendering is complete. Look in the output directory."
 			end
-		end
+		end # end of OpenGLRenderer
+		
+		
 	end
 end

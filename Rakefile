@@ -1,4 +1,6 @@
+#this is a problem with macrake... Hopefully they'll fix this in 0.11 of macruby. 
 require "rspec/core/rake_task"
+
 @ruby_options = ""
 
 task :default => [:run_rspec]
@@ -29,4 +31,3 @@ RSpec::Core::RakeTask.new(:run_rspec) do |t|
 	t.pattern = "tests/**/*_spec.rb"
 	t.ruby_opts = @ruby_options 
 end	
-

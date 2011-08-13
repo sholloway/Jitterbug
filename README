@@ -1,15 +1,26 @@
-Project Jitterbug
+######################################################################################################################
+Project: Jitterbug
 Summary:
 Jitterbug is intended to be an evolution of Processing. A rapid development environment that allows fast creation 
 of 2D and 3D images, video and interactive graphical applications. It is implemented in Objective-C and Ruby.
 
-Author:
-Samuel Holloway
-www.samuelholloway.com
-sholloway@gmail.com
-@sholloway on Twitter
-
-
+Author: Samuel Holloway
+URL: https://github.com/sholloway/Jitterbug
+Source: https://github.com/sholloway/Jitterbug.git
+Contact: sholloway@gmail.com
+Twitter: @sholloway
+######################################################################################################################
 Status:
 Version 0.0.1
 Currently only the Ruby command line is done. Not for use yet.
+######################################################################################################################
+BUILD REQUIREMENTS:
+Mac Version: Mac OS X Lion with macruby
+######################################################################################################################
+RUNTIME REQUIREMENTS:
+Mac version: Mac OS X Lion or later to use OpenGL 3.2
+######################################################################################################################
+License:
+Open Source - Will be Apache Commons 2.0 when I get around to it.
+######################################################################################################################
+Copyright (C) 2011-2012 Samuel Holloway. All rights reserved.

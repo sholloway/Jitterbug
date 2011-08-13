@@ -1,5 +1,7 @@
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl3.h>
+#import <Opengl/glu.h>
+#import "primatives.h"
 
 //this is shit... How am I handling this in the FBOSpike?
 static inline const char * GetGLErrorString(GLenum error)
@@ -37,6 +39,8 @@ static inline const char * GetGLErrorString(GLenum error)
 
 @interface OpenGLRenderer : NSObject {	
 	GLuint _defaultFBOName;
+	GLfloat fovY;	
+	JBTetrahydron *model;	
 }
 
 - (id) initWithDefaultFBO: (GLuint) defaultFBOName;

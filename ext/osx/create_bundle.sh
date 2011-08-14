@@ -7,5 +7,6 @@ echo 'Make file generated'
 echo 'About to compile bundle'
 make -f Makefile
 echo 'Bundle compiled'
+echo 'Moving bundle to bin'
+mv macos_jitterbug.bundle ./../bin/macos_jitterbug.bundle
 
-#copy to native/bin

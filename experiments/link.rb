@@ -3,7 +3,7 @@
 framework 'Cocoa'
 framework 'OpenGL'
 framework 'AppKit'
-require File.join(File.expand_path(File.dirname(__FILE__)),"./../native/osx/macos_jitterbug")
+require File.join(File.expand_path(File.dirname(__FILE__)),"./../ext/bin/macos_jitterbug")
 
 class AppDelegate
   def applicationDidFinishLaunching(notification)    

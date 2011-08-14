@@ -1,5 +1,5 @@
 #!/bin/sh
-cd native/osx
+cd ext/osx
 sh ./create_bundle.sh
 cd ../../experiments
 echo 'About to run OpenGL API harnness.'

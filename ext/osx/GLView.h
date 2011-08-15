@@ -1,6 +1,5 @@
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/CVDisplayLink.h>
-
 #import "OpenGLRenderer.h"
 
 @interface GLView : NSOpenGLView {

@@ -1,6 +1,5 @@
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl3.h>
-#import <Opengl/glu.h>
 #import "primatives.h"
 
 //this is shit... How am I handling this in the FBOSpike?

@@ -11,6 +11,22 @@ framework 'Cocoa'
 framework 'OpenGL'
 
 require 'mkmf'                          #Part standard ruby library. Creates make files
-$CFLAGS << ' -fobjc-gc -g '             #parms for the make file. Specifies enable garbage collection
 
+#generate the full path?
+#$CFLAGS << ' -x c++ '       #parms for the make file. Specifies enable garbage collection and use C++ headers
+=begin
+path = File.join(File.expand_path(File.dirname(__FILE__)),"../vendor/glm-0.9.2.3")
+dir_config('glm',idefault=path,ldefault=nil)
+if have_header('glm/glm.hpp')  
+  find_header('glm/glm.hpp')
+else
+  puts "Could not load OpenGL Mathmatics headers."
+  exit(-1)
+end
+=end
+path = File.join(File.expand_path(File.dirname(__FILE__)),"../bin")
+puts path
+find_library("opengl_glm.bundle", nil, path) # I don't think this works with bundles
+
+$CFLAGS << " -fobjc-gc -g " 
 create_makefile("macos_jitterbug")      #generate the make file to build the Objective-C Jitterbug bundle

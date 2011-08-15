@@ -1,0 +1,36 @@
+require 'rake/clean'
+
+CLEAN.include('*.o')
+CLOBBER.include('macos_jitterbug.bundle', '*.log')
+
+SRC = FileList['*.m']
+OBJ = SRC.ext('o')
+CC = 'clang'
+
+FRAMEWORKS = "-framework OpenGL -framework Foundation -framework Cocoa"
+INCLUDES = "-I. -I/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
+COMPILE_LANG_OPTS = "-ObjC -fobjc-gc"
+LINK_LANG_OPTS = "-ObjC -fobjc-gc -flat_namespace"
+DEBUG_OPTS = "-undefined suppress"
+ARCH_OPTS = "-arch x86_64"
+
+RUBY_BUNDLE = "$(hdrdir)/ruby.h $(hdrdir)/ruby/defines.h $(arch_hdrdir)/ruby/config.h"
+
+task :default => [:full_build]
+
+#this should be called for every .m file by macos_jitterbug.bundle task
+rule '.o' => '.m' do |t|  
+  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
+end
+
+desc "Create the macos_jitterbug.bundle for macruby"
+file 'macos_jitterbug.bundle' => OBJ do
+  sh "clang #{ARCH_OPTS} #{LINK_LANG_OPTS} #{FRAMEWORKS} -pipe -bundle -o macos_jitterbug.bundle #{OBJ}"
+end
+
+desc "Copy the macos_jitterbug.bundl to the bin ext/bin directory"
+task :copy_jb => 'macos_jitterbug.bundle' do
+  sh "mv macos_jitterbug.bundle ./../bin/macos_jitterbug.bundle"
+end
+
+task :full_build => :copy_jb

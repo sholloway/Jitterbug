@@ -10,17 +10,30 @@ Source: https://github.com/sholloway/Jitterbug.git
 Contact: sholloway@gmail.com
 Twitter: @sholloway
 ######################################################################################################################
-Status:
-Version 0.0.1
-Currently only the Ruby command line is done. Not for use yet.
-######################################################################################################################
 BUILD REQUIREMENTS:
-Mac Version: Mac OS X Lion with macruby
+Mac Version: 
+	Mac OS X 10.7 Lion
+	Macruby - 0.1+
+	Clang 2.1+
 ######################################################################################################################
 RUNTIME REQUIREMENTS:
 Mac version: Mac OS X Lion or later to use OpenGL 3.2
 ######################################################################################################################
 License:
-Open Source - Will be Apache Commons 2.0 when I get around to it.
+Open Source -The MIT License
+Please use at your own discretion. Drop me a line if you find the program useful. 
 ######################################################################################################################
 Copyright (C) 2011-2012 Samuel Holloway. All rights reserved.
+######################################################################################################################
+Status: Not for use yet.
+Version 0.0.2 - 8.16.2011
+----------------------------------------------------------------------------------------------------------------------
+- Added MIT License.
+- A basic 3D tetrahedron renders if the application is run via quick_test.sh.
+- Integrated OpenGL Mathematics library.
+- Changed to build native portion with Clang 2.1 via Rake.
+======================================================================================================================
+Status: Not for use yet.
+Version 0.0.1 - 8.6.2011
+----------------------------------------------------------------------------------------------------------------------
+- Currently only the Ruby command line is done. 

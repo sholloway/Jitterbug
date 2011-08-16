@@ -1,0 +1,7 @@
+docs/
+.gitignore
+*.o
+*.bundle
+.DS_Store
+ext/.DS_Store
+ext/bin

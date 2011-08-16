@@ -3,29 +3,39 @@ require 'rake/clean'
 CLEAN.include('*.o')
 CLOBBER.include('macos_jitterbug.bundle', '*.log')
 
-SRC = FileList['*.m']
+SRC = FileList['*.mm','*.m']
 OBJ = SRC.ext('o')
-CC = 'clang'
+CC = 'clang++'
 
-FRAMEWORKS = "-framework OpenGL -framework Foundation -framework Cocoa"
-INCLUDES = "-I. -I/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
-COMPILE_LANG_OPTS = "-ObjC -fobjc-gc"
-LINK_LANG_OPTS = "-ObjC -fobjc-gc -flat_namespace"
+FRAMEWORKS = "-framework OpenGL -framework Foundation -framework Cocoa -framework Macruby" 
+MACRUBY="/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
+OPENGL_GLM="/Users/sholloway/Dropbox/Jitterbug/ext/vendor/glm-0.9.2.3"
+#STD="/usr/include/c++/4.2.1"
+INCLUDES = %{-I. -I#{MACRUBY} -I#{OPENGL_GLM} }
+  
+COMPILE_LANG_OPTS = "-ObjC++ -fobjc-gc"
+LINK_LANG_OPTS = "-ObjC++ -fobjc-gc -flat_namespace"
 DEBUG_OPTS = "-undefined suppress"
 ARCH_OPTS = "-arch x86_64"
-
-RUBY_BUNDLE = "$(hdrdir)/ruby.h $(hdrdir)/ruby/defines.h $(arch_hdrdir)/ruby/config.h"
+LIBS = "-L. -L/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/lib -lmacruby"
+RUBY_BUNDLE = "-I#{MACRUBY}/ruby.h -I#{MACRUBY}/ruby/defines.h -I#{MACRUBY}/ruby/config.h"
 
 task :default => [:full_build]
 
 #this should be called for every .m file by macos_jitterbug.bundle task
+rule '.o' => '.mm' do |t|  
+  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{FRAMEWORKS} #{INCLUDES} -c -pipe -v -o #{t.name} #{t.source}}
+end
+
 rule '.o' => '.m' do |t|  
-  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
+  sh %{clang #{ARCH_OPTS} -ObjC -fobjc-gc #{FRAMEWORKS} #{INCLUDES} -c -pipe -v -o #{t.name} #{t.source}}
 end
 
 desc "Create the macos_jitterbug.bundle for macruby"
 file 'macos_jitterbug.bundle' => OBJ do
-  sh "clang #{ARCH_OPTS} #{LINK_LANG_OPTS} #{FRAMEWORKS} -pipe -bundle -o macos_jitterbug.bundle #{OBJ}"
+  #I need to find the equivalant of 
+  #$(OBJS): $(hdrdir)/ruby.h $(hdrdir)/ruby/defines.h $(arch_hdrdir)/ruby/config.h
+  sh "clang #{ARCH_OPTS} #{LINK_LANG_OPTS} #{FRAMEWORKS} #{LIBS} -pipe -v -bundle -o macos_jitterbug.bundle #{OBJ}"
 end
 
 desc "Copy the macos_jitterbug.bundl to the bin ext/bin directory"

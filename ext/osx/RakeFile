@@ -24,11 +24,11 @@ task :default => [:full_build]
 
 #this should be called for every .m file by macos_jitterbug.bundle task
 rule '.o' => '.mm' do |t|  
-  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{FRAMEWORKS} #{INCLUDES} -c -pipe -v -o #{t.name} #{t.source}}
+  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{FRAMEWORKS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
 end
 
 rule '.o' => '.m' do |t|  
-  sh %{clang #{ARCH_OPTS} -ObjC -fobjc-gc #{FRAMEWORKS} #{INCLUDES} -c -pipe -v -o #{t.name} #{t.source}}
+  sh %{clang #{ARCH_OPTS} -ObjC -fobjc-gc #{FRAMEWORKS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
 end
 
 desc "Create the macos_jitterbug.bundle for macruby"

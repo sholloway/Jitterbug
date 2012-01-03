@@ -102,6 +102,7 @@ module Jitterbug
   Subcommands
     trash         Empties the trash directory
     output        Empties the output directory
+    logs          Empties the logs directory
     all           Empties both the trash and output
 
     }

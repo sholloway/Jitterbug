@@ -27,7 +27,6 @@ window.level      = NSModalPanelWindowLevel
 window.delegate   = app.delegate
 
 glview = GLView.alloc.initWithFrame(size)
-
 window.contentView.addSubview(glview)
 
 window.display

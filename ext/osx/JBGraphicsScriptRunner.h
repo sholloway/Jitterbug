@@ -1,7 +1,7 @@
 #import <Foundation/NSArray.h>
-#import "GraphicsScript.h"
+#import "JBGraphicsScript.h"
 
-@interface GraphicsScriptRunner : NSObject{
+@interface JBGraphicsScriptRunner : NSObject{
 	NSArray *scripts;
 }
 - (void) setScripts: (NSArray *)scripts;

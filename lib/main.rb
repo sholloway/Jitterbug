@@ -86,15 +86,21 @@ begin
 				end			
 		when :clean
 			type = ARGV.shift
+			if type.nil?
+			  type = :all
+		  end
 			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
 			case type.downcase.to_sym
 				when :trash
 					lm.clean(:trash)
 				when :output
 					lm.clean(:output)
+				when :logs
+				  lm.clean(:logs)
 				when :all
 					lm.clean(:trash)
 					lm.clean(:output)
+					lm.clean(:logs)
 				else
 					lm.logger.close
 					Trollop::die "Unknown subcommand #{type.inspect}.\nClean can only be followed by trash or output.\njitterbug -d clean trash"

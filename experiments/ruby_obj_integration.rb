@@ -1,17 +1,11 @@
+framework 'Foundation'
 framework 'Cocoa'
 framework 'OpenGL'
 framework 'AppKit'
 require File.join(File.expand_path(File.dirname(__FILE__)),"./../ext/bin/macos_jitterbug")
 
-=begin
-gs = GraphicsScript.alloc.init
-puts "about to call render"
-gs.render();
-puts "called render"
-=end
-
 class MyGraphicsScript < GraphicsScript
-  attr_accessor :script #will there be a collision?
+  attr_accessor :script
   def initialize()
     super.alloc.init
     self

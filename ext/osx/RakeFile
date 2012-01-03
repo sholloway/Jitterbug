@@ -10,7 +10,6 @@ CC = 'clang++'
 FRAMEWORKS = "-framework OpenGL -framework Foundation -framework Cocoa -framework Macruby" 
 MACRUBY="/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
 OPENGL_GLM="/Users/sholloway/Dropbox/Jitterbug/ext/vendor/glm-0.9.2.3"
-#STD="/usr/include/c++/4.2.1"
 INCLUDES = %{-I. -I#{MACRUBY} -I#{OPENGL_GLM} }
   
 COMPILE_LANG_OPTS = "-ObjC++ -fobjc-gc"
@@ -24,21 +23,19 @@ task :default => [:full_build]
 
 #this should be called for every .m file by macos_jitterbug.bundle task
 rule '.o' => '.mm' do |t|  
-  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{FRAMEWORKS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
+  sh %{clang #{ARCH_OPTS} #{COMPILE_LANG_OPTS} #{FRAMEWORKS} #{INCLUDES} -d -g -c -pipe -o #{t.name} #{t.source}}
 end
 
 rule '.o' => '.m' do |t|  
-  sh %{clang #{ARCH_OPTS} -ObjC -fobjc-gc #{FRAMEWORKS} #{INCLUDES} -c -pipe -o #{t.name} #{t.source}}
+  sh %{clang #{ARCH_OPTS} -ObjC -fobjc-gc #{FRAMEWORKS} #{INCLUDES} -d -g -c -pipe -o #{t.name} #{t.source}}
 end
 
 desc "Create the macos_jitterbug.bundle for macruby"
-file 'macos_jitterbug.bundle' => OBJ do
-  #I need to find the equivalant of 
-  #$(OBJS): $(hdrdir)/ruby.h $(hdrdir)/ruby/defines.h $(arch_hdrdir)/ruby/config.h
+file 'macos_jitterbug.bundle' => OBJ do  
   sh "clang #{ARCH_OPTS} #{LINK_LANG_OPTS} #{FRAMEWORKS} #{LIBS} -pipe -v -bundle -o macos_jitterbug.bundle #{OBJ}"
 end
 
-desc "Copy the macos_jitterbug.bundl to the bin ext/bin directory"
+desc "Copy the macos_jitterbug.bundle to the bin ext/bin directory"
 task :copy_jb => 'macos_jitterbug.bundle' do
   sh "mv macos_jitterbug.bundle ./../bin/macos_jitterbug.bundle"
 end

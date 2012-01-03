@@ -5,12 +5,11 @@ def run_fast
 	init_log
 	load_src_to_path
 	load_vendors	
-  #Dir.chdir('lib') 	
+  add_extensions_to_search_path
   require File.join(File.expand_path(File.dirname(__FILE__)),"lib/main")
 end
 
-def init_log
-	
+def init_log	
 end
 
 def load_src_to_path 	
@@ -23,6 +22,10 @@ def load_vendors
     reject{|file| !File.directory?(file)}.
     map{|dir| File.join(File.expand_path(File.dirname(__FILE__)),dir)}    
     ruby_dirs.each{|d| $:.unshift(d)}
+end
+
+def add_extensions_to_search_path
+  $:.unshift(File.join(File.expand_path(File.dirname(__FILE__)),"ext/bin"))
 end
 	
 if __FILE__ == $PROGRAM_NAME

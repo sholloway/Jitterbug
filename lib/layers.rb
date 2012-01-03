@@ -2,15 +2,17 @@ require 'layers_helper'
 require 'yaml'
 require 'fileutils'
 require 'jitter_logger'
-require 'renderer'
+require 'renderer/bootstrap'
 
 module Jitterbug
 	module Layers
 		class Layer 
 			attr_accessor :id,:visible, :order, :script, :active, :name
+			attr_accessor :type #can be :two_dim, :three_dim
 			def initialize				  
 			  @visible = true
-			  @active = false			  	 			 
+			  @active = false			  	 
+			  @type = :two_dim			 
 				yield self if block_given?
 			end		
 
@@ -123,7 +125,7 @@ module Jitterbug
 						delete_layers << layer.id
 					end
 				end				
-				delete_layers.each{|id| @layers.delete(id)}
+				delete_layers.each{|dl| @layers.delete(dl)}
 			end
 			
 			alias :delete :delete_layer
@@ -216,15 +218,21 @@ module Jitterbug
 						Dir.glob(path).
 							reject{|file| File.directory?(file)}.
 							each{|file| FileUtils.rm(file,:force => true)}
+					when :logs
+					  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
+						FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
 					else
 						raise StandardError.new "Layers Management does not have a clean type of #{type}"
 				end
 			end
 			
-			def render
-				#this needs to be replaced with a call to the SketchRenderer. And it should be in the logs dir.				
-				renderer = Jitterbug::Graphics::OpenGLRenderer.new(self)
-				renderer.render
+			def render							
+				@logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log")
+				@logger.info "Prepping renderer."											 				
+				bootstrap = Jitterbug::Render::BootStrap.new(@logger) 
+				bootstrap.lace_up(self)						 
+			  bootstrap.render 			  				
+				@logger.info "Rendering complete."
 			end
 			
 			private

@@ -1,6 +1,6 @@
-#import "GraphicsScriptRunner.h"
+#import "JBGraphicsScriptRunner.h"
 
-@implementation GraphicsScriptRunner
+@implementation JBGraphicsScriptRunner
 - (id)init
 {
     self = [super init];
@@ -33,7 +33,7 @@
 		return;
 	}
 	
-	for (GraphicsScript *script in scripts)
+	for (JBGraphicsScript *script in scripts)
 	{
 		//need to some how get access to the jitterbug log
 		//but diagnostics before and after. Also have an individual log for each script.

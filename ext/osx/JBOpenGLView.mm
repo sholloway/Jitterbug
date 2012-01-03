@@ -1,12 +1,17 @@
-#import "GLView.h"
+#import "JBOpenGLView.h"
 #include <OpenGL/OpenGL.h>
 
-@interface GLView (PrivateMethods)
+@interface JBOpenGLView (PrivateMethods)
 - (void) initGL;
 - (void) drawView;
 @end
 
-@implementation GLView
+//https://developer.apple.com/library/mac/#qa/qa1385/_index.html
+@implementation JBOpenGLView
+- (void) setRenderer:(JBRenderer*) renderer
+{
+	_renderer = renderer;
+}
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
@@ -29,7 +34,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
                                       CVOptionFlags* flagsOut, 
                                       void* displayLinkContext)
 {
-    CVReturn result = [(GLView*)displayLinkContext getFrameForTime:outputTime];
+    CVReturn result = [(JBOpenGLView*)displayLinkContext getFrameForTime:outputTime];
     return result;
 }
 
@@ -92,7 +97,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	[[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
 	
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for MacOS (but not iOS)
-	_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
+	//_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void) reshape

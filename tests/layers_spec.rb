@@ -342,16 +342,20 @@ describe Jitterbug::Layers::LayersManager do
 			File.exists?("#{@full_dir}/trash/b.rb").should == false
 		end
 		
-		it "should empty output dir" do 
-			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
+		it "should empty output dir" 
+		
+		it "should empty the log dir" do 
+		  lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save
 			lm.render
-			File.exists?("#{@full_dir}/output/images/render.log").should == true
-			lm.clean(:output)
-			File.exists?("#{@full_dir}/output/images/render.log").should == false
-		end
+			File.exists?("#{@full_dir}/logs/render.log").should == true
+			lm.clean(:logs)
+			File.exists?("#{@full_dir}/logs/render.log").should == false
+	  end	  
+	  
+	  it "should empty all" 
 	end
 	
 	describe "clone" do

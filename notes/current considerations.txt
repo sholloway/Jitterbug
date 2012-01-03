@@ -1,0 +1,13 @@
+Render Outout considerations:
+	for print quality
+		DPI (Pixels per inch)
+			Might be a good use of CoreImage rather than OpenGL.
+			
+			OpenCTM is a way to compress model data. Might be a good intermediate format to store geometry in.
+			
+		Paper Size
+			12x12
+			11x17
+			What is poster size?
+	
+Do we have a kinko's nearby?

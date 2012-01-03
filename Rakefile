@@ -1,4 +1,3 @@
-#this is a problem with macrake... Hopefully they'll fix this in 0.11 of macruby. 
 require "rspec/core/rake_task"
 
 @ruby_options = ""
@@ -26,8 +25,8 @@ desc "Run all tests"
 RSpec::Core::RakeTask.new(:run_rspec) do |t|  
 	@ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"lib")}\""
 	@ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"vendor")}\""
-  t.rspec_opts = %w[--color]
-  t.verbose = false
+  t.rspec_opts = %w[--color --format d]
+  t.verbose = true
 	t.pattern = "tests/**/*_spec.rb"
-	t.ruby_opts = @ruby_options 
-end	
+	t.ruby_opts = @ruby_options 	
+end

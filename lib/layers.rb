@@ -1,8 +1,8 @@
-require 'layers_helper'
+# require 'layers_helper'
 require 'yaml'
 require 'fileutils'
-require 'jitter_logger'
-require 'renderer/bootstrap'
+# require 'jitter_logger'
+# require 'renderer/bootstrap'
 
 module Jitterbug
 	module Layers

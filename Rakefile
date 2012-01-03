@@ -1,32 +1,63 @@
-require "rspec/core/rake_task"
-
-@ruby_options = ""
-
-task :default => [:run_rspec]
-#task :run_rspec => [:load_src_to_path,:load_vendors]
-
-task :load_src_to_path do  		
-  #$:.unshift(File.join(File.expand_path(File.dirname(__FILE__)),"lib"))
-  @ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"lib")}\""
-end
-
-task :load_vendors do  	
-	@ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"vendor")}\""
-	#$:.unshift(File.join(File.expand_path(File.dirname(__FILE__)),"vendor"))
 =begin
-  ruby_dirs = Dir.glob("vendor/**/lib"). 
-    reject{|file| !File.directory?(file)}.
-    map{|dir| File.join(File.expand_path(File.dirname(__FILE__)),dir)}    
-    ruby_dirs.each{|d| $:.unshift(d)}
+Planned rake tasks
+  create_foxtrot
+  run_foxtrot
+  create_gui_app
+  run_gui_app
+  run_ruby_tests
+  run_native_tests
+  debug_with_gdb  
+  
+Help:
+  On the command line run: rake -T 
+  to see a list of all available commands
+  
+Application Structure
+Compiled GUI Application Directory Structure
+ Name.app
+   Contents
+     Info.plist
+     MacOS
+       the executible
+     Resources
+       all ruby code
+       all non-localized images
+       English.lproj 
+         InfoPlist.strings
+         Localizable.strings
+         MainMenu.nib
+     Frameworks
+       all required frameworks
+     
+
+Compiled Terminal Application Directory Structure
+ Name.app
+   Contents
+     MacOS
+       the executible
+     Resources
+       all ruby code
+     Frameworks
+       all required frameworks
 =end
-end
-	
-desc "Run all tests"
-RSpec::Core::RakeTask.new(:run_rspec) do |t|  
-	@ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"lib")}\""
-	@ruby_options = "#{@ruby_options} -I\"#{File.join(File.expand_path(File.dirname(__FILE__)),"vendor")}\""
-  t.rspec_opts = %w[--color --format d]
-  t.verbose = true
-	t.pattern = "tests/**/*_spec.rb"
-	t.ruby_opts = @ruby_options 	
-end
+
+#Application Meta-data
+GUI_NAME 		= 'Jitterbug'
+TERM_NAME   = 'Foxtrot'
+COMPANY = 'mod89'
+GUI_APP_VERSION = '1.0.0'
+GUI_BUILD_VERSION = '1'
+GUI_IDENTIFIER 	= "com.#{COMPANY}.#{GUI_NAME}"
+TERM_IDENTIFIER = "com.#{COMPANY}.#{TERM_NAME}"
+
+require 'build_scripts/ruby_test_runner.rb'
+require 'build_scripts/utilities'
+require 'build_scripts/osx_terminal_framework'
+require 'build_scripts/osx_terminal_app'
+
+task :default => :create_foxtrot
+
+require 'rake/clean'
+CLEAN.include('**/*.o','**/*.log')
+CLOBBER.include("#{TERM_NAME}.app",
+  "#{TERM_FRAMEWORK_NAME}.bundle")

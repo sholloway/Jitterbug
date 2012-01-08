@@ -26,6 +26,12 @@ Please use at your own discretion. Drop me a line if you find the program useful
 Copyright (C) 2011-2012 Samuel Holloway. All rights reserved.
 ######################################################################################################################
 Status: Not for use yet.
+Version 0.0.3 - 1.8.2012
+----------------------------------------------------------------------------------------------------------------------
+- Restructured the project to be compiled as an OS X application bundle.
+- Added the bridge rendering bridge between native and dynamic code.
+- Implemented the "background" command for the sketch DSL
+======================================================================================================================
 Version 0.0.2 - 8.16.2011
 ----------------------------------------------------------------------------------------------------------------------
 - Added MIT License.

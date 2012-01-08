@@ -1,6 +1,7 @@
+Dir['./vendor/**/*.rb'].map {|f| puts f; require f}
+Dir['./lib/**/*.rb'].map {|f| puts f; require f}
+
 require 'fileutils'
-require 'layers'
-require 'create_sketch'
 require 'logger'
 
 include Jitterbug::Layers
@@ -344,8 +345,21 @@ describe Jitterbug::Layers::LayersManager do
 		
 		it "should empty output dir" 
 		
-		it "should empty the log dir" do 
-		  lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
+		it "should empty the log dir" do
+		  mock_bootstrap = double("BootStrap")	
+		  mock_bootstrap.stub :create_graphics_renderer
+      mock_bootstrap.stub :process_layers
+      mock_bootstrap.stub :load_shaders
+      mock_bootstrap.stub :load_textures
+      mock_bootstrap.stub :load_models
+      mock_bootstrap.stub :load_audio
+      mock_bootstrap.stub :load_video
+      mock_bootstrap.stub :render
+		  	   
+		  mock_env = double("RenderEnv")
+		  mock_env.stub(:bootstrap).and_return(mock_bootstrap)		  
+		  
+		  lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger, :env=>mock_env)	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save
@@ -359,7 +373,7 @@ describe Jitterbug::Layers::LayersManager do
 	end
 	
 	describe "clone" do
-		it "should copy layer to the foreground" do 
+		it "should copy layer to the foreground" do 		  
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")

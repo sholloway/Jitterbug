@@ -1,6 +1,7 @@
+Dir['./vendor/**/*.rb'].map {|f| puts f; require f}
+Dir['./lib/**/*.rb'].map {|f| puts f; require f}
+
 require 'fileutils'
-require 'layers'
-require 'create_sketch'
 require 'logger'
 
 include Jitterbug::Layers

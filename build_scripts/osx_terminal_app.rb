@@ -1,5 +1,5 @@
 TERM_ARCH 		    = '-arch x86_64'
-TERM_FRAMEWORKS 	= "-framework MacRuby -framework Foundation"
+TERM_FRAMEWORKS 	= "-framework MacRuby -framework Foundation -framework AppKit"
 TERM_GCFLAGS      = '-fobjc-gc-only'
 TERM_COMPILER     = 'clang'
 
@@ -9,7 +9,8 @@ TERM_RESOURCE_DIR 	= File.join(TERM_CONTENTS_DIR, 'Resources')
 TERM_MACOS_DIR 		  = File.join(TERM_CONTENTS_DIR, 'MacOS')
 TERM_FRAMEWORKS_DIR	= File.join(TERM_CONTENTS_DIR, 'Frameworks')
 
-COPY_TERMINAL_FILES = FileList["lib/**/*.rb",  
+COPY_TERMINAL_FILES = FileList["lib/**/*.rb", 
+  "osx_terminal_build/**/*.rb", 
   "vendor/**/*.rb", 
   "resources/images/*.tiff", 
   "resources/images/*.icns", 
@@ -24,6 +25,10 @@ transform_task(:copy_osx_terminal_frameworks, COPY_TERMINAL_FRAMEWORKS, TERM_FRA
 # Create the Application Bundle and compile the main.m file
 file File.join(TERM_MACOS_DIR, TERM_NAME) => [:copy_osx_terminal_files, :copy_osx_terminal_frameworks] do |t|
 	mkdir_p("#{TERM_MACOS_DIR}", :verbose => false)	
+	# how to do this?
+	# cp 'osx_terminal_build/terminal_main.rb' #{TERM_RESOURCE_DIR}/lib/terminal_main.rb
+	# cp 'osx_terminal_build/renderer/**/*.rb #{TERM_RESOURCE_DIR}/lib/renderer
+	
 	sh "#{TERM_COMPILER} #{TERM_MAIN} -L#{TERM_FRAMEWORKS_DIR} -o #{t.name} #{TERM_ARCH} #{TERM_FRAMEWORKS} #{TERM_GCFLAGS}"
 end
 

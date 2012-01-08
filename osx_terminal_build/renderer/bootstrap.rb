@@ -10,11 +10,14 @@ module Jitterbug
         def create_graphics_renderer
           @logger.info "Creating OpenGL context."
          
+=begin
+          #I'm hopeful that the loading from terminal main will take care of this.
           framework 'Foundation'
           framework 'Cocoa'
           framework 'OpenGL'
           framework 'AppKit'          
           require 'macos_jitterbug' #Load the mac bundle under ext/bin. If this fails, we could try to compile it...             
+=end
 
           @app = NSApplication.sharedApplication
           @app.delegate = AppDelegate.new
@@ -44,9 +47,6 @@ module Jitterbug
         
         def process_layers
           @logger.info "Converting all of the layers to the right type of Sketch Layer."
-        
-  				require 'renderer/osx/sketch2d'
-          require 'renderer/osx/sketch_context'
           @sketch_layers = []
 
           #Need to do this back to front? Or do you delay the ordering till the final composit?

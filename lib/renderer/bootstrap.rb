@@ -9,8 +9,10 @@ module Jitterbug
       # This is where the multithreaded loading of all assets should occure.
       def lace_up(layer_manager)
         # how do I determine that I'm running macruby?
-        require 'renderer/osx/bootstrap'
-        @boot_strap = Jitterbug::Render::OSX::BootStrap.new(@logger, layer_manager) 
+        #this needs to be in a config file to load this.
+        # the tests should have a different config file to prevent relying on macruby.
+        
+        @boot_strap = layer_manager.options[:env].bootstrap(@logger, layer_manager)         
         @boot_strap.create_graphics_renderer
         @boot_strap.process_layers
         @boot_strap.load_shaders

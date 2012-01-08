@@ -1,42 +1,41 @@
 #load bundles
-def load_shared_frameworks
-  puts "Load shared frameworks"
-  frameworks_path = NSBundle.mainBundle.privateFrameworksPath.fileSystemRepresentation 
-  puts "Found shared frameworks: #{frameworks_path}"
-  Dir.glob(File.join(frameworks_path, '*.bundle')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|
-    puts "Attempting to load shared framework #{File.join(frameworks_path,path)}"
+def load_shared_frameworks  
+  frameworks_path = NSBundle.mainBundle.privateFrameworksPath.fileSystemRepresentation  
+  Dir.glob(File.join(frameworks_path, '*.bundle')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|    
     require(File.join(frameworks_path,path))
   end
 end
 
 # Loading all the Ruby project files.
 def load_lib
-  puts "Load all lib/ruby files"
   main = File.basename(__FILE__, File.extname(__FILE__))
-  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
-  puts "Found resource path: #{resources_path}"
-  Dir.glob(File.join(resources_path,'lib','*.{rb,rbo}')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|
-    if path != main && path != 'gui_main'
-     puts "Attempting to load ruby file #{resources_path}/lib/#{path}"
-     require(File.join(resources_path,'lib',path))
+  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation  
+  Dir.glob(File.join(resources_path,'lib','**/*.{rb,rbo}')).uniq.each do |path|
+    if path != __FILE__
+     require(path)
     end
   end
 end
 
-def load_ruby_vendors
-  puts "Load all vendor/ruby files"
+def load_osx_terminal_build  
   main = File.basename(__FILE__, File.extname(__FILE__))
-  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
-  puts "Found resource path: #{resources_path}"
-  Dir.glob(File.join(resources_path,'vendor','*.{rb,rbo}')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|
-    puts "Attempting to load ruby file #{resources_path}/vendor/#{path}"
+  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation  
+  Dir.glob(File.join(resources_path,'osx_terminal_build','**/*.{rb,rbo}')).uniq.each do |path|   
+    require(path)    
+  end  
+end
+
+def load_ruby_vendors 
+  main = File.basename(__FILE__, File.extname(__FILE__))
+  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation 
+  Dir.glob(File.join(resources_path,'vendor','*.{rb,rbo}')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|    
     require(File.join(resources_path,'vendor',path))    
   end  
 end
 
-
 load_shared_frameworks
 load_ruby_vendors
+load_osx_terminal_build
 load_lib
 
 =begin
@@ -77,35 +76,36 @@ end
 sketch_name = ARGV.first
 sketch_dir = global_opts[:dir]
 begin
+  active_env = Jitterbug::Env::OSXEnv.new()
 	cmd_opts = case cmd.downcase.to_sym
 		when :create 						
 			create_sketch(sketch_name, sketch_dir)
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}/#{sketch_name}", :output_dir => global_opts[:output])				
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}/#{sketch_name}", :output_dir => global_opts[:output],:env=>active_env)				
 			lm.create_new_layer("Background")				
 			lm.create_new_layer("Foreground")				
 			lm.save
 			lm.logger.close
 			puts "created sketch: #{sketch_dir}/#{sketch_name}"
 		when :viz #jitterbug  viz sketch_dir
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			lm.logger.close
 			puts lm.to_s
 		when :select
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			layer_id = ARGV.first
 			lm.select(layer_id)			
 			lm.save
 			lm.logger.close
 		when :add
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			ARGV.each{|layer_name| lm.add(layer_name)}
 			lm.save
 			lm.logger.close
 		when :revert
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			lm.revert
 			lm.logger.close
@@ -113,13 +113,13 @@ begin
 			direction = ARGV.shift
 			case direction.downcase.to_sym				
 				when :closer
-					lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+					lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 					lm.load					
 					lm.move_closer
 					lm.save
 					lm.logger.close
 				when :away
-					lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+					lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 					lm.load					
 					lm.move_farther_away
 					lm.save
@@ -132,7 +132,7 @@ begin
 			if type.nil?
 			  type = :all
 		  end
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			case type.downcase.to_sym
 				when :trash
 					lm.clean(:trash)
@@ -150,14 +150,14 @@ begin
 				end
 				lm.logger.close
 		when :delete			
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			ARGV.each{|layer_name| lm.delete(layer_name)}
 			lm.save
 			lm.logger.close
 		when :copy
       id = ARGV.shift
-      lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+      lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
       lm.load
       if ARGV.empty? 
         lm.copy(id)
@@ -175,13 +175,13 @@ begin
 	      }
 		    exit
 	    end
-	    lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+	    lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			lm.rename(ARGV.shift,ARGV.shift)
 			lm.save
 			lm.logger.close
 		when :render
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output])
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}", :output_dir => global_opts[:output],:env=>active_env)
 			lm.load
 			lm.render
 			lm.logger.close

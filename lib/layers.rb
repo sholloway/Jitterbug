@@ -47,7 +47,8 @@ module Jitterbug
 						:trash => "trash",
 						:layers_file_backup =>"layer.yml.bak",
 						:logs => "logs",
-						:logger => true} #allow mocking of the logger
+						:logger => true,
+						:env => nil} #allow mocking of the logger
 					@options.merge!(options)
 					@layers = {}
 					@layer_counter = 0

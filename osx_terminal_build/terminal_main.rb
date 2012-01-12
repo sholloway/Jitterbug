@@ -80,7 +80,9 @@ begin
 	cmd_opts = case cmd.downcase.to_sym
 		when :create 						
 			create_sketch(sketch_name, sketch_dir)
-			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}/#{sketch_name}", :output_dir => global_opts[:output],:env=>active_env)				
+			lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}/#{sketch_name}", 
+			  :output_dir => global_opts[:output],
+			  :env=>active_env)				
 			lm.create_new_layer("Background")				
 			lm.create_new_layer("Foreground")				
 			lm.save

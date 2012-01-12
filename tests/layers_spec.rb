@@ -31,18 +31,18 @@ describe Jitterbug::Layers::LayersManager do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)
 			lm.number_of_layers.should == 0
 			name = "My Layer"
-			id = lm.create_new_layer(name)
-			id.should == "layer_1"
+			lm.create_new_layer(name)
+			lm.selected_layer.id.should == "layer_1"
 			lm.number_of_layers.should == 1
 		end
 		
 		it "should add ~count of the layer name if the layer name already exists"	do 
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)
 			name = "My Layer"
-			id1 = lm.create_new_layer(name)
-			id2 = lm.create_new_layer(name)
-			id3 = lm.create_new_layer(name)
-			id4 = lm.create_new_layer(name)
+			id1 = lm.create_new_layer(name).selected_layer.id
+			id2 = lm.create_new_layer(name).selected_layer.id
+			id3 = lm.create_new_layer(name).selected_layer.id
+			id4 = lm.create_new_layer(name).selected_layer.id
 			
 			lm.number_of_layers.should == 4
 			
@@ -56,7 +56,7 @@ describe Jitterbug::Layers::LayersManager do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)
 			File.exists?("#{@full_dir}/scripts/my_layer").should == false
 			name = "My Layer"
-			id = lm.create_new_layer(name)
+			id = lm.create_new_layer(name).selected_layer.id
 			File.exists?("#{@full_dir}/scripts/my_layer.rb").should == true
 			layer = lm.get_layer(id)
 			layer.script.should == "#{@full_dir}/scripts/my_layer.rb"
@@ -65,10 +65,10 @@ describe Jitterbug::Layers::LayersManager do
 		it "should increment scripts names" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)
 			name = "My Layer"
-			id1 = lm.create_new_layer(name)
-			id2 = lm.create_new_layer(name)
-			id3 = lm.create_new_layer(name)
-			id4 = lm.create_new_layer(name)
+			lm.create_new_layer(name).
+			  create_new_layer(name).
+			  create_new_layer(name).
+			  create_new_layer(name)
 			
 			File.exists?("#{@full_dir}/scripts/my_layer.rb").should == true
 			File.exists?("#{@full_dir}/scripts/my_layer_1.rb").should == true
@@ -79,7 +79,7 @@ describe Jitterbug::Layers::LayersManager do
 		it "should rename the ruby script when the layer is renamed" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)
 			name = "My Layer"
-			id1 = lm.create_new_layer(name)
+			id1 = lm.create_new_layer(name).selected_layer.id
 			
 			new_name = "My Renamed Layer"
 			lm.rename_layer(id1, new_name)
@@ -94,7 +94,7 @@ describe Jitterbug::Layers::LayersManager do
 		it "should remove the layer from the layers cache" do 
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			name = "My Layer"
-			id = lm.create_new_layer(name)
+			id = lm.create_new_layer(name).selected_layer.id
 			lm.number_of_layers.should == 1
 			lm.delete_layer(id)
 			lm.number_of_layers.should == 0
@@ -103,7 +103,7 @@ describe Jitterbug::Layers::LayersManager do
 		it "should move the layer's script to the trash"	do	
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			name = "My Layer"
-			id = lm.create_new_layer(name)			
+			id = lm.create_new_layer(name).selected_layer.id			
 			lm.delete_layer(id)
 			File.exists?("#{@full_dir}/scripts/my_layer.rb").should == false
 			File.exists?("#{@full_dir}/trash/my_layer.rb").should == true
@@ -113,7 +113,7 @@ describe Jitterbug::Layers::LayersManager do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			lm.add("A")
 			lm.add("B")
-			id = lm.add("C")
+			id = lm.add("C").selected_layer.id
 			lm.save
 			lm.delete("B")
 			lm.delete(id)
@@ -126,8 +126,7 @@ describe Jitterbug::Layers::LayersManager do
 		it "should save the layer data to layer.yml" do 
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			name = "My Layer"
-			id = lm.create_new_layer(name)	
-			
+			id = lm.create_new_layer(name).selected_layer.id			
 			lm.save
 			
 			#load the yaml file directly and verify the stuff is saved...
@@ -143,7 +142,7 @@ describe Jitterbug::Layers::LayersManager do
 			parsed.layers['layer_1'].name.should == name			
 			parsed.layers['layer_1'].id.should == 'layer_1'
 			parsed.layers['layer_1'].order.should == 1
-			parsed.layers['layer_1'].active.should == false
+			parsed.layers['layer_1'].active.should == true
 			parsed.layers['layer_1'].visible.should == true
 			parsed.layers['layer_1'].script.should == "#{@full_dir}/scripts/my_layer.rb"
 			#:id,:visible, :order, :script, :active, :name
@@ -152,7 +151,7 @@ describe Jitterbug::Layers::LayersManager do
 		it "should load the layer data from layer.yml" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
 			name = "My Layer"
-			id = lm.create_new_layer(name)	
+			id = lm.create_new_layer(name).selected_layer.id	
 			
 			lm.save
 			
@@ -163,7 +162,7 @@ describe Jitterbug::Layers::LayersManager do
 			lm2.get_layer('layer_1').name.should == name			
 			lm2.get_layer('layer_1').id.should == 'layer_1'
 			lm2.get_layer('layer_1').order.should == 1
-			lm2.get_layer('layer_1').active.should == false
+			lm2.get_layer('layer_1').active.should == true
 			lm2.get_layer('layer_1').visible.should == true
 			lm2.get_layer('layer_1').script.should == "#{@full_dir}/scripts/my_layer.rb"
 		end
@@ -202,8 +201,13 @@ describe Jitterbug::Layers::LayersManager do
 			id3 = lm.create_new_layer("C")
 			id4 = lm.create_new_layer("D")
 			
-			lm.layers{|layer| layer.active.should == false}
+			lm.get_layer("layer_1").active.should == false
+			lm.get_layer("layer_2").active.should == false
+			lm.get_layer("layer_3").active.should == false
+			lm.get_layer("layer_4").active.should == true
+			
 			lm.layers{|layer| layer.active = true}
+			
 			lm.select("layer_1")
 			lm.get_layer("layer_1").active.should == true
 			lm.get_layer("layer_2").active.should == false
@@ -214,10 +218,10 @@ describe Jitterbug::Layers::LayersManager do
 		
 		it "should make the specified layer active" do 
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")
-			id2 = lm.create_new_layer("B")
-			id3 = lm.create_new_layer("C")
-			id4 = lm.create_new_layer("D")
+			id1 = lm.create_new_layer("A").selected_layer.id	
+			id2 = lm.create_new_layer("B").selected_layer.id	
+			id3 = lm.create_new_layer("C").selected_layer.id	
+			id4 = lm.create_new_layer("D").selected_layer.id	
 			
 			lm.select(id1)
 			lm.get_layer(id1).active.should == true
@@ -234,17 +238,17 @@ describe Jitterbug::Layers::LayersManager do
 		
 		it "should accept layer id" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")	
+			id1 = lm.create_new_layer("A").selected_layer.id		
 			lm.select(id1)
 			lm.get_layer(id1).active.should == true
 		end
 		
 		it "should accept layer name" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")	
-			id2 = lm.create_new_layer("B")
-			id3 = lm.create_new_layer("C")
-			id4 = lm.create_new_layer("D")
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			lm.create_new_layer("B").
+			  create_new_layer("C").
+			  create_new_layer("D")
 			
 			lm.select("A")
 			lm.get_layer(id1).active.should == true
@@ -255,10 +259,10 @@ describe Jitterbug::Layers::LayersManager do
 	describe "move" do
 		it "should decrease the order of a selected layer when moving up" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")	
-			id2 = lm.create_new_layer("B")
-			id3 = lm.create_new_layer("C")
-			id4 = lm.create_new_layer("D")	
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			id2 = lm.create_new_layer("B").selected_layer.id	
+			id3 = lm.create_new_layer("C").selected_layer.id	
+			id4 = lm.create_new_layer("D").selected_layer.id	
 			
 			lm.get_layer(id1).order.should == 1
 			lm.get_layer(id2).order.should == 2
@@ -284,10 +288,10 @@ describe Jitterbug::Layers::LayersManager do
 		
 		it "should move a selected layer down"		do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")	
-			id2 = lm.create_new_layer("B")
-			id3 = lm.create_new_layer("C")
-			id4 = lm.create_new_layer("D")	
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			id2 = lm.create_new_layer("B").selected_layer.id	
+			id3 = lm.create_new_layer("C").selected_layer.id	
+			id4 = lm.create_new_layer("D").selected_layer.id		
 			
 			lm.get_layer(id1).order.should == 1
 			lm.get_layer(id2).order.should == 2
@@ -328,8 +332,8 @@ describe Jitterbug::Layers::LayersManager do
 	describe "clean" do
 		it "should empty the trash bin" do
 			lm = LayersManager.new(:working_dir => @full_dir,:logger=>@logger)	
-			id1 = lm.create_new_layer("A")	
-			id2 = lm.create_new_layer("B")
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			id2 = lm.create_new_layer("B").selected_layer.id	
 			lm.save
 			lm.delete(id1)
 			lm.delete(id2)

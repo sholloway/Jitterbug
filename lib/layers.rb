@@ -60,6 +60,7 @@ module Jitterbug
 					end
 					
 					validate
+					return self
 			end			
 			
 			def load()		
@@ -71,6 +72,7 @@ module Jitterbug
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
+				return self
 			end
 			
 			# save to @filepath layer.yml
@@ -84,6 +86,7 @@ module Jitterbug
 				
 				data = LayersData.new(@layers,@layer_counter)
 				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") {|f| f.write(data.to_yaml) } 
+				return self
 			end
 			
 			def revert
@@ -93,17 +96,19 @@ module Jitterbug
 				FileUtils.cp("#{@options[:working_dir]}/#{@options[:layers_file_backup]}",
 				"#{@options[:working_dir]}/#{@options[:layers_file]}") 
 				load
+				return self
 			end
 			
 			# Selects the specified layer by name or id and copies the layer and associated script.
+			# The cloned layer is then selected.
 			def clone_layer(id,name=nil)
-				selected_layer = select(id)
-				layer_name = (name.nil?)? selected_layer.name : name
-				new_layer_id = create_new_layer(layer_name)
-				new_layer = get_layer(new_layer_id)
-				FileUtils.cp selected_layer.script, new_layer.script
-				select(new_layer_id)
+				original_layer = select(id)
+				layer_name = (name.nil?)? original_layer.name : name
+				create_new_layer(layer_name)	#this selects the new layer			
+				new_layer = selected_layer
+				FileUtils.cp original_layer.script, new_layer.script				
 				save
+				return self
 			end
 			
 			alias :copy :clone_layer
@@ -127,6 +132,7 @@ module Jitterbug
 					end
 				end				
 				delete_layers.each{|dl| @layers.delete(dl)}
+				return self
 			end
 			
 			alias :delete :delete_layer
@@ -139,7 +145,8 @@ module Jitterbug
 			def create_new_layer(name)
 				id = make_layer(name)
 				make_script(id)
-				return id
+				select(id)
+				return self
 			end
 			
 			alias :add :create_new_layer
@@ -177,7 +184,9 @@ module Jitterbug
 			# move the selected layer farther away from the viewer
 			def move_farther_away
 				layer = selected_layer()
-				return if layer.nil?
+				if layer.nil?
+				  return self
+			  end
 				sorted_layers = @layers.values.sort{|a, b| a.order <=> b.order}
 				index = sorted_layers.index{|a| a.id.eql?(layer.id)}				
 				return if index.nil? || index == sorted_layers.size - 1
@@ -185,12 +194,15 @@ module Jitterbug
 				bottom = sorted_layers[index].order				
 				sorted_layers[index].order = top
 				sorted_layers[index + 1].order = bottom	
+				return self
 			end
 			
 			#brings the selected layer closer to the foreground
 			def move_closer
 				layer = selected_layer()
-				return if layer.nil?
+				if layer.nil?
+				  return self
+			  end
 				sorted_layers = @layers.values.sort{|a, b| a.order <=> b.order}
 				index = sorted_layers.index{|a| a.id.eql?(layer.id)}				
 				return if index.nil? || index == sorted_layers.size - 1
@@ -198,6 +210,7 @@ module Jitterbug
 				bottom = sorted_layers[index-1].order				
 				sorted_layers[index].order = bottom
 				sorted_layers[index - 1].order = top	
+				return self
 			end
 			
 			def rename_layer(id, new_name)
@@ -205,26 +218,28 @@ module Jitterbug
 				new_script = rename_script(id, new_name)
 				layer.script = new_script
 				layer.name = new_name
+				return self
 			end
 			
 			alias rename rename_layer
 			
 			def clean(type)
 				case type
-					when :trash
-						FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",force=true)
-						FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:trash]}")
-					when :output						
-						path = "#{@options[:working_dir]}/#{@options[:output_dir]}/**/*".gsub('\\','/')										
-						Dir.glob(path).
-							reject{|file| File.directory?(file)}.
-							each{|file| FileUtils.rm(file,:force => true)}
-					when :logs
-					  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
-						FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
-					else
-						raise StandardError.new "Layers Management does not have a clean type of #{type}"
+				when :trash
+					FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",force=true)
+					FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:trash]}")
+				when :output						
+					path = "#{@options[:working_dir]}/#{@options[:output_dir]}/**/*".gsub('\\','/')										
+					Dir.glob(path).
+						reject{|file| File.directory?(file)}.
+						each{|file| FileUtils.rm(file,:force => true)}
+				when :logs
+				  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
+					FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
+				else
+					raise StandardError.new "Layers Management does not have a clean type of #{type}"
 				end
+				return self
 			end
 			
 			def render							
@@ -234,6 +249,7 @@ module Jitterbug
 				bootstrap.lace_up(self)						 
 			  bootstrap.render 			  				
 				@logger.info "Rendering complete."
+				return self
 			end
 			
 			private

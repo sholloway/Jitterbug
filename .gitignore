@@ -1,7 +1,9 @@
 docs/
 .gitignore
 *.o
+**/*.o
 *.bundle
+*.app
 .DS_Store
 ext/.DS_Store
 ext/bin

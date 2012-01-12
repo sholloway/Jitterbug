@@ -16,6 +16,7 @@ module Jitterbug
   render    Renders the layer stack to the output directory
 
     }
+    
     Create = %{
   Summary:            
     Creates a new sketch.
@@ -27,6 +28,7 @@ module Jitterbug
     -d/--dir  The directory to create the sketch in
 
     }
+    
     Viz = %{
   Summary:            
     Displays the layer stack.
@@ -38,6 +40,7 @@ module Jitterbug
     -d/--dir  The full path to the sketch directory.
       
     }
+    
     Select = %{
   Summary:            
     Selects a layer given it's name or id.
@@ -49,6 +52,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.
 
     }
+    
     Add =  %{
   Summary:            
     Adds a layer to an existing sketch.
@@ -62,6 +66,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.
       
     }
+    
     Revert = %{
   Summary:            
     Restores the layer stack from the layer.yml.bak file. 
@@ -74,6 +79,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.
 
     }
+    
     Move =  %{
   Summary:            
     Moves the selected layer up or down in the stack or rather 
@@ -87,6 +93,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.
 
     }
+    
     Clean = %{
   Summary:            
     Empties the trash bin 
@@ -106,6 +113,7 @@ module Jitterbug
     all           Empties both the trash and output
 
     }
+    
     Delete = %{
   Summary:            
     Deletes a layer specified by it's name or id. 
@@ -119,6 +127,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.            
 
     }
+    
     Copy = %{
   Summary:            
     Copies a layer specified by it's name or id. 
@@ -132,6 +141,7 @@ module Jitterbug
   Options:
     -d/--dir  The directory the sketch is in.            
     }
+    
     Rename =  %{
   Summary:
     Renames a layer specified by it's name or id.
@@ -143,6 +153,7 @@ module Jitterbug
     -d/--dir  The directory the sketch is in.   
 
     }
+    
     Render = %{
   Summary:            
     Renders the layer stack to the output directory
@@ -154,39 +165,24 @@ module Jitterbug
     -d/--dir      The directory the sketch is in.
     -o/--output   The output directory.            
     }
-    def initalize()
+    def initialize
+      @help = {:commands=>Command,
+        :create=>Create, 
+        :viz => Viz, 
+        :select=>Select,
+        :add=>Add,
+        :revert=>Revert,
+        :move=>Move,
+        :clean=>Clean,
+        :delete=>Delete,
+        :copy=>Copy,
+        :rename=>Rename,
+        :render=>Render}
     end
     
     def process(cmd)
-      case cmd.downcase.to_sym
-      when :commands
-        puts Command
-      when :create
-        puts Create
-      when :viz
-        puts Viz
-      when :select
-        puts Select
-      when :add
-        puts Add
-      when :revert
-        puts Revert
-      when :move
-        puts Move
-      when :clean
-        puts Clean
-      when :delete
-        puts Delete
-      when :copy
-        puts Copy
-      when :rename
-        puts Rename
-      when :render
-        puts Render
-      else
-        puts "no help for command #{cmd}"  
-        exit
-      end
+      command = cmd.downcase.to_sym
+      return @help.key?(command) ? @help[command] : "no help for command #{cmd}"
     end
   end
 end

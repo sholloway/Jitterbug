@@ -209,7 +209,8 @@ begin
       else
         cmd = ARGV.shift
         help = Jitterbug::CmdLineHelp.new
-        help.process(cmd)
+        help_stmt = help.process(cmd)
+        puts help_stmt
       end
 		else			
 			Trollop::die "unknown subcommand #{cmd.inspect}"

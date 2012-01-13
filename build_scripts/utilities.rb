@@ -17,3 +17,7 @@ def transform_task (taskSymbol, fl_or_srcGlob, targetDir, targetExt = nil, &bloc
 		task taskSymbol => target
 	end
 end
+
+def copy_flat(src,dest,ext='rb')
+  Dir["#{src}/**/*.#{ext}"].each{|file| FileUtils.cp file, "#{dest}/#{File.basename(file)}", :verbose => true}                 
+end

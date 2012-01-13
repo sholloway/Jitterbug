@@ -7,43 +7,18 @@ def load_shared_frameworks
 end
 
 # Loading all the Ruby project files.
-def load_lib
+def load_ruby_code
   main = File.basename(__FILE__, File.extname(__FILE__))
   resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation  
-  Dir.glob(File.join(resources_path,'lib','**/*.{rb,rbo}')).uniq.each do |path|
+  Dir.glob(File.join(resources_path,'**/*.{rb,rbo}')).uniq.each do |path|    
     if path != __FILE__
      require(path)
     end
   end
 end
 
-def load_osx_terminal_build  
-  main = File.basename(__FILE__, File.extname(__FILE__))
-  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation  
-  Dir.glob(File.join(resources_path,'osx_terminal_build','**/*.{rb,rbo}')).uniq.each do |path|   
-    require(path)    
-  end  
-end
-
-def load_ruby_vendors 
-  main = File.basename(__FILE__, File.extname(__FILE__))
-  resources_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation 
-  Dir.glob(File.join(resources_path,'vendor','*.{rb,rbo}')).map { |x| File.basename(x, File.extname(x)) }.uniq.each do |path|    
-    require(File.join(resources_path,'vendor',path))    
-  end  
-end
-
 load_shared_frameworks
-load_ruby_vendors
-load_osx_terminal_build
-load_lib
-
-=begin
-require 'trollop'
-require 'create_sketch'
-require 'layers.rb'
-require 'cmd_line_help'
-=end
+load_ruby_code
 
 include Jitterbug::Sketch
 

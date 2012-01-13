@@ -12,7 +12,12 @@ module Jitterbug
         #this needs to be in a config file to load this.
         # the tests should have a different config file to prevent relying on macruby.
         
-        @boot_strap = layer_manager.options[:env].bootstrap(@logger, layer_manager)         
+        rendering_env = layer_manager.options[:env]
+        if rendering_env.nil?
+          raise StandardError.new "The rendering environment could not be found"
+        end
+        
+        @boot_strap = rendering_env.bootstrap(@logger, layer_manager)         
         @boot_strap.create_graphics_renderer
         @boot_strap.process_layers
         @boot_strap.load_shaders

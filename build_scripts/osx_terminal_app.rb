@@ -24,11 +24,7 @@ transform_task(:copy_osx_terminal_frameworks, COPY_TERMINAL_FRAMEWORKS, TERM_FRA
 
 # Create the Application Bundle and compile the main.m file
 file File.join(TERM_MACOS_DIR, TERM_NAME) => [:copy_osx_terminal_files, :copy_osx_terminal_frameworks] do |t|
-	mkdir_p("#{TERM_MACOS_DIR}", :verbose => false)	
-	# how to do this?
-	# cp 'osx_terminal_build/terminal_main.rb' #{TERM_RESOURCE_DIR}/lib/terminal_main.rb
-	# cp 'osx_terminal_build/renderer/**/*.rb #{TERM_RESOURCE_DIR}/lib/renderer
-	
+	mkdir_p("#{TERM_MACOS_DIR}", :verbose => false)		
 	sh "#{TERM_COMPILER} #{TERM_MAIN} -L#{TERM_FRAMEWORKS_DIR} -o #{t.name} #{TERM_ARCH} #{TERM_FRAMEWORKS} #{TERM_GCFLAGS}"
 end
 
@@ -40,4 +36,29 @@ desc "Run the terminal application that is locally built. It is much better to c
 task :foxtrot, :arg1, :arg2 do |t, args|
   arguements = "#{args[:arg1]} #{args[:arg2]}"  
   sh "#{TERM_NAME}.app/Contents/MacOS/#{TERM_NAME} #{arguements}"
+end
+
+def copy_flat(src,dest,ext='rb')
+  Dir["#{src}/**/*.#{ext}"].each{|file| FileUtils.cp file, "#{dest}/#{File.basename(file)}", :verbose => true}                 
+end
+
+def rm_d(path,ext='rb')
+  Dir["#{path}/**/*.#{ext}"].each{|file| FileUtils.rm file, :verbose => true }
+end
+
+desc 'Build deploy compiled application'
+task :deploy_foxtrot => [:create_foxtrot] do
+  #in order for this to work, all the ruby scripts have to be at the root of the resource dir.
+
+  #flatten  
+  require 'fileutils'  
+  copy_flat "#{TERM_RESOURCE_DIR}", "#{TERM_RESOURCE_DIR}"  
+  
+  #perge 
+  FileUtils.remove_dir "#{TERM_RESOURCE_DIR}/lib", true
+  FileUtils.remove_dir "#{TERM_RESOURCE_DIR}/osx_terminal_build", true
+  FileUtils.remove_dir "#{TERM_RESOURCE_DIR}/vendor", true
+ 
+	sh "macruby_deploy --compile --verbose #{TERM_NAME}.app"
+#	sh "macruby_deploy --embed --verbose #{TERM_NAME}.app --no-stdlib"
 end

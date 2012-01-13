@@ -9,15 +9,17 @@ Tools to use for profiling on the command line
 		sits on top of dTrace.
 		To use:
 			sudo dtruss /Users/sholloway/Dropbox/Jitterbug/Foxtrot.app/Contents/MacOS/Foxtrot render
-			
-	Shark part of CHUD Tools
-		https://developer.apple.com/library/mac/#documentation/DeveloperTools/Conceptual/SharkUserGuide/Introduction/Introduction.html
-		Download at connect.apple.com as part of CHUD 4.6.2
-		
+	
 	dTrace
 	
-	gdb/lldb
+	lldb
 		lldb is at /Developer/usr/bin add an alias to your .bash_profile or put it on the path
 		http://lldb.llvm.org/tutorial.html
 	
 	Instruments
+	
+	macrubyd
+		The macruby debugger for debugging ruby scripts. Can this be used with an application?
+		
+Thoughts:
+	Can I use lldb to better effect if I compile the ruby scripts to ObjC?

@@ -39,6 +39,7 @@ Compiled Terminal Application Directory Structure
        all ruby code
      Frameworks
        all required frameworks
+
 =end
 
 #Application Meta-data
@@ -50,6 +51,7 @@ GUI_BUILD_VERSION = '1'
 GUI_IDENTIFIER 	= "com.#{COMPANY}.#{GUI_NAME}"
 TERM_IDENTIFIER = "com.#{COMPANY}.#{TERM_NAME}"
 
+require 'build_scripts/debug_utilities'
 require 'build_scripts/ruby_test_runner.rb'
 require 'build_scripts/utilities'
 require 'build_scripts/osx_terminal_framework'

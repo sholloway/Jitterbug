@@ -1,3 +1,4 @@
+require 'easy_dir'
 include EasyDir
 
 module Jitterbug

@@ -1,5 +1,5 @@
-Dir['./vendor/**/*.rb'].map {|f| puts f; require f}
-Dir['./lib/**/*.rb'].map {|f| puts f; require f}
+Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }
+Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
 
 require 'fileutils'
 require 'logger'

@@ -4,7 +4,7 @@ include EasyDir
 module Jitterbug
 	module Sketch
 		@@dirs = {
-			:sketch => { #replace :sketch dynamically with the sketch dir's name
+			:sketch => { 
 				:layers => :yml,
 				:scripts  => {
 					:setup => :rb,

@@ -19,6 +19,20 @@ Mac Version:
 RUNTIME REQUIREMENTS:
 Mac version: Mac OS X Lion or later to use OpenGL 3.2
 ######################################################################################################################
+Build Instructions:
+Use Rake (http://rake.rubyforge.org/)
+To see all available rake tasks run:
+rake -T
+
+Most users will want to run:
+rake deploy_foxtrot
+
+This will create a self contained Mac OS application bundle for Lion. To run on the command line place the following
+in your .bash_profile.
+alias jitterbug="your path to/Foxtrot.app/Contents/MacOS/Foxtrot"
+
+The application can then be run by simply typing "jitterbug"
+######################################################################################################################
 License:
 Open Source -The MIT License
 Please use at your own discretion. Drop me a line if you find the program useful. 
@@ -26,6 +40,20 @@ Please use at your own discretion. Drop me a line if you find the program useful
 Copyright (C) 2011-2012 Samuel Holloway. All rights reserved.
 ######################################################################################################################
 Status: Not for use yet.
+Version 0.0.4 - 1.22.2012
+----------------------------------------------------------------------------------------------------------------------
+- Created rake harness for dtrace and create common D scripts.
+- Removed speach therapist code.
+- Added *.o and rake gen stuff to .gitIgnore.
+- Created tests for help system.
+- Removed all debugging puts.
+- Replaced CmdLineHelp.process switch statement with a static hash table.
+- Refactored terminal_main.rb to not have any method definitions and to remove the nested switches.
+- Changed help and terminal_main to have their strings in a resource file.
+- Changed LayersManager to have a fluent interface.
+- Added a rake task to build the project with Ruby code compiled to *.rbo. 
+- Added build instructions to README.
+======================================================================================================================
 Version 0.0.3 - 1.8.2012
 ----------------------------------------------------------------------------------------------------------------------
 - Restructured the project to be compiled as an OS X application bundle.

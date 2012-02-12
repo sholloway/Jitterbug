@@ -63,8 +63,7 @@ module Jitterbug
               @sketch_layers << sketch_layer 			    
             end
   			  end
-
-  			  #pass @sketch_layers to glview?
+  			  
   			  @renderer.setLayers(@sketch_layers)
         end
 
@@ -94,8 +93,7 @@ module Jitterbug
         def applicationDidFinishLaunching(notification)    
         end
 
-        def windowWillClose(notification)    
-          #perhaps I'm not releasing the memory correctly when I kill the app. Then the next go around I get the seg fault.
+        def windowWillClose(notification)              
           exit
         end
       end      

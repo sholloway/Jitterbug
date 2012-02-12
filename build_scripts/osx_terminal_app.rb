@@ -46,5 +46,5 @@ end
 
 desc 'Build deploy compiled application'
 task :deploy_foxtrot => [:create_foxtrot] do  
-	sh "macruby_deploy --compile --verbose #{TERM_NAME}.app"
+	sh "macruby_deploy --compile --verbose #{TERM_NAME}.app"	
 end

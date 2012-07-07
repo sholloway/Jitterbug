@@ -9,16 +9,6 @@ module Jitterbug
 
         def create_graphics_renderer
           @logger.info "Creating OpenGL context."
-         
-=begin
-          #I'm hopeful that the loading from terminal main will take care of this.
-          framework 'Foundation'
-          framework 'Cocoa'
-          framework 'OpenGL'
-          framework 'AppKit'          
-          require 'macos_jitterbug' #Load the mac bundle under ext/bin. If this fails, we could try to compile it...             
-=end
-
           @app = NSApplication.sharedApplication
           @app.delegate = AppDelegate.new
           size = [0, 0, 1280, 768] #must pull this from layer_manager.options
@@ -41,7 +31,7 @@ module Jitterbug
         end
         
         def render
-          @logger.info "Begining Rendering."
+          @logger.info "Beginning Rendering."
           @app.run
         end
         
@@ -51,6 +41,8 @@ module Jitterbug
 
           #Need to do this back to front? Or do you delay the ordering till the final composit?
           #Possibly do a syntax check on the scripts at this point to help with debugging.
+          
+          # Are the layers keeping their order here? They are sorted from smallest to largest, but then added to an array.
   			  @layer_manager.layers do |layer|
   			    next unless layer.visible
   			    if layer.type == :two_dim
@@ -59,7 +51,7 @@ module Jitterbug
               sketch_layer.logger = @logger
               sketch_layer.setContext sketch_context
               sketch_layer.name = layer.name
-              sketch_layer.script = layer.script
+              sketch_layer.script = layer.script 
               @sketch_layers << sketch_layer 			    
             end
   			  end

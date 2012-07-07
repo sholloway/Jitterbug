@@ -1,0 +1,30 @@
+For Rendering Path on OS X
+main.m 
+	macruby_main
+		rb_main.rb
+			RenderSketch(render_sketch.rb)
+				Jitterbug::Layers::LayersManager(layers.rb)
+					Jitterbug::Render::BootStrap (bootstrap.rb)
+						OSX::BootStrap(osx_bootstrap.rb)
+							Create an instance of NSApplication
+							Create an instance of NSWindow
+							Create an instance of JBOpenGLView
+							Create an instance of JBOfflineRenderer and pass it the sketch layers
+							Start the NSApplication	
+									
+Once the NSApplication has been started:
+JBOpenGLView
+	drawView -> JBOfflineRenderer.render
+		for(JBGraphicsScript *layer in layers)
+		{		
+			[layer run];			
+		}
+		
+The key thing here is that on the ruby side the inheritance path
+JBGraphicsScript.mm
+		|
+	Layer2d (sketch2d.rb)
+		def run
+
+The Layer2d sketch uses instance_eval to execute the layer's sketch. Love to get away from that.
+The DSL is available to the sketch through inheritance.	Like to change that to use Ruby Mix-ins and Obj-C partial classes.

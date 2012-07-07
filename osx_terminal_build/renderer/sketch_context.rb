@@ -3,7 +3,9 @@ module Jitterbug
   module Sketch
     class Context < DelegateClass(Hash)
       States = [
-        :background_color #the color to clear to.
+        :background_color, #the color to clear to.
+        :fill_color, #the color to fill shapes with
+        :point_size #the size to render points
         ]
       
       def initialize

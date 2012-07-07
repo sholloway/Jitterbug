@@ -4,7 +4,7 @@ module Jitterbug
     class CleanSketch < Base
       def process
         clean_type = ARGV.shift
-  			if type.nil?
+  			if clean_type.nil?
   			  clean_type = :all
   		  end  			
         lm = Jitterbug::Layers::LayersManager.new(:working_dir => @options[:sketch_dir], 

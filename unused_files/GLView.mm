@@ -1,17 +1,12 @@
-#import "JBOpenGLView.h"
+#import "GLView.h"
 #include <OpenGL/OpenGL.h>
 
-@interface JBOpenGLView (PrivateMethods)
+@interface GLView (PrivateMethods)
 - (void) initGL;
 - (void) drawView;
 @end
 
-//https://developer.apple.com/library/mac/#qa/qa1385/_index.html
-@implementation JBOpenGLView
-- (void) setRenderer:(JBRenderer*) renderer
-{
-	_renderer = renderer;
-}
+@implementation GLView
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
@@ -34,7 +29,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
                                       CVOptionFlags* flagsOut, 
                                       void* displayLinkContext)
 {
-    CVReturn result = [(JBOpenGLView*)displayLinkContext getFrameForTime:outputTime];
+    CVReturn result = [(GLView*)displayLinkContext getFrameForTime:outputTime];
     return result;
 }
 
@@ -67,7 +62,6 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 {
 	[super prepareOpenGL];
 	
-	
 	// Make all the OpenGL calls to setup rendering  
 	//  and build the necessary rendering objects
 	[self initGL];
@@ -97,9 +91,8 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	GLint swapInt = 1;
 	[[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
 	
-	NSLog(@"%s %s", glGetString(GL_RENDERER), glGetString(GL_VERSION)); 
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for MacOS (but not iOS)
-	//_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
+	_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void) reshape
@@ -127,13 +120,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	// Add a mutex around to avoid the threads accessing the context simultaneously	when resizing
 	CGLLockContext((CGLContextObj)[[self openGLContext] CGLContextObj]);
 	
-	@try{
-		[_renderer render];
-	}
-	@catch(NSException *exception){
-		NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);
-		[NSApp terminate: nil];
-	}
+	[_renderer render];
 	
 	CGLFlushDrawable((CGLContextObj)[[self openGLContext] CGLContextObj]);
 	CGLUnlockContext((CGLContextObj)[[self openGLContext] CGLContextObj]);

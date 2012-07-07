@@ -1,8 +1,7 @@
 # require 'layers_helper'
 require 'yaml'
 require 'fileutils'
-# require 'jitter_logger'
-# require 'renderer/bootstrap'
+
 
 module Jitterbug
 	module Layers
@@ -23,7 +22,7 @@ module Jitterbug
 		
 		LayersData = Struct.new(:layers,:layer_counter)
 		
-		class LayersManager
+		class Sketch
 			include Jitterbug::Layers
 			attr_reader :options, :logger
 			def initialize(options={}) # by default relative to output_dir					

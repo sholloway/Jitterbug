@@ -9,7 +9,7 @@ module Jitterbug
        sketch_name = ARGV.first
        sketch_dir = @options[:sketch_dir]       
        create_sketch(sketch_name, sketch_dir)
- 			 lm = Jitterbug::Layers::LayersManager.new(:working_dir => "#{sketch_dir}/#{sketch_name}", 
+ 			 lm = Jitterbug::Layers::Sketch.new(:working_dir => "#{sketch_dir}/#{sketch_name}", 
  			  :output_dir => @options[:output_dir],
  			  :env => @options[:environment]).
  			  create_new_layer("Background").

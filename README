@@ -50,7 +50,7 @@ Version 0.0.4 - 1.22.2012
 - Replaced CmdLineHelp.process switch statement with a static hash table.
 - Refactored terminal_main.rb to not have any method definitions and to remove the nested switches.
 - Changed help and terminal_main to have their strings in a resource file.
-- Changed LayersManager to have a fluent interface.
+- Changed Sketch to have a fluent interface.
 - Added a rake task to build the project with Ruby code compiled to *.rbo. 
 - Added build instructions to README.
 ======================================================================================================================

@@ -8,7 +8,7 @@ module Jitterbug
         if ARGV.size != 2
   		    return CommandResponse.new(Jitterbug::Resources::Text::Main::Rename)  		    
   	    end
-  	    lm = Jitterbug::Layers::LayersManager.new(:working_dir => @options[:sketch_dir], 
+  	    lm = Jitterbug::Layers::Sketch.new(:working_dir => @options[:sketch_dir], 
           :output_dir => @options[:output_dir],
    			  :env => @options[:environment])
   			lm.load

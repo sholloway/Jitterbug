@@ -1,0 +1,108 @@
+(in /Users/sholloway/Dropbox/Jitterbug)
+
+Jitterbug::CmdLineHelp
+  should provide an error message for commands not handled
+  should provide a help message for the arguement commands
+  should provide a help message for the arguement create
+  should provide a help message for the arguement viz
+  should provide a help message for the arguement select
+  should provide a help message for the arguement add
+  should provide a help message for the arguement revert
+  should provide a help message for the arguement move
+  should provide a help message for the arguement clean
+  should provide a help message for the arguement delete
+  should provide a help message for the arguement copy
+  should provide a help message for the arguement rename
+  should provide a help message for the arguement render
+
+Jitterbug::Command::Map
+  should map :create to Jitterbug::Command::CreateSketch
+  should map :viz => Jitterbug::Command::VisualizeSketch
+  should map :select => Jitterbug::Command::SelectLayer
+  should map :add => Jitterbug::Command::AddLayer
+  should map :revert => Jitterbug::Command::RevertSketch
+  should map :move => Jitterbug::Command::MoveLayer
+  should map :clean => Jitterbug::Command::CleanSketch
+  should map :delete => Jitterbug::Command::DeleteLayer
+  should map :copy => Jitterbug::Command::CopyLayer
+  should map :rename => Jitterbug::Command::RenameLayer
+  should map :render => Jitterbug::Command::RenderSketch
+  should map :help => Jitterbug::Command::CmdHelp
+  should return Jitterbug::Command::MissingCmd for missing keys
+
+Jitterbug::Layers::Sketch
+  new layer
+    should create a new layer with provided name
+    should add ~count of the layer name if the layer name already exists
+    should create a new ruby script
+    should increment scripts names
+    should rename the ruby script when the layer is renamed
+    should add an existing ruby script as a layer (PENDING: Not Yet Implemented)
+  deleting a layer
+    should remove the layer from the layers cache
+    should move the layer's script to the trash
+    should work with both layer name and id
+  layer.yaml i/o
+    should save the layer data to layer.yml
+    should load the layer data from layer.yml
+    should back up an existing layer.yml before doing a save
+    should be able to restore the layer.yml from the backup
+    should swap the layer.yml with layer.yml.bak when doing a restore (PENDING: Not Yet Implemented)
+  select
+    should de-activate all other layers
+    should make the specified layer active
+    should accept layer id
+    should accept layer name
+  move
+    should decrease the order of a selected layer when moving up
+    should move a selected layer down
+  clean
+    should empty the trash bin
+    should empty output dir (PENDING: Not Yet Implemented)
+    should empty the log dir
+    should empty all (PENDING: Not Yet Implemented)
+  clone
+    should copy layer to the foreground
+    should select the new layer
+    should name the new layer
+
+Jitterbug::Layers::Sketch
+  validation
+    should error if a working dir is not specified
+    should error if layers.yaml doesn't exist
+    should error if script directory doesn't exist
+    should error if the support scripts directory doesn't exist
+    should error if the vendor directory doesn't exist
+    should error if the resources directory doesn't exist
+    should error if the shaders directory doesn't exist
+    should error if the models directory doesn't exist
+    should error if the images directory doesn't exist
+    should error if the movies directory doesn't exist
+    should error if the image filters directory doesn't exist
+    should error if the audio directory doesn't exist
+    should error if the output directory doesn't exist
+    should error if the image output directory doesn't exist
+    should error if the video output directory doesn't exist
+    should error if the data output directory doesn't exist
+    should error it the trash directory doesn't exist
+
+Jitterbug::GraphicsEngine::SketchManager
+before the loop
+  should do some shit
+
+Pending:
+  Jitterbug::Layers::Sketch new layer should add an existing ruby script as a layer
+    # Not Yet Implemented
+    # ./tests/layers_spec.rb:90
+  Jitterbug::Layers::Sketch layer.yaml i/o should swap the layer.yml with layer.yml.bak when doing a restore
+    # Not Yet Implemented
+    # ./tests/layers_spec.rb:193
+  Jitterbug::Layers::Sketch clean should empty output dir
+    # Not Yet Implemented
+    # ./tests/layers_spec.rb:350
+  Jitterbug::Layers::Sketch clean should empty all
+    # Not Yet Implemented
+    # ./tests/layers_spec.rb:376
+
+Finished in 0.19524 seconds
+71 examples, 0 failures, 4 pending

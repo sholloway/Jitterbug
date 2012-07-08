@@ -26,15 +26,27 @@ describe Jitterbug::GraphicsEngine::SketchController do
 		
 	after(:each) do		
 		FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir		
-	end
+	end	
 	
   it "should do some shit" do    
-    sm = Jitterbug::GraphicsEngine::SketchController.new(@sketch)
+    sm = Jitterbug::GraphicsEngine::SketchController.new(@sketch,{
+      :image_processor => Jitterbug::NullGraphicsEngine::NullImage.new(@logger),
+      :compositor => Jitterbug::NullGraphicsEngine::NullLayerCompositor.new(@logger),
+      :renderer => Jitterbug::NullGraphicsEngine::NullRenderer.new(@logger),
+      :render_loop => Jitterbug::GraphicsEngine::SingleImageRenderLoop.new(@logger),
+      :frame_processor => Jitterbug::GraphicsEngine::LinearFrameProcessor.new(@logger),
+      :spatial_data_partition => Jitterbug::NullGraphicsEngine::NullSpatialDataPartition.new(@logger)})
     sm.render()
   end
   
   it "should render a single image" do
-    sm = Jitterbug::GraphicsEngine::SketchController.new(@sketch, {:render_loop => Jitterbug::GraphicsEngine::SingleImageRenderLoop.new(@logger)})
+    sm = Jitterbug::GraphicsEngine::SketchController.new(@sketch, {
+      :image_processor => Jitterbug::NullGraphicsEngine::NullImage.new(@logger),
+      :compositor => Jitterbug::NullGraphicsEngine::NullLayerCompositor.new(@logger),
+      :renderer => Jitterbug::NullGraphicsEngine::NullRenderer.new(@logger),
+      :render_loop => Jitterbug::GraphicsEngine::SingleImageRenderLoop.new(@logger),
+      :frame_processor => Jitterbug::GraphicsEngine::LinearFrameProcessor.new(@logger),
+      :spatial_data_partition => Jitterbug::NullGraphicsEngine::NullSpatialDataPartition.new(@logger)})
     sm.render()
     
     #assert that the image frame1.raw was created

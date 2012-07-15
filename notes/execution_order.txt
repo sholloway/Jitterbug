@@ -3,7 +3,7 @@ main.m
 	macruby_main
 		rb_main.rb
 			RenderSketch(render_sketch.rb)
-				Jitterbug::Layers::LayersManager(layers.rb)
+				Jitterbug::Layers::Sketch(layers.rb)
 					Jitterbug::Render::BootStrap (bootstrap.rb)
 						OSX::BootStrap(osx_bootstrap.rb)
 							Create an instance of NSApplication

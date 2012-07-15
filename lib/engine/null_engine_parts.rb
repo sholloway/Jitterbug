@@ -6,8 +6,8 @@ require 'engine_parts'
 module Jitterbug
   module NullGraphicsEngine
     class NullRenderer < Jitterbug::GraphicsEngine::Renderer
-      def initialize(logger)
-        super(logger)
+      def initialize
+        super
       end
       
       def render        
@@ -15,8 +15,8 @@ module Jitterbug
     end
     
     class NullSpatialDataPartition < Jitterbug::GraphicsEngine::SpatialDataPartition
-      def initialize(logger)
-        super(logger)
+      def initialize
+        super
       end
       
       def construct(scene_graph)        
@@ -28,8 +28,8 @@ module Jitterbug
     end
     
     class NullLayerCompositor < Jitterbug::GraphicsEngine::LayerCompositor
-      def initialize(logger)
-        super(logger)
+      def initialize
+        super
       end
       
       def composite        
@@ -37,8 +37,8 @@ module Jitterbug
     end
     
     class NullImage < Jitterbug::GraphicsEngine::Image
-      def initialize(logger)
-        super(logger)
+      def initialize
+        super
       end
       
       def save_as(type,path)

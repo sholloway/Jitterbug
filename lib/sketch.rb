@@ -20,12 +20,13 @@ module Jitterbug
 			end
 		end
 		
-		LayersData = Struct.new(:layers,:layer_counter)
+		LayersData = Struct.new(:layers,:layer_counter,:graphics_engine)
 		
+		# I need to seperate this into two classes. Sketch and SketchController
 		class Sketch
 			include Jitterbug::Layers
-			attr_reader :options, :logger
-			def initialize(options={}) # by default relative to output_dir					
+			attr_reader :options, :logger, :layers
+			def initialize(rendering_engine,options={}) # by default relative to output_dir					
 					@options = {
 						:working_dir=>false, #must be set, by default everything else is relative to this.
 						:layers_file=>"layers.yml", 
@@ -58,6 +59,9 @@ module Jitterbug
 						@logger = @options[:logger]
 					end
 					
+				  @engine = rendering_engine				  
+				  @engine.bind_sketch(self) #could it be the depenency loop? It is!
+				  puts "ok binding the sketch"
 					validate
 					return self
 			end			
@@ -71,6 +75,8 @@ module Jitterbug
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
+				@engine = parsed.graphics_engine
+				@engine.bind_sketch(self)
 				return self
 			end
 			
@@ -83,8 +89,10 @@ module Jitterbug
 						"#{@options[:working_dir]}/#{@options[:layers_file_backup]}") 
 				end
 				
-				data = LayersData.new(@layers,@layer_counter)
+				@engine.unbind
+				data = LayersData.new(@layers,@layer_counter,@engine)
 				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") {|f| f.write(data.to_yaml) } 
+				@engine.bind_sketch(self)
 				return self
 			end
 			
@@ -244,9 +252,14 @@ module Jitterbug
 			def render							
 				@logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log")
 				@logger.info "Prepping renderer."											 				
-				bootstrap = Jitterbug::Render::BootStrap.new(@logger) 
-				bootstrap.lace_up(self)						 
-			  bootstrap.render 			  				
+				#bootstrap = Jitterbug::Render::BootStrap.new(@logger) 
+				#bootstrap.lace_up(self)						 
+			  #bootstrap.render
+			  if @engine.assembled? 
+			    @engine.render()  
+		    else
+		      raise Exception.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
+	      end
 				@logger.info "Rendering complete."
 				return self
 			end

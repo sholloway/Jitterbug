@@ -4,10 +4,7 @@ module Jitterbug
     class LinearFrameProcessor < FrameProcessor
       attr_accessor :engine
       attr_reader :raw_rendered_frame
-      def initialize(logger)
-        @logger = logger
-      end
-      
+            
       def process(sketch)
         #loop through all sketch layers
         #order should not matter until the composite step       

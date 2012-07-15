@@ -4,16 +4,16 @@ module Jitterbug
     class SketchController
       def initialize(sketch, options={})
         @sketch = sketch
-        @engine = {:renderer => Renderer.new(@sketch.logger),
-          :scene_graph => SceneGraph.new(@sketch.logger),
-          :spatial_data_partition => SpatialDataPartition.new(@sketch.logger),
-          :sketch_api => SketchAPI.new(@sketch.logger),
-          :culler => Culler.new(@sketch.logger),
-          :camera => Camera.new(@sketch.logger),
-          :frustum => Frustum.new(@sketch.logger),
-          :compositor => LayerCompositor.new(@sketch.logger),
-          :frame_processor => FrameProcessor.new(@sketch.logger),
-          :render_loop => RenderLoop.new(@sketch.logger)}
+        @engine = {:renderer => Renderer.new,
+          :scene_graph => SceneGraph.new,
+          :spatial_data_partition => SpatialDataPartition.new,
+          :sketch_api => SketchAPI.new,
+          :culler => Culler.new,
+          :camera => Camera.new,
+          :frustum => Frustum.new,
+          :compositor => LayerCompositor.new,
+          :frame_processor => FrameProcessor.new,
+          :render_loop => RenderLoop.new}
         @engine.merge!(options)
         
         # possibly validate that we've got all the nessacary components by check the ancestory of all the engine pieces?

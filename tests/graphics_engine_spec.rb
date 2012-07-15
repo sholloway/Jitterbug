@@ -14,12 +14,12 @@ describe Jitterbug::GraphicsEngine::Engine do
       
       pieces = Jitterbug::GraphicsEngine::Engine::Pieces
        
-      pieces[0,pieces.size - 1].each do |piece|
-        engine[piece] = Jitterbug::GraphicsEngine::Engine::EngineMap[piece].new(nil)
+      pieces[0,pieces.size - 1].each do |piece|      
+        engine[piece] = Jitterbug::GraphicsEngine::Engine::EngineMap[piece].new
         engine.assembled?.should_not == true
       end      
       
-      engine[pieces.last] = Jitterbug::GraphicsEngine::Engine::EngineMap[pieces.last].new(nil)   
+      engine[pieces.last] = Jitterbug::GraphicsEngine::Engine::EngineMap[pieces.last].new
       engine.assembled?.should == true
     end    
   end
@@ -31,7 +31,7 @@ describe Jitterbug::GraphicsEngine::Engine do
     
     it "should validate all pieces" do
       engine = Jitterbug::GraphicsEngine::Engine.new
-      expect{Jitterbug::GraphicsEngine::Engine::Pieces.each{|piece| engine[piece] = Jitterbug::GraphicsEngine::Engine::EngineMap[piece].new(nil)} }.to_not raise_error
+      expect{Jitterbug::GraphicsEngine::Engine::Pieces.each{|piece| engine[piece] = Jitterbug::GraphicsEngine::Engine::EngineMap[piece].new} }.to_not raise_error
     end
     
     it "should throw an exception on invalid key" do
@@ -41,7 +41,7 @@ describe Jitterbug::GraphicsEngine::Engine do
     
     it "should only accept symbols as keys" do
       engine = Jitterbug::GraphicsEngine::Engine.new
-      expect{engine[Jitterbug::GraphicsEngine::Engine::Pieces.first.to_s] = Jitterbug::GraphicsEngine::Engine::EngineMap[Jitterbug::GraphicsEngine::Engine::Pieces.first].new(nil)}.to raise_error
+      expect{engine[Jitterbug::GraphicsEngine::Engine::Pieces.first.to_s] = Jitterbug::GraphicsEngine::Engine::EngineMap[Jitterbug::GraphicsEngine::Engine::Pieces.first].new}.to raise_error
     end
     
     class BadPart
@@ -51,7 +51,7 @@ describe Jitterbug::GraphicsEngine::Engine do
     end
     it "should not allow an engine piece to be set that doesn't descend" do
       engine = Jitterbug::GraphicsEngine::Engine.new
-      expect{engine[:renderer] = GoodPart.new(nil)}.to_not raise_error
+      expect{engine[:renderer] = GoodPart.new}.to_not raise_error
       expect{engine[:renderer] = BadPart.new}.to raise_error
     end
   end

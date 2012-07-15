@@ -1,37 +1,28 @@
 module Jitterbug
   module GraphicsEngine
-    class RenderLoop
-      attr_accessor :engine
-      def initialize(logger)
-        @logger = logger
-      end      
-      
-      def run_loop(sketch)    
+    class EnginePart
+      attr_accessor :logger, :layers, :engine
+    end
+    
+    class RenderLoop < EnginePart      
+      def run_loop    
         raise Exception.new("Do not instantiate Jitterbug::GraphicsEngine::RenderLoop directly.")          
       end
     end
     
-    class FrameProcessor
-      attr_accessor :engine
-      attr_reader :raw_rendered_frame
-      def initialize(logger)
-        @logger = logger
-      end
+    class FrameProcessor < EnginePart     
+      attr_reader :raw_rendered_frame      
       
       def process(sketch)
         raise Exception.new("Do not instantiate Jitterbug::GraphicsEngine::FrameProcessor directly.")       
       end
     end
     
-    class Image
+    class Image < EnginePart
       RAW = 0
       JPEG = 1
       attr_accessor :raw_pixels
-            
-      def initialize(logger)
-        @logger = logger
-      end
-            
+                  
       def save_as(type,path)    
 =begin
 Core Image Notes:
@@ -46,12 +37,12 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       end
     end
     
-    class Renderer
+    class Renderer < EnginePart
       attr_accessor :camera, :raw_rendered_frame
-      def initialize(logger)
-        @logger = logger
+      def initialize        
         @visible_lights = []
         @visible_geometry = []
+        super()
       end
       
       def add_lights(lights)
@@ -75,20 +66,14 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       end
     end
         
-    class SceneGraph
-      def initialize(logger)
-        @logger = logger
-      end
-      
+    class SceneGraph < EnginePart   
+      #reset the SG     
       def init()
       end
     end
     
-    class SpatialDataPartition
-      def initialize(logger)
-        @logger = logger
-      end
-      
+    class SpatialDataPartition < EnginePart
+  
       #don't think I need this...
       def construct(scene_graph)
         raise Exception.new("Do not instantiate Jitterbug::GraphicsEngine::SpatialDataPartition directly.")
@@ -99,11 +84,7 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       end
     end
     
-    class SketchAPI
-      def initialize(logger)
-        @logger = logger
-      end
-      
+    class SketchAPI < EnginePart      
       def bind(scene_graph)
         @scene_graph = scene_graph
       end
@@ -133,31 +114,19 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       end
     end
     
-    class Culler
-      attr_reader :visible_lights, :visible_geometry
-      def initialize(logger)
-        @logger = logger
-      end
+    class Culler < EnginePart
+      attr_reader :visible_lights, :visible_geometry      
     end
     
-    class Camera
-      attr_accessor :frustum
-      def initialize(logger)
-        @logger = logger
-      end
+    class Camera < EnginePart
+      attr_accessor :frustum     
     end
     
-    class Frustum
-      def initialize(logger)
-        @logger = logger
-      end
+    class Frustum < EnginePart      
     end
     
-    class LayerCompositor
-      attr_reader :raw_rendered_frame
-      def initialize(logger)
-        @logger = logger
-      end
+    class LayerCompositor < EnginePart
+      attr_reader :raw_rendered_frame      
       
       def add(frame, layer)
       end

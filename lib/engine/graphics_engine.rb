@@ -27,7 +27,8 @@ module Jitterbug
         self.each_value do |part| 
           part.layers = sketch.layers
           part.logger = sketch.logger
-          part.engine = self #it might actually be this... It is!
+          part.engine = self 
+          part.sketch_options = sketch.options
         end
       end
       

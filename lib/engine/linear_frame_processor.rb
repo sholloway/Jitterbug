@@ -5,10 +5,10 @@ module Jitterbug
       attr_accessor :engine
       attr_reader :raw_rendered_frame
             
-      def process(sketch)
+      def process
         #loop through all sketch layers
         #order should not matter until the composite step       
-        sketch.layers do |layer|
+        self.layers do |layer|
           # api should execute the script to build the Scene Graph
           @engine[:sketch_api].bind(@engine[:scene_graph])
           @engine[:sketch_api].run(layer)          

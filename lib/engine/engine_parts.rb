@@ -1,7 +1,7 @@
 module Jitterbug
   module GraphicsEngine
     class EnginePart
-      attr_accessor :logger, :layers, :engine
+      attr_accessor :logger, :layers, :engine, :sketch_options
     end
     
     class RenderLoop < EnginePart      
@@ -13,7 +13,7 @@ module Jitterbug
     class FrameProcessor < EnginePart     
       attr_reader :raw_rendered_frame      
       
-      def process(sketch)
+      def process
         raise Exception.new("Do not instantiate Jitterbug::GraphicsEngine::FrameProcessor directly.")       
       end
     end

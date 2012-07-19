@@ -250,10 +250,7 @@ module Jitterbug
 			
 			def render							
 				@logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log")
-				@logger.info "Prepping renderer."											 				
-				#bootstrap = Jitterbug::Render::BootStrap.new(@logger) 
-				#bootstrap.lace_up(self)						 
-			  #bootstrap.render
+				@logger.info "Prepping renderer."											 								
 			  if @engine.assembled? 
 			    @engine.render()  
 		    else

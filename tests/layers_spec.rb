@@ -101,8 +101,6 @@ describe Jitterbug::Layers::Sketch do
 			File.exists?("#{@full_dir}/scripts/my_renamed_layer.rb").should == true
 			File.exists?("#{@full_dir}/scripts/my_layer.rb").should == false
 		end
-		
-		it "should add an existing ruby script as a layer"
 	end	
 	
 	describe "deleting a layer" do
@@ -205,7 +203,24 @@ describe Jitterbug::Layers::Sketch do
 			lm.number_of_layers.should == 1			
 		end
 		
-		it "should swap the layer.yml with layer.yml.bak when doing a restore"
+		it "should swap the layer.yml with layer.yml.bak when doing a restore" do
+		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})				
+			lm.create_new_layer("My Layer")				
+			lm.save #create backup of empty layer.yml
+			lm.create_new_layer("Another Layer")
+			lm.number_of_layers.should == 2	
+			lm.save #create backup of only one layer
+			
+			lm.revert #at this point, the 2 layers should be the backup
+			lm.number_of_layers.should == 1		
+			
+			#revert again, should get the 2 layers back
+			lm.revert
+			lm.number_of_layers.should == 2
+			
+			lm.revert
+			lm.number_of_layers.should == 1		
+	  end	  
 	end
 	
 	describe "select" do 		
@@ -361,8 +376,20 @@ describe Jitterbug::Layers::Sketch do
 			File.exists?("#{@full_dir}/trash/a.rb").should == false
 			File.exists?("#{@full_dir}/trash/b.rb").should == false
 		end
-		
-		it "should empty output dir" 
+
+		it "should empty output dir" do
+		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			id2 = lm.create_new_layer("B").selected_layer.id	
+			lm.save
+			
+			#since I'm not rendering anything yet, create a file to prove that the entire dir is emptied on clean
+      FileUtils.mkdir_p("#{@full_dir}/output/test/data")
+      File.exists?("#{@full_dir}/output/test/data").should == true
+      
+      lm.clean(:output)
+      File.exists?("#{@full_dir}/output/test/data").should == false
+	  end
 		
 		it "should empty the log dir" do
 		  mock_bootstrap = double("BootStrap")	
@@ -388,7 +415,31 @@ describe Jitterbug::Layers::Sketch do
 			File.exists?("#{@full_dir}/logs/render.log").should == false
 	  end	  
 	  
-	  it "should empty all" 
+	  it "should empty all" do
+	    lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+			id1 = lm.create_new_layer("A").selected_layer.id		
+			id2 = lm.create_new_layer("B").selected_layer.id	
+			lm.save
+			
+			lm.delete(id1)
+			lm.delete(id2)
+			
+			File.exists?("#{@full_dir}/trash/a.rb").should == true
+			File.exists?("#{@full_dir}/trash/b.rb").should == true
+			
+			#since I'm not rendering anything yet, create a file to prove that the entire dir is emptied on clean
+      FileUtils.mkdir_p("#{@full_dir}/output/test/data")
+      File.exists?("#{@full_dir}/output/test/data").should == true
+      
+      lm.render
+			File.exists?("#{@full_dir}/logs/render.log").should == true
+			
+      lm.clean(:all)
+      File.exists?("#{@full_dir}/output/test/data").should == false
+			File.exists?("#{@full_dir}/logs/render.log").should == false    
+			File.exists?("#{@full_dir}/trash/a.rb").should == false
+			File.exists?("#{@full_dir}/trash/b.rb").should == false  
+    end
 	end
 	
 	describe "clone" do

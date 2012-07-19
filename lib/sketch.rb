@@ -99,9 +99,9 @@ module Jitterbug
 			def revert
 				error("Could not revert. No backup file found.", 
 					!File.exists?("#{@options[:working_dir]}/#{@options[:layers_file_backup]}"))
-				
-				FileUtils.cp("#{@options[:working_dir]}/#{@options[:layers_file_backup]}",
-				"#{@options[:working_dir]}/#{@options[:layers_file]}") 
+				FileUtils.mv("#{@options[:working_dir]}/#{@options[:layers_file]}","#{@options[:working_dir]}/temp.bak")
+				FileUtils.cp("#{@options[:working_dir]}/#{@options[:layers_file_backup]}","#{@options[:working_dir]}/#{@options[:layers_file]}") 
+				FileUtils.mv("#{@options[:working_dir]}/temp.bak","#{@options[:working_dir]}/#{@options[:layers_file_backup]}")
 				load
 				return self
 			end
@@ -233,16 +233,15 @@ module Jitterbug
 			def clean(type)
 				case type
 				when :trash
-					FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",force=true)
-					FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:trash]}")
-				when :output						
-					path = "#{@options[:working_dir]}/#{@options[:output_dir]}/**/*".gsub('\\','/')										
-					Dir.glob(path).
-						reject{|file| File.directory?(file)}.
-						each{|file| FileUtils.rm(file,:force => true)}
+					clean_trash
+				when :output
+				  clean_output										
 				when :logs
-				  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
-					FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
+				  clean_logs
+				when :all
+				  clean_logs
+				  clean_output
+				  clean_trash
 				else
 					raise StandardError.new "Layers Management does not have a clean type of #{type}"
 				end
@@ -265,6 +264,23 @@ module Jitterbug
 			end
 			
 			private
+			def clean_trash
+			  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",force=true)
+				FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:trash]}")
+		  end
+		  
+		  def clean_output
+		    FileUtils.rm_rf("#{@options[:working_dir]}/#{@options[:output_dir]}")								
+				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/images")
+				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/video")
+				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/data")				
+	    end
+	    
+	    def clean_logs
+	      FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
+				FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
+      end
+      
 			def validate				
 				validate_working_dir(@options)
 				validate_layers_file(@options)

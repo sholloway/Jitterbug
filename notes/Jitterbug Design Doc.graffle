@@ -26,7 +26,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2012-07-08 18:47:39 +0000</string>
+	<string>2012-07-22 02:39:28 +0000</string>
 	<key>Modifier</key>
 	<string>Samuel Holloway</string>
 	<key>NotesVisible</key>
@@ -60,7 +60,7 @@
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>tabloid</string>
+			<string>755CB018-C608-4A46-9B79-684C7F2319D2</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
@@ -140,8 +140,8 @@
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2535.1609825898845, 50.21914049009974}</string>
-						<string>{2562.9720256479468, 63.780039105223246}</string>
+						<string>{2535.1277481717129, 50.219344974766145}</string>
+						<string>{2562.9070986796169, 63.780440247844403}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -224,8 +224,8 @@
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{3269.5, 215.50245450376974}</string>
-						<string>{3333.5000000000036, 215.5042705528017}</string>
+						<string>{3269.5, 215.5005861929466}</string>
+						<string>{3333.5, 215.50101990795912}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -674,8 +674,8 @@ Operation}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2855.4328342839763, 608.54584555681322}</string>
-						<string>{2908.89611310078, 492.45415444318684}</string>
+						<string>{2855.4328342830577, 608.54584555681322}</string>
+						<string>{2908.8961130855573, 492.45415444318672}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -953,8 +953,8 @@ getLayers}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2871.9975249943018, 261.44009483256912}</string>
-						<string>{3096.5024750055481, 283.8614855914247}</string>
+						<string>{2871.9975249943022, 261.44009037659697}</string>
+						<string>{3096.5024750056978, 283.86146770699725}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -990,8 +990,8 @@ getLayers}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2871.9878733652376, 237.28911705488392}</string>
-						<string>{3155.5121266347628, 173.68224529930487}</string>
+						<string>{2871.9878733652376, 237.28911672770866}</string>
+						<string>{3155.5121266347624, 173.68224372679794}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1342,8 +1342,8 @@ validate\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2807.0592439968259, 317.49442801562532}</string>
-						<string>{2850.8716952296832, 608.50557198437468}</string>
+						<string>{2807.0592439968273, 317.49442801562532}</string>
+						<string>{2850.8716952296918, 608.50557198437468}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1379,8 +1379,8 @@ validate\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2771.3787501012048, 317.46236552592819}</string>
-						<string>{2651.5715261418795, 608.53763447407187}</string>
+						<string>{2771.3787501012062, 317.46236552592819}</string>
+						<string>{2651.5715261418877, 608.53763447407187}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1819,8 +1819,8 @@ _renderer}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2836.6760704460712, 162.82993195916202}</string>
-						<string>{2993.3239294353079, 106.17006804083785}</string>
+						<string>{2836.6760704650546, 162.82993195916202}</string>
+						<string>{2993.3239295301973, 106.17006804083798}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -1856,8 +1856,8 @@ _renderer}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2797.5000000020832, 99.5}</string>
-						<string>{2797.5000000195823, 162.5}</string>
+						<string>{2797.5000000000414, 99.5}</string>
+						<string>{2797.5000000003902, 162.5}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2084,8 +2084,8 @@ load_video\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{2669.4999998273988, 78.064623936340112}</string>
-						<string>{2701.500000225019, 78.091307368510229}</string>
+						<string>{2669.4999999421743, 78.034303801714941}</string>
+						<string>{2701.5000000560321, 78.048467952161431}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2304,8 +2304,8 @@ render}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{1631.4614654026698, 507.770088709216}</string>
-						<string>{1793.4744649607594, 440.19248304995045}</string>
+						<string>{1631.461465394716, 507.77008423608953}</string>
+						<string>{1793.4744339948431, 440.19248290310799}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2341,8 +2341,8 @@ render}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{1592.2561144396143, 339.85079846903596}</string>
-						<string>{2023.5227800276946, 205.01644424857642}</string>
+						<string>{1592.2561144443343, 339.85079846905325}</string>
+						<string>{2023.5227800278976, 205.01644426423317}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2632,8 +2632,8 @@ render}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{1631.4965886969585, 533.07885879950106}</string>
-						<string>{1751.0034137416126, 519.04700137217264}</string>
+						<string>{1631.4965882199438, 533.07816382087572}</string>
+						<string>{1751.0034121283863, 519.04532351233468}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -2802,8 +2802,8 @@ close}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{1537.5146654461887, 339.58229146618288}</string>
-						<string>{1464.3800714726099, 228.41770853363434}</string>
+						<string>{1537.5146654383354, 339.58229146618356}</string>
+						<string>{1464.3800714043214, 228.41770853381644}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4047,8 +4047,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{684.5454879152511, 469.06858209098749}</string>
-						<string>{531.85362712899655, 208.43141790901242}</string>
+						<string>{684.54548791525121, 469.06858209098749}</string>
+						<string>{531.85362712899666, 208.43141790901242}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4091,7 +4091,7 @@ load_ruby_code}</string>
 					<key>Points</key>
 					<array>
 						<string>{682.67019128842412, 417.40616179310814}</string>
-						<string>{532.81058314970153, 208.40633820689183}</string>
+						<string>{532.81058314970198, 208.40633820689183}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4133,8 +4133,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{679.93284380015018, 368.63007596149504}</string>
-						<string>{534.20177158445836, 208.36992403850499}</string>
+						<string>{679.93284380015064, 368.63007596149504}</string>
+						<string>{534.20177158446472, 208.36992403850499}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4176,8 +4176,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{675.70243349005875, 323.68116850839806}</string>
-						<string>{536.34136213024442, 208.31883149160191}</string>
+						<string>{675.70243349007194, 323.68116850839806}</string>
+						<string>{536.34136213036504, 208.31883149160191}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4219,8 +4219,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{305.34458317250142, 379.18715724705646}</string>
-						<string>{518.38268955477656, 208.31284275294351}</string>
+						<string>{305.34458317250102, 379.18715724705646}</string>
+						<string>{518.38268955477179, 208.31284275294351}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4263,7 +4263,7 @@ load_ruby_code}</string>
 					<key>Points</key>
 					<array>
 						<string>{301.76549376105964, 428.14534690293374}</string>
-						<string>{520.19102797807125, 208.35465309706626}</string>
+						<string>{520.19102797807068, 208.35465309706626}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4305,8 +4305,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{299.28441130754453, 479.61319786203939}</string>
-						<string>{521.44937708836005, 208.38680213796056}</string>
+						<string>{299.28441130754459, 479.61319786203933}</string>
+						<string>{521.44937708835994, 208.38680213796061}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4349,7 +4349,7 @@ load_ruby_code}</string>
 					<key>Points</key>
 					<array>
 						<string>{297.56440179368292, 530.21508305685711}</string>
-						<string>{522.32464877015855, 208.40991694314286}</string>
+						<string>{522.32464877015843, 208.40991694314286}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4434,8 +4434,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{310.70564246201519, 334.23819890355787}</string>
-						<string>{515.68418804654243, 208.26180109644216}</string>
+						<string>{310.70564246200757, 334.23819890355787}</string>
+						<string>{515.6841880464674, 208.26180109644216}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4477,8 +4477,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{666.81630382630817, 276.76113199115309}</string>
-						<string>{540.81147393874573, 208.23886800884691}</string>
+						<string>{666.81630382814524, 276.76113199115309}</string>
+						<string>{540.81147394942332, 208.23886800884688}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4520,8 +4520,8 @@ load_ruby_code}</string>
 					<real>0.0</real>
 					<key>Points</key>
 					<array>
-						<string>{321.39403241937083, 287.30687392467041}</string>
-						<string>{510.32238549617671, 208.19312607532962}</string>
+						<string>{321.39403241870599, 287.30687392467041}</string>
+						<string>{510.32238549180641, 208.19312607532956}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -4563,8 +4563,8 @@ load_ruby_code}</string>
 					<real>-1</real>
 					<key>Points</key>
 					<array>
-						<string>{361.99008878949832, 234.45413259662374}</string>
-						<string>{492.37835481622915, 208.09906056447539}</string>
+						<string>{361.99008882316087, 234.45413110112841}</string>
+						<string>{492.37833389318024, 208.09906051159393}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -10672,8 +10672,8 @@ type}</string>
 					<integer>1609</integer>
 					<key>Points</key>
 					<array>
-						<string>{215.16413453130156, 2643.556245451256}</string>
-						<string>{295.56154232728483, 2681.659217929619}</string>
+						<string>{215.164134830347, 2643.5561053835236}</string>
+						<string>{295.56212670035859, 2681.6592110440224}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -10707,8 +10707,8 @@ type}</string>
 					<integer>1608</integer>
 					<key>Points</key>
 					<array>
-						<string>{126.86403322346978, 2746.8591375641872}</string>
-						<string>{124.73369252236409, 2777.3492417988987}</string>
+						<string>{126.86403322346817, 2746.8591375641872}</string>
+						<string>{124.73369252236213, 2777.3492417988987}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -10872,8 +10872,8 @@ Operation}</string>
 					<integer>1602</integer>
 					<key>Points</key>
 					<array>
-						<string>{570.17742988362329, 1846.3387509075947}</string>
-						<string>{609.59680957467208, 1846.3387369305142}</string>
+						<string>{570.17742988362329, 1846.3387509776944}</string>
+						<string>{609.59680957467208, 1846.3387370703147}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11217,8 +11217,8 @@ Operation}</string>
 					<integer>1591</integer>
 					<key>Points</key>
 					<array>
-						<string>{616.43394923067387, 1684.7485203062433}</string>
-						<string>{451.42596403988409, 1756.7923059229147}</string>
+						<string>{616.43395183836333, 1684.7485203305728}</string>
+						<string>{451.42596409173439, 1756.7923147083677}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11724,8 +11724,8 @@ Operation}</string>
 					<integer>1576</integer>
 					<key>Points</key>
 					<array>
-						<string>{991.74198702730712, 2569.942871600831}</string>
-						<string>{991.74199579064407, 2619.5508399691394}</string>
+						<string>{991.74198702730564, 2569.942871600831}</string>
+						<string>{991.74199579063782, 2619.5508399691394}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11889,8 +11889,8 @@ Operation}</string>
 					<integer>1571</integer>
 					<key>Points</key>
 					<array>
-						<string>{425.02664510733467, 2436.1616019703579}</string>
-						<string>{617.33062906904013, 2401.6531676882228}</string>
+						<string>{425.02664566759523, 2436.1616019718726}</string>
+						<string>{617.33062909902128, 2401.6531682817208}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11924,8 +11924,8 @@ Operation}</string>
 					<integer>1614</integer>
 					<key>Points</key>
 					<array>
-						<string>{386.76840597351986, 2562.7497014401629}</string>
-						<string>{387.31069063448882, 2581.2976405158033}</string>
+						<string>{386.76840582044196, 2562.7497014401629}</string>
+						<string>{387.31069041460393, 2581.2976405158033}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -11959,8 +11959,8 @@ Operation}</string>
 					<integer>1567</integer>
 					<key>Points</key>
 					<array>
-						<string>{169.49315762123365, 2396.466179778437}</string>
-						<string>{352.71335686325898, 2436.1440887524454}</string>
+						<string>{169.49315742312263, 2396.4661797784602}</string>
+						<string>{352.71335559822205, 2436.1440887611061}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -12423,8 +12423,8 @@ spatial_partition()}</string>
 					<integer>1554</integer>
 					<key>Points</key>
 					<array>
-						<string>{617.32321271469857, 2335.3949950593233}</string>
-						<string>{585.04369280686126, 2336.7571941938177}</string>
+						<string>{617.32322735377966, 2335.4465032264652}</string>
+						<string>{585.04372344096907, 2336.8309442781633}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -12458,8 +12458,8 @@ spatial_partition()}</string>
 					<integer>1553</integer>
 					<key>Points</key>
 					<array>
-						<string>{766.82766615277319, 2332.2404860148258}</string>
-						<string>{867.85440679574754, 2332.2405311570728}</string>
+						<string>{766.82766615277319, 2332.2404860148272}</string>
+						<string>{867.85440679574754, 2332.240531157076}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -13082,8 +13082,8 @@ Operation}</string>
 					<integer>1523</integer>
 					<key>Points</key>
 					<array>
-						<string>{716.16203516917142, 2485.0124806733984}</string>
-						<string>{696.46491496594172, 2451.6709424461906}</string>
+						<string>{716.16203504750229, 2485.0124806728863}</string>
+						<string>{696.46491427625347, 2451.6709424060132}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -13115,8 +13115,8 @@ Operation}</string>
 					<integer>1522</integer>
 					<key>Points</key>
 					<array>
-						<string>{617.85121124036436, 2485.2013876752221}</string>
-						<string>{678.95297610056139, 2451.4820354038711}</string>
+						<string>{617.85121114790854, 2485.2013876752208}</string>
+						<string>{678.95297557794481, 2451.4820354036715}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -13148,8 +13148,8 @@ Operation}</string>
 					<integer>1536</integer>
 					<key>Points</key>
 					<array>
-						<string>{814.94501519984874, 2485.2845526559122}</string>
-						<string>{713.50468857203998, 2451.3988704229255}</string>
+						<string>{814.94501511790656, 2485.2845526559131}</string>
+						<string>{713.50468810235975, 2451.3988704229796}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -13800,8 +13800,8 @@ Node[] children}</string>
 					<integer>1498</integer>
 					<key>Points</key>
 					<array>
-						<string>{451.46773499273917, 1774.0318148644089}</string>
-						<string>{490.8871025177242, 1773.9804538222124}</string>
+						<string>{451.46773504113298, 1774.0334994665511}</string>
+						<string>{490.88710256673221, 1773.9838134320123}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14243,8 +14243,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1476</integer>
 					<key>Points</key>
 					<array>
-						<string>{660.92670683427957, 1533.6144696878669}</string>
-						<string>{678.22278591157556, 1533.6145202482689}</string>
+						<string>{660.92658056165476, 1533.6144135120428}</string>
+						<string>{678.222785933458, 1533.6144395649346}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14359,8 +14359,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1472</integer>
 					<key>Points</key>
 					<array>
-						<string>{564.33971542620088, 1532.8558116123659}</string>
-						<string>{581.63616171044237, 1533.0862299535497}</string>
+						<string>{564.33971542620088, 1532.8558079789511}</string>
+						<string>{581.63616171044237, 1533.0862247349421}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14416,8 +14416,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1469</integer>
 					<key>Points</key>
 					<array>
-						<string>{467.7530494608597, 1533.0862097132629}</string>
-						<string>{485.0494751723711, 1532.8558052065418}</string>
+						<string>{467.7530494608597, 1533.0862044946057}</string>
+						<string>{485.0494751723711, 1532.855797711082}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14449,8 +14449,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1468</integer>
 					<key>Points</key>
 					<array>
-						<string>{360.69653774466758, 1532.8041960467704}</string>
-						<string>{388.46280094757009, 1533.1378801216597}</string>
+						<string>{360.69653774466758, 1532.8041960245469}</string>
+						<string>{388.46280094757009, 1533.1378800838716}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14482,8 +14482,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1467</integer>
 					<key>Points</key>
 					<array>
-						<string>{253.64001646340478, 1533.1378941496648}</string>
-						<string>{281.40628096035994, 1532.8042043519647}</string>
+						<string>{253.64001646340478, 1533.1378941118771}</string>
+						<string>{281.40628096035994, 1532.8042042877114}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14634,8 +14634,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1462</integer>
 					<key>Points</key>
 					<array>
-						<string>{972.46717167949066, 2033.4050153425544}</string>
-						<string>{992.06448348364768, 1999.2349632855689}</string>
+						<string>{972.46717166549695, 2033.4050153425544}</string>
+						<string>{992.06448342692931, 1999.2349632855689}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14667,8 +14667,8 @@ For real time app, this would be too slow.}</string>
 					<integer>1461</integer>
 					<key>Points</key>
 					<array>
-						<string>{896.42881098517387, 2033.6042657402058}</string>
-						<string>{966.00998898089085, 1996.6591287257122}</string>
+						<string>{896.42881098497537, 2033.6042657402029}</string>
+						<string>{966.00998898087585, 1996.6591287252484}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -14801,8 +14801,8 @@ Data Structure}</string>
 					<integer>1455</integer>
 					<key>Points</key>
 					<array>
-						<string>{72.518949310409951, 2044.0580689052952}</string>
-						<string>{193.66950388607944, 1998.9756361500499}</string>
+						<string>{72.518950424784947, 2044.0580689054555}</string>
+						<string>{193.66950948631714, 1998.9756361916234}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -15474,8 +15474,8 @@ Data Structure}</string>
 					<integer>1427</integer>
 					<key>Points</key>
 					<array>
-						<string>{339.96633137273051, 1677.1545946063754}</string>
-						<string>{590.91941187192901, 1674.3550144783439}</string>
+						<string>{339.96633137273051, 1677.1545946162432}</string>
+						<string>{590.91941187192901, 1674.3550145506756}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -17705,8 +17705,8 @@ Data Structure}</string>
 					<integer>1306</integer>
 					<key>Points</key>
 					<array>
-						<string>{439.9021207529392, 966.88894939599982}</string>
-						<string>{439.65966939974146, 933.48683025598029}</string>
+						<string>{439.90213401345147, 966.88894939598674}</string>
+						<string>{439.65972200357032, 933.48683025509888}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -17740,8 +17740,8 @@ Data Structure}</string>
 					<integer>1305</integer>
 					<key>Points</key>
 					<array>
-						<string>{533.89949153363546, 888.91804599661975}</string>
-						<string>{477.6678475882664, 907.66360038083769}</string>
+						<string>{533.89949153513442, 888.91804599663124}</string>
+						<string>{477.6678475883507, 907.66360038219852}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -17996,8 +17996,8 @@ Camera}</string>
 					<integer>1296</integer>
 					<key>Points</key>
 					<array>
-						<string>{536.80084381775941, 993.25639336670588}</string>
-						<string>{469.82756337128183, 1027.1631064802216}</string>
+						<string>{536.80097240530495, 993.25639415891442}</string>
+						<string>{469.82798053473448, 1027.1631090430094}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -18031,8 +18031,8 @@ Camera}</string>
 					<integer>1295</integer>
 					<key>Points</key>
 					<array>
-						<string>{504.42694910164346, 403.22477613921995}</string>
-						<string>{446.26560969754456, 441.16233127325609}</string>
+						<string>{504.42694910164437, 403.22477613921995}</string>
+						<string>{446.26560969754865, 441.16233127325609}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -18459,8 +18459,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1280</integer>
 					<key>Points</key>
 					<array>
-						<string>{439.98383455123161, 989.40506858109438}</string>
-						<string>{439.98382297275697, 1026.8889525251986}</string>
+						<string>{439.983837589617, 989.40506858109438}</string>
+						<string>{439.98383612748779, 1026.8889525251986}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -18694,8 +18694,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1270</integer>
 					<key>Points</key>
 					<array>
-						<string>{552.64637274234224, 889.07002643245448}</string>
-						<string>{453.98260987237251, 967.07882915714129}</string>
+						<string>{552.64637300453137, 889.07002643260637}</string>
+						<string>{453.98261193546887, 967.07882919553265}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19004,8 +19004,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1256</integer>
 					<key>Points</key>
 					<array>
-						<string>{534.7096857837563, 978.14702867682581}</string>
-						<string>{479.62900250594134, 978.14701339205442}</string>
+						<string>{534.7096857837563, 978.14702867666483}</string>
+						<string>{479.62900250594134, 978.14701339161627}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19238,8 +19238,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1237</integer>
 					<key>Points</key>
 					<array>
-						<string>{285.02494129120009, 664.62959059225113}</string>
-						<string>{213.9266491346425, 619.73207892631456}</string>
+						<string>{285.02494129120714, 664.62959059225113}</string>
+						<string>{213.92664913467814, 619.73207892631456}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19304,8 +19304,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1235</integer>
 					<key>Points</key>
 					<array>
-						<string>{170.78037996148973, 664.44246733261434}</string>
-						<string>{191.30028418647885, 619.91920409491263}</string>
+						<string>{170.78038003319702, 664.44246733261821}</string>
+						<string>{191.30028454277328, 619.91920409528086}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19337,8 +19337,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>1234</integer>
 					<key>Points</key>
 					<array>
-						<string>{108.18089657029466, 664.62903237119667}</string>
-						<string>{179.06105566159164, 619.73266067449879}</string>
+						<string>{108.18089663086121, 664.62903237119758}</string>
+						<string>{179.06105596856034, 619.73266067464556}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19510,8 +19510,8 @@ Key difference here, is that rather than having a NSWindow and NSOpenGL be befor
 					<integer>179</integer>
 					<key>Points</key>
 					<array>
-						<string>{234.40335357637903, 347.17744158495918}</string>
-						<string>{234.40356322043158, 368.53226941841888}</string>
+						<string>{234.40326300175479, 347.17744158495918}</string>
+						<string>{234.40330083961288, 368.53226941841939}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19657,7 +19657,7 @@ Data Structure}</string>
 					<key>Points</key>
 					<array>
 						<string>{117.38710761097639, 441.58064150221588}</string>
-						<string>{117.38710761097639, 403.4516017997006}</string>
+						<string>{117.38710761097639, 403.45160179970054}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19709,8 +19709,8 @@ Data Structure}</string>
 					<integer>170</integer>
 					<key>Points</key>
 					<array>
-						<string>{194.75807893431028, 392.27219547855168}</string>
-						<string>{157.03226837756031, 392.34703614607673}</string>
+						<string>{194.75807798175006, 392.21419399356893}</string>
+						<string>{157.03227184657703, 392.23384121622428}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19937,8 +19937,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>60</integer>
 					<key>Points</key>
 					<array>
-						<string>{533.14546554304297, 303.14895514589176}</string>
-						<string>{616.04797819365979, 381.09299094882562}</string>
+						<string>{533.14548127657827, 303.14895493142041}</string>
+						<string>{616.04810411585322, 381.09298895910456}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -19972,8 +19972,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>59</integer>
 					<key>Points</key>
 					<array>
-						<string>{521.33873440780189, 303.30646359968779}</string>
-						<string>{521.33872146343197, 380.93547833463447}</string>
+						<string>{521.33873435216276, 303.30646359968779}</string>
+						<string>{521.33872102413829, 380.93547833463447}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20007,8 +20007,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>58</integer>
 					<key>Points</key>
 					<array>
-						<string>{509.04336580628103, 303.14139890347775}</string>
-						<string>{422.63423540499946, 381.10054735808194}</string>
+						<string>{509.04334942957536, 303.14139865445759}</string>
+						<string>{422.63410392960617, 381.10054536517561}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20062,8 +20062,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>50</integer>
 					<key>Points</key>
 					<array>
-						<string>{370.6935502552675, 392.19983856923784}</string>
-						<string>{274.04840683178884, 392.21517692998179}</string>
+						<string>{370.69355025564812, 392.19407909402241}</string>
+						<string>{274.04840690574781, 392.19537727318789}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20138,8 +20138,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>46</integer>
 					<key>Points</key>
 					<array>
-						<string>{780.85613555748182, 445.72199183475595}</string>
-						<string>{659.06695954969291, 403.11677422534109}</string>
+						<string>{780.85813730376606, 445.72198227840573}</string>
+						<string>{659.07676884303157, 403.11672734114194}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20224,8 +20224,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>43</integer>
 					<key>Points</key>
 					<array>
-						<string>{697.22031822574127, 445.58216442191122}</string>
-						<string>{642.21816523978589, 403.25671864063821}</string>
+						<string>{697.22247176902249, 445.58213522187003}</string>
+						<string>{642.22855786120465, 403.25657766945585}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20297,8 +20297,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>40</integer>
 					<key>Points</key>
 					<array>
-						<string>{553.27420682915113, 392.19369108058567}</string>
-						<string>{595.91936358478142, 392.19388678702381}</string>
+						<string>{553.27420682915113, 392.19357186250681}</string>
+						<string>{595.91936358478142, 392.19360837069803}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20352,8 +20352,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<integer>38</integer>
 					<key>Points</key>
 					<array>
-						<string>{489.40323424610096, 392.30225336040405}</string>
-						<string>{449.98386986551941, 392.43643742880039}</string>
+						<string>{489.40323149103909, 392.21794125463083}</string>
+						<string>{449.98387878538369, 392.24805519527058}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20393,8 +20393,8 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 					<real>-1</real>
 					<key>Points</key>
 					<array>
-						<string>{521.33870800645934, 461.96773914965746}</string>
-						<string>{521.33871921928039, 403.45161069938217}</string>
+						<string>{521.33870754445877, 461.96773914965746}</string>
+						<string>{521.3387172959566, 403.45161069938217}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20534,7 +20534,7 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {1188, 2199}}</string>
+				<string>{{0, 0}, {1188, 2932}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -20567,7 +20567,391 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{761.35801628860213, 1678.185180224945}, {329.629638671875, 154}}</string>
+					<string>{{293.82715962896475, 2663.6032867431641}, {342.69586181640625, 158}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>Vertical</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>HelveticaNeue</string>
+						<key>Size</key>
+						<real>13</real>
+					</dict>
+					<key>ID</key>
+					<integer>1913</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Pad</key>
+						<integer>2</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs24 \cf0 Might need to add a script generator for rapid creation of shaders to take in lights and camera info consistently.\
+\
+The shading language will change based on the renderer. If there are command line generators for shaders, then it should change based on what kind Renderer is being used. That should be simple enough. The generator should look at the sketch.yml and see what Renderer is enabled. It should then load the appropriate shader generators.\
+\
+Need to think about how to bundle generators.}</string>
+						<key>VerticalPad</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{683.95061527078349, 2419.1357953485563}, {323, 228}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>YES</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>HelveticaNeue</string>
+						<key>Size</key>
+						<real>13</real>
+					</dict>
+					<key>ID</key>
+					<integer>1912</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Pad</key>
+						<integer>2</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Light;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs26 \cf0 How are filters assigned/managed at the layer level?\
+  command line?\
+    select layer "a"\
+    list layer filters # lists all filters on a sketch\
+    list available filters #lists out all registered filters\
+    remove filter "blah"\
+    add filter "blah"\
+    configure filter \{params as hash\}\
+  sketch.yml?\
+  sketch api?\
+    they can only be applied at the end by the Compositor\
+\
+jitterbug viz needs to include the filter chain\
+}</string>
+						<key>VerticalPad</key>
+						<integer>2</integer>
+					</dict>
+					<key>Wrap</key>
+					<string>NO</string>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{692.4241943359375, 2219.753173828125}, {320, 180}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>YES</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>HelveticaNeue</string>
+						<key>Size</key>
+						<real>13</real>
+					</dict>
+					<key>ID</key>
+					<integer>1911</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Pad</key>
+						<integer>2</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Light;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs26 \cf0 All layers must be the same size.\
+Where should the resolution be set?\
+Not at the sketch api, since all layers must be set.\
+  Either the Camera or Renderer. \
+    Should Resolution be a domain object?\
+  Possibly ways to set:\
+    command line command\
+    manually editing the sketch.yml file\
+The resolution will need to be available to the SketchAPI \
+Should the background be treated the same way?\
+    }</string>
+						<key>VerticalPad</key>
+						<integer>2</integer>
+					</dict>
+					<key>Wrap</key>
+					<string>NO</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>LineGraphic</string>
+					<key>Head</key>
+					<dict>
+						<key>ID</key>
+						<integer>1755</integer>
+					</dict>
+					<key>ID</key>
+					<integer>1910</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Points</key>
+					<array>
+						<string>{633.40629175066863, 1345.9903086228451}</string>
+						<string>{596.17388913415573, 1288.6189632371547}</string>
+					</array>
+					<key>Style</key>
+					<dict>
+						<key>stroke</key>
+						<dict>
+							<key>HeadArrow</key>
+							<string>StickArrow</string>
+							<key>Legacy</key>
+							<true/>
+							<key>Pattern</key>
+							<integer>1</integer>
+							<key>TailArrow</key>
+							<string>0</string>
+						</dict>
+					</dict>
+					<key>Tail</key>
+					<dict>
+						<key>ID</key>
+						<integer>1744</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{298.90906098375581, 2219.7531763348488}, {342.69586181640625, 370}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>Vertical</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>HelveticaNeue</string>
+						<key>Size</key>
+						<real>13</real>
+					</dict>
+					<key>ID</key>
+					<integer>1909</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Pad</key>
+						<integer>2</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Light;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs26 \cf0 Next Steps:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1\fs24 \cf0   rename layers.yml to sketch.yml\
+  create CreateGLSLImageSketchCommand\
+  write tests to expect an image on rendering\
+  create GLSLImageRenderer\
+    need a way to manage the loading of shaders\
+      Part of the GLSLSketchAPI will be a suite of shaders to \
+      assist in the rendering of 2d shapes. These shaders should \
+      be loaded and mapped to geometry automatically.\
+    VBO management with SceneGraph, culler\
+    lighting model\
+    camera model\
+    might need to add a script generator for rapid creation of\
+    shaders to take in lights and camera info consistently. \
+\
+  create SingleImageRenderLoop\
+  flush out Compositor\
+  possibly create a multi-layer CoreImage filter\
+  Expand Layer to include a filter chain. \
+  flush out SceneGraph\
+  create GLSLSketchAPI\
+  Design and write Color model\
+  Design and write the camera\
+  flush out the frustum\
+\
+}</string>
+						<key>VerticalPad</key>
+						<integer>2</integer>
+					</dict>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{38.271604825621502, 2219.7532788208941}, {199, 52}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FitText</key>
+					<string>YES</string>
+					<key>Flow</key>
+					<string>Resize</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>HelveticaNeue</string>
+						<key>Size</key>
+						<real>13</real>
+					</dict>
+					<key>ID</key>
+					<integer>162</integer>
+					<key>Layer</key>
+					<integer>0</integer>
+					<key>Shape</key>
+					<string>Rectangle</string>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Align</key>
+						<integer>0</integer>
+						<key>Pad</key>
+						<integer>2</integer>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf470
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Light;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs26 \cf0 Most basic function path:\
+2 layers rendered to a single image\
+}</string>
+						<key>VerticalPad</key>
+						<integer>2</integer>
+					</dict>
+					<key>Wrap</key>
+					<string>NO</string>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{758.51850396237614, 1651.4320938633341}, {329.629638671875, 196}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -20613,13 +20997,17 @@ I'm unsure about the relationship between a layer and SceneGraph. The below diag
 \f0\fs24 \cf0 Steps:\
 Create Engine class\
 Remove Boot Strap Code\
+Remove the render method on the Engine.\
+  Possibly create a "start" method\
 Update build scripts\
+Create object hierarchy for CreateSketchCommand\
+  CreateGLSLRealTimeSketch\
+  CreateGLSLImageSketch\
+  CreateGLSLVideoSketch\
+  CreateWhittedRaytracedSketch\'85\
 Rename Sketch to SketchController\
-Move logic to the render method on the new SC.\
-Change CreateSketchCommand to build an engine.\
-Update Tests\
 \
-This will make "jb render" not do anything. The current render path is not useful.}</string>
+Switch to using RVM macruby?}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -20677,8 +21065,8 @@ This will make "jb render" not do anything. The current render path is not usefu
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{89.767387061593453, 1154.4906526010932}</string>
-						<string>{83.530661920907889, 1049.1542902201122}</string>
+						<string>{90.433899728751641, 1154.4897785201422}</string>
+						<string>{90.433900292631208, 1056.584030551765}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -20702,7 +21090,7 @@ This will make "jb render" not do anything. The current render path is not usefu
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{43.827158943470472, 1027.1390320502878}, {78.073921928075691, 21.516132354736328}}</string>
+					<string>{{51.396939428963513, 1034.56789818938}, {78.073921928075691, 21.516132354736328}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>ID</key>
@@ -21071,8 +21459,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{606.87935976597032, 1266.4219204722508}</string>
-						<string>{719.79719684173335, 1197.1374036576346}</string>
+						<string>{606.87935148092004, 1266.4219203798}</string>
+						<string>{719.79713642298088, 1197.1374030097786}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21108,8 +21496,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{608.72534353279696, 1355.5207350875864}</string>
-						<string>{530.65425902728225, 1351.4941703742777}</string>
+						<string>{608.72534397772756, 1355.5202087674932}</string>
+						<string>{530.6542604636245, 1351.4923573541519}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21145,8 +21533,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{575.12760575223172, 1288.5125316608426}</string>
-						<string>{512.51207671142538, 1338.7735072935664}</string>
+						<string>{575.12757141679265, 1288.5125311714662}</string>
+						<string>{512.51188643820524, 1338.773504630549}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21182,8 +21570,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{557.00800290110271, 1287.5814454508891}</string>
-						<string>{409.79194227661083, 1334.3590063323013}</string>
+						<string>{557.0080028054125, 1287.5814218606542}</string>
+						<string>{409.79194170323944, 1334.3588739274253}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21219,8 +21607,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{481.93420068251913, 1301.07559335821}</string>
-						<string>{494.85653152955223, 1338.6136775014206}</string>
+						<string>{481.933227755541, 1301.0755994176275}</string>
+						<string>{494.85401915306306, 1338.6137101967922}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21405,8 +21793,8 @@ In the same vein. I need a way to store the camera info.}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{385.24456418977235, 1288.4375442800808}</string>
-						<string>{478.39958776097336, 1338.8485261863509}</string>
+						<string>{385.24458712901418, 1288.4375440527845}</string>
+						<string>{478.39971604069967, 1338.8485250123817}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21592,8 +21980,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{528.0838206624959, 1928.5356491747657}</string>
-						<string>{645.84798501465298, 1809.6368035713406}</string>
+						<string>{528.08382066257593, 1928.5356491747657}</string>
+						<string>{645.84798501558976, 1809.6368035713406}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21658,8 +22046,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{480.47660382197819, 1950.5497482609701}</string>
-						<string>{305.76718234714446, 2002.5845121834932}</string>
+						<string>{480.47660383141329, 1950.5497482610137}</string>
+						<string>{305.76718234843361, 2002.5845121995865}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21695,8 +22083,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{497.55990368907203, 1950.6525888322335}</string>
-						<string>{309.21786937496768, 2056.8411228819382}</string>
+						<string>{497.55990369210292, 1950.6525888322333}</string>
+						<string>{309.21786940717487, 2056.8411228819778}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21732,8 +22120,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{477.43180131086103, 1938.0649479386968}</string>
-						<string>{322.58707783410608, 1931.8781066771678}</string>
+						<string>{477.43180131086103, 1938.0649479268156}</string>
+						<string>{322.58707783410608, 1931.8781066188806}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21769,8 +22157,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{507.90913261032921, 1928.5047560309702}</string>
-						<string>{427.32494359817434, 1830.5442398959417}</string>
+						<string>{507.90913261069568, 1928.5047560309702}</string>
+						<string>{427.32494360176071, 1830.5442398959419}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21806,8 +22194,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{490.82087319865985, 1928.6984262455587}</string>
-						<string>{348.25847208556905, 1869.2395388030166}</string>
+						<string>{490.82087322121106, 1928.6984262455589}</string>
+						<string>{348.25847223056564, 1869.2395388030159}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21843,8 +22231,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{507.78755173451287, 1950.791070072537}</string>
-						<string>{370.77868106522544, 2115.1322709809401}</string>
+						<string>{507.78755173451901, 1950.791070072537}</string>
+						<string>{370.77868106532196, 2115.1322709809401}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21880,8 +22268,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{514.56117178537011, 1950.8949694014761}</string>
-						<string>{481.41381101885867, 2099.0925619060977}</string>
+						<string>{514.56117178565739, 1950.8949694014761}</string>
+						<string>{481.41381102293343, 2099.0925619060977}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21917,8 +22305,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{520.74693491684491, 1950.882299456629}</string>
-						<string>{570.33133130876683, 2102.637765093325}</string>
+						<string>{520.74693491685389, 1950.882299456629}</string>
+						<string>{570.33133130889769, 2102.637765093325}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21954,8 +22342,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{537.7738064770723, 1950.6415567880344}</string>
-						<string>{703.16241521451457, 2038.4817899814122}</string>
+						<string>{537.77380647787345, 1950.6415567880342}</string>
+						<string>{703.16241522172095, 2038.4817899814125}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -21991,8 +22379,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{526.32418832521387, 1950.7917822033494}</string>
-						<string>{643.17551907425729, 2091.5905462229216}</string>
+						<string>{526.32418832522796, 1950.7917822033494}</string>
+						<string>{643.17551907445045, 2091.5905462229216}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22028,8 +22416,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{556.709452588212, 1948.5981471637008}</string>
-						<string>{702.19742139940718, 1981.4496310545921}</string>
+						<string>{556.709452588212, 1948.5981471154846}</string>
+						<string>{702.19742139940774, 1981.4496308293792}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22065,8 +22453,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{556.72173162372599, 1939.6489437959169}</string>
-						<string>{695.79629427215002, 1939.6488877782942}</string>
+						<string>{556.72173162372599, 1939.6489438000651}</string>
+						<string>{695.79629427215002, 1939.6488877969946}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22102,8 +22490,8 @@ Benefits:\
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{552.2539370583122, 1928.7428300192114}</string>
-						<string>{668.66425279033001, 1892.6518428103025}</string>
+						<string>{552.2539382350119, 1928.742830019288}</string>
+						<string>{668.66425780141299, 1892.6518428291099}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22514,8 +22902,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{517.07656674861755, 1928.3908935650479}</string>
-						<string>{517.07656120132242, 1776.3371148674335}</string>
+						<string>{517.07656674862744, 1928.3908935650479}</string>
+						<string>{517.07656120146567, 1776.3371148674335}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22607,8 +22995,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{297.08548496488834, 1149.5424066358451}</string>
-						<string>{133.51910672367887, 1243.2241855957693}</string>
+						<string>{297.08549346878328, 1149.5424067201145}</string>
+						<string>{133.5191069112671, 1243.2242326159437}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22644,8 +23032,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{213.87766094807264, 1289.6335077660999}</string>
-						<string>{129.3811251961074, 1315.6329792342956}</string>
+						<string>{213.87766090282264, 1289.6334953780813}</string>
+						<string>{129.38100047805943, 1315.6329787606335}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22669,7 +23057,7 @@ Data Structure}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{894.44444181170149, 1078.3950585542048}, {274.05215454101562, 224}}</string>
+					<string>{{826.16638242622435, 1078.3949621054044}, {274.05215454101562, 224}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -22741,8 +23129,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{621.52601533893903, 1116.8002944973584}</string>
-						<string>{725.97374301178627, 1309.1918816453074}</string>
+						<string>{621.52601576171867, 1116.8002944970679}</string>
+						<string>{725.9737506322947, 1309.1918815178419}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22778,8 +23166,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{632.2066437286536, 1116.6358025310512}</string>
-						<string>{720.99360716023625, 1175.0848878557313}</string>
+						<string>{632.20707359316759, 1116.6357975128994}</string>
+						<string>{720.99631445069872, 1175.0848563508564}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22815,8 +23203,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{616.57509032814767, 1116.8583815824322}</string>
-						<string>{639.53207746253963, 1345.9122197976435}</string>
+						<string>{616.57509019478039, 1116.858381582505}</string>
+						<string>{639.53207461831596, 1345.9122198311461}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22852,8 +23240,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{613.70997729447799, 1116.8550208983831}</string>
-						<string>{590.65703713294079, 1266.1892654462126}</string>
+						<string>{613.70997705316563, 1116.8550208982156}</string>
+						<string>{590.65703369650851, 1266.1892653954419}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22889,8 +23277,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{606.26096299368362, 1116.7466910347312}</string>
-						<string>{493.20843787842153, 1253.8944498349993}</string>
+						<string>{606.26096224519745, 1116.7466910344442}</string>
+						<string>{493.20842799949048, 1253.8944497327029}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22926,8 +23314,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{599.35058466802639, 1116.6436965934315}</string>
-						<string>{381.02128503539257, 1266.4006230202267}</string>
+						<string>{599.35058468071634, 1116.6436965934317}</string>
+						<string>{381.02128522011822, 1266.4006230202895}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -22963,8 +23351,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{592.3354571644378, 1116.5753152007078}</string>
-						<string>{293.09755879504314, 1258.6424259463593}</string>
+						<string>{592.33545724566488, 1116.5753152015252}</string>
+						<string>{293.09755880971369, 1258.6424264886602}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23000,8 +23388,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{517.86086536276775, 1049.9880605208648}</string>
-						<string>{602.21342980618078, 1022.5777975751492}</string>
+						<string>{517.85045032021515, 1049.9880166134421}</string>
+						<string>{602.21337698770856, 1022.5657716265144}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23039,8 +23427,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{564.83709252581775, 1111.1743857173694}</string>
-						<string>{355.94487432095048, 1134.1710510972009}</string>
+						<string>{564.83709263546177, 1111.1744901160819}</string>
+						<string>{355.94487501354337, 1134.1715863869053}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23078,8 +23466,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{732.53098023961797, 1309.1317524297328}</string>
-						<string>{737.27825936187128, 1197.3754606503135}</string>
+						<string>{732.53098051917584, 1309.1317524297342}</string>
+						<string>{737.27826241663513, 1197.3754606506288}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23144,8 +23532,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{516.31777093501785, 1071.8200071574727}</string>
-						<string>{583.40331766320617, 1094.6834680888876}</string>
+						<string>{516.31871002081903, 1071.8200028577794}</string>
+						<string>{583.40622315022301, 1094.6834548203808}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23270,8 +23658,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{315.35383894003553, 1149.7921397204866}</string>
-						<string>{313.24056368413164, 1174.8614842198992}</string>
+						<string>{315.35387412635748, 1149.792139876377}</string>
+						<string>{313.24067724420485, 1174.86148461721}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23336,8 +23724,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{241.6485309352891, 1297.9875762981808}</string>
-						<string>{225.78188041602584, 1325.4927759955951}</string>
+						<string>{241.64826215888652, 1297.9875738057035}</string>
+						<string>{225.78125162417936, 1325.4927705156369}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23373,8 +23761,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{267.0926358755396, 1297.9713816823371}</string>
-						<string>{292.10482111244403, 1335.7508829012324}</string>
+						<string>{267.09261888092522, 1297.9713818648786}</string>
+						<string>{292.10477304370562, 1335.7508837214471}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23462,8 +23850,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{407.51762176036146, 1277.4415245011571}</string>
-						<string>{434.15311219985813, 1277.4415325126067}</string>
+						<string>{407.51762176036146, 1277.4415245011576}</string>
+						<string>{434.15311219985813, 1277.4415325126072}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23536,8 +23924,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{667.85355225613773, 1346.2230413452144}</string>
-						<string>{704.84682542992653, 1331.3340449568989}</string>
+						<string>{667.85661894266116, 1346.2230597297782}</string>
+						<string>{704.85406400233194, 1331.3340883377205}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23573,8 +23961,8 @@ I guess the real question is, should the Engine be passed around?}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{513.44344118192294, 1277.4529804183592}</string>
-						<string>{556.98452565951845, 1277.4655402104952}</string>
+						<string>{513.44344118051561, 1277.4438323485372}</string>
+						<string>{556.98452553555626, 1277.4463450924059}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23817,8 +24205,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{93.936423845425111, 1220.8768242996894}</string>
-						<string>{93.929511869851197, 1242.231652201679}</string>
+						<string>{93.939406496244132, 1220.8768243427207}</string>
+						<string>{93.938152152654084, 1242.2316521752184}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23854,8 +24242,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{91.33798486394754, 1177.0043059189625}</string>
-						<string>{93.053389740515229, 1198.3622359660374}</string>
+						<string>{91.33405054299385, 1177.0043197903592}</string>
+						<string>{93.041990437552471, 1198.3622757917246}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -23920,8 +24308,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{93.937596971366176, 1289.5542077142768}</string>
-						<string>{93.934911284511756, 1315.2800242964356}</string>
+						<string>{93.939706880430847, 1289.5542077136326}</string>
+						<string>{93.939315200440575, 1315.2800242626538}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24039,8 +24427,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{590.15711904108309, 45.089003537595069}</string>
-						<string>{606.86456922423292, 45.089003541355538}</string>
+						<string>{590.15711904108309, 45.089003533399179}</string>
+						<string>{606.86456922423292, 45.08900353538656}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24076,8 +24464,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{582.4435745901867, 89.858333900342288}</string>
-						<string>{639.02520998959596, 56.10334041032025}</string>
+						<string>{582.44126396684987, 89.858315391531065}</string>
+						<string>{639.01745922840109, 56.103259680817565}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24113,8 +24501,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{556.59990254853199, 89.618947929914142}</string>
-						<string>{552.13067074057415, 56.342624624673284}</string>
+						<string>{556.60011184892869, 89.618946984280342}</string>
+						<string>{552.13136040349025, 56.342620671661166}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24328,8 +24716,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{169.04325468482619, 101.1720628345192}</string>
-						<string>{507.933858365292, 103.73215261810171}</string>
+						<string>{169.04325468482619, 101.17206280076896}</string>
+						<string>{507.93385836529194, 103.73215229585114}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24543,8 +24931,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{249.30581425641731, 875.24446940960468}</string>
-						<string>{256.79303761776578, 840.7558244620152}</string>
+						<string>{249.30580663600111, 875.2444693536645}</string>
+						<string>{256.79300663953342, 840.755824185449}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24607,8 +24995,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{564.6883212705693, 368.66544708686661}</string>
-						<string>{634.75110002396366, 174.36841479233277}</string>
+						<string>{564.68832127060898, 368.66544708686661}</string>
+						<string>{634.75110002442045, 174.36841479233297}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24714,8 +25102,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{271.21155370238358, 292.7839578025098}</string>
-						<string>{180.49596051186336, 437.92167275322231}</string>
+						<string>{271.21155346016388, 292.78395780239867}</string>
+						<string>{180.49595865201499, 437.92167271508254}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24751,8 +25139,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{825.67679285226313, 104.1145478384407}</string>
-						<string>{878.62195897177037, 104.11454630492779}</string>
+						<string>{825.67679285226313, 104.11454783293333}</string>
+						<string>{878.62195897177037, 104.11454629206547}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24817,8 +25205,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{262.90612669236475, 231.46844258023734}</string>
-						<string>{272.94447323353069, 249.92070367448238}</string>
+						<string>{262.90477278765479, 231.46845474365298}</string>
+						<string>{272.94190327397655, 249.92072587090573}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24854,8 +25242,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{235.60662597390396, 231.42232445150219}</string>
-						<string>{217.53049387688981, 254.41844395650878}</string>
+						<string>{235.60672908860198, 231.42232539720638}</string>
+						<string>{217.53071122909952, 254.41844774213831}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -24980,8 +25368,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{291.37057583729762, 210.90713363334137}</string>
-						<string>{320.55681797213487, 210.90038174247974}</string>
+						<string>{291.37057586837585, 210.91316219760392}</string>
+						<string>{320.55681790997994, 210.91084845547977}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25017,8 +25405,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{609.15965891937969, 104.11448895583142}</string>
-						<string>{746.38646389227631, 104.11446309133723}</string>
+						<string>{609.15965891937969, 104.11450847451464}</string>
+						<string>{746.38646389227631, 104.11453553103746}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25054,8 +25442,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{652.01134558378078, 174.21934778598617}</string>
-						<string>{684.68872436164361, 201.62344114373366}</string>
+						<string>{652.01135004611263, 174.21934769836264}</string>
+						<string>{684.68873997645323, 201.62344093596883}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25091,8 +25479,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{597.4228766350393, 211.3471164693068}</string>
-						<string>{665.96462342029713, 212.27183833608751}</string>
+						<string>{597.42287663503635, 211.34713883943036}</string>
+						<string>{665.9646234198882, 212.27190871829626}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25128,8 +25516,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{559.48896581449503, 118.61344603797879}</string>
-						<string>{564.755728488714, 199.65925041370568}</string>
+						<string>{559.48898829909376, 118.61344598901363}</string>
+						<string>{564.7558766527593, 199.65925002449382}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25165,8 +25553,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{511.66813836740863, 210.89368181745624}</string>
-						<string>{533.55194695551666, 210.88119543761172}</string>
+						<string>{511.668138447145, 210.90764357972247}</string>
+						<string>{533.5519467104258, 210.90286397927218}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25231,8 +25619,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{517.855152437524, 118.27887032076157}</string>
-						<string>{291.34278501850281, 197.12574456148707}</string>
+						<string>{517.85519544439489, 118.27887047492237}</string>
+						<string>{291.34278539685857, 197.12584374559918}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25268,8 +25656,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{546.8898210778666, 118.5030007943945}</string>
-						<string>{491.09964614260088, 187.36650346306533}</string>
+						<string>{546.89011884401486, 118.5030047642075}</string>
+						<string>{491.10137625231732, 187.3665175054357}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25305,8 +25693,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{577.98327907424186, 118.41075684510326}</string>
-						<string>{623.76620981206963, 152.08573319407097}</string>
+						<string>{577.98437638537882, 118.41074584415794}</string>
+						<string>{623.76987714272457, 152.08568546294981}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25342,8 +25730,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{532.49455475973514, 118.35430760478522}</string>
-						<string>{383.27039144305076, 199.91839296935234}</string>
+						<string>{532.49457442997641, 118.35430775855372}</string>
+						<string>{383.27052343410736, 199.91839419421066}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25699,8 +26087,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{175.07273111848713, 829.5091316099722}</string>
-						<string>{236.38888819566208, 829.50913731609819}</string>
+						<string>{175.07273111848716, 829.5091316099722}</string>
+						<string>{236.38888819566205, 829.50913731609819}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -25876,8 +26264,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{865.54938018257644, 381.11627430691999}</string>
-						<string>{846.94984959255873, 381.11784934762221}</string>
+						<string>{865.54938018257644, 381.11414415580794}</string>
+						<string>{846.94984959255873, 381.11506881981512}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26007,8 +26395,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{50.593368863769555, 362.61110636626051}</string>
-						<string>{50.593368900936618, 113.23802765594594}</string>
+						<string>{50.593368863139297, 362.61110636626051}</string>
+						<string>{50.593368889467172, 113.23802765594594}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26114,8 +26502,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{557.45506814217947, 405.63556179248513}</string>
-						<string>{551.69008880353874, 591.79080868880283}</string>
+						<string>{557.45506814216651, 405.63556179248513}</string>
+						<string>{551.69008880339504, 591.79080868880283}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26151,8 +26539,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{551.98548060944574, 405.61102986584262}</string>
-						<string>{491.08557055138147, 591.81536220720761}</string>
+						<string>{551.98548060949486, 405.61102986584262}</string>
+						<string>{491.08557055192625, 591.81536220720761}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26188,8 +26576,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{546.54683647752449, 405.5601528951737}</string>
-						<string>{430.45009816326598, 591.8662402317002}</string>
+						<string>{546.54683647763216, 405.5601528951737}</string>
+						<string>{430.45009816446213, 591.8662402317002}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26225,8 +26613,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{541.14325771705614, 405.50390600090196}</string>
-						<string>{369.77957127443977, 591.922484829273}</string>
+						<string>{541.14325771721815, 405.50390600090196}</string>
+						<string>{369.77957127624529, 591.922484829273}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26467,8 +26855,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{435.46320425706631, 438.15350877575179}</string>
-						<string>{514.32040622917839, 405.32793488510009}</string>
+						<string>{435.46421191019823, 438.15351259170279}</string>
+						<string>{514.3232321146661, 405.32794556900956}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -26851,8 +27239,8 @@ Data Structure}</string>
 					<integer>0</integer>
 					<key>Points</key>
 					<array>
-						<string>{129.39810091717098, 112.13063665590686}</string>
-						<string>{129.39809385994383, 134.5928690809809}</string>
+						<string>{129.39810202611892, 112.13063665590686}</string>
+						<string>{129.39809718147833, 134.5928690809809}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -27248,7 +27636,7 @@ Data Structure}</string>
 			<key>UniqueID</key>
 			<integer>9</integer>
 			<key>VPages</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<dict>
 			<key>ActiveLayerIndex</key>
@@ -28486,8 +28874,6 @@ Data Structure}</string>
 				<string>Polyglot Design</string>
 			</dict>
 		</array>
-		<key>Frame</key>
-		<string>{{0, 4}, {1366, 742}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -28500,8 +28886,6 @@ Data Structure}</string>
 		<true/>
 		<key>SidebarWidth</key>
 		<integer>198</integer>
-		<key>VisibleRegion</key>
-		<string>{{0, 1099.9999967622168}, {711.72839296679911, 372.2222211266087}}</string>
 		<key>Zoom</key>
 		<real>1.6200000047683716</real>
 		<key>ZoomValues</key>

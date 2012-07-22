@@ -1,7 +1,7 @@
 module Jitterbug
 	module Layers
 		WORKING_DIR_MSG = "The working directory for the sketch must be set."
-		LAYER_FILE_MSG = "The layers.yml file could not be found in"
+		LAYER_FILE_MSG = "The sketch.yml file could not be found in"
 		SCRIPT_DIR_MSG = "The script directory could not be found in"
 		SUPPORT_DIR_MSG = "The support scripts directory could not be found in"
 		VENDOR_DIR_MSG = "The vendor directory could not be found in"

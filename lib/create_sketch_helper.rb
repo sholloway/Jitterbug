@@ -5,7 +5,7 @@ module Jitterbug
 	module Sketch
 		@@dirs = {
 			:sketch => { 
-				:layers => :yml,
+				:sketch => :yml,
 				:scripts  => {
 					:setup => :rb,
 					:clean_up => :rb					

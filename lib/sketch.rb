@@ -29,7 +29,7 @@ module Jitterbug
 			def initialize(rendering_engine,options={}) # by default relative to output_dir					
 					@options = {
 						:working_dir=>false, #must be set, by default everything else is relative to this.
-						:layers_file=>"layers.yml", 
+						:layers_file=>"sketch.yml", 
 						:scripts_dir=>"scripts", 
 						:support_scripts => "lib", # ruby scripts dir to support the primary layer scripts
 						:vendor => "vendor", #place third party dependencies here like gems
@@ -45,7 +45,7 @@ module Jitterbug
 						:video_output_dir=>"video", # by default relative to output_dir
 						:data_output_dir=>"data",
 						:trash => "trash",
-						:layers_file_backup =>"layer.yml.bak",
+						:layers_file_backup =>"sketch.yml.bak",
 						:logs => "logs",
 						:logger => true,
 						:env => nil} #allow mocking of the logger

@@ -46,9 +46,9 @@ describe Jitterbug::Layers::Sketch do
 			expect{Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})}.to_not raise_error				
 		end	
 		
-		it "should error if layers.yaml doesn't exist" do					
-			FileUtils.rm("#{@full_dir}/layers.yml")
-			expect{Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})}.to raise_error "The layers.yml file could not be found in #{@full_dir}"
+		it "should error if sketch.yml doesn't exist" do					
+			FileUtils.rm("#{@full_dir}/sketch.yml")
+			expect{Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})}.to raise_error "The sketch.yml file could not be found in #{@full_dir}"
 		end
 		
 		it "should error if script directory doesn't exist" do

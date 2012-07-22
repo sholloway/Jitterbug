@@ -135,7 +135,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 	end
 	
-	describe "layer.yaml i/o" do
+	describe "sketch.yml i/o" do
 		it "should save the layer data to layer.yml" do 
 			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			name = "My Layer"
@@ -145,11 +145,11 @@ describe Jitterbug::Layers::Sketch do
 			#load the yaml file directly and verify the stuff is saved...
 			require 'yaml'
 			 begin
-				file = File.open("#{@full_dir}/layers.yml")
+				file = File.open("#{@full_dir}/sketch.yml")
 				parsed = YAML.load(file)
 				file.close
 			rescue ArgumentError => e			
-				fail("Could not parse layer.yaml: #{e.message}")
+				fail("Could not parse sketch.yml: #{e.message}")
 			end
 			parsed.layer_counter.should == 1
 			parsed.layers['layer_1'].name.should == name			
@@ -180,15 +180,15 @@ describe Jitterbug::Layers::Sketch do
 			lm2.get_layer('layer_1').script.should == "#{@full_dir}/scripts/my_layer.rb"
 		end
 		
-		it "should back up an existing layer.yml before doing a save" do 
+		it "should back up an existing sketch.yml before doing a save" do 
 			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})				
 			lm.create_new_layer("My Layer")				
 			lm.save
 			
-			File.exists?("#{@full_dir}/layer.yml.bak").should == true
+			File.exists?("#{@full_dir}/sketch.yml.bak").should == true
 			lm.create_new_layer("Another Layer")
 			lm.save
-			File.exists?("#{@full_dir}/layer.yml.bak").should == true
+			File.exists?("#{@full_dir}/sketch.yml.bak").should == true
 		end
 		
 		it "should be able to restore the layer.yml from the backup" do

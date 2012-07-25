@@ -1,6 +1,7 @@
 require 'engine_parts'
 module Jitterbug
   module GraphicsEngine
+    #Executes the frame in a single thread
     class LinearFrameProcessor < FrameProcessor
       attr_accessor :engine
       attr_reader :raw_rendered_frame

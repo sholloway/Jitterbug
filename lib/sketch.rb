@@ -25,7 +25,7 @@ module Jitterbug
 		# I need to seperate this into two classes. Sketch and SketchController
 		class Sketch
 			include Jitterbug::Layers
-			attr_reader :options, :logger, :layers
+			attr_reader :options, :logger, :layers, :engine
 			def initialize(rendering_engine,options={}) # by default relative to output_dir					
 					@options = {
 						:working_dir=>false, #must be set, by default everything else is relative to this.
@@ -59,9 +59,10 @@ module Jitterbug
 						@logger = @options[:logger]
 					end
 					
-				  @engine = rendering_engine				  
-				  @engine.bind_sketch(self) #could it be the depenency loop? It is!
-				  puts "ok binding the sketch"
+					unless rendering_engine.nil?
+				    @engine = rendering_engine				  
+				    @engine.bind_sketch(self) 
+          end
 					validate
 					return self
 			end			

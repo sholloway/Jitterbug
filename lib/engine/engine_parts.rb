@@ -19,11 +19,9 @@ module Jitterbug
     end
     
     class Image < EnginePart
-      RAW = 0
-      JPEG = 1
       attr_accessor :raw_pixels
                   
-      def save_as(type,path)    
+      def save_as(path)    
 =begin
 Core Image Notes:
 Three main components:

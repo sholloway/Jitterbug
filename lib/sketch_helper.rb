@@ -100,6 +100,7 @@ module Jitterbug
 		end
 		
 		def validate_images_output_dir(options)
+		  puts "#{options[:working_dir]}/#{options[:output_dir]}/#{options[:image_output_dir]}"
 			error("#{IMAGE_OUTPUT_MSG} #{options[:working_dir]}/#{options[:output_dir]}",
 				!File.directory?("#{options[:working_dir]}/#{options[:output_dir]}/#{options[:image_output_dir]}"))
 		end

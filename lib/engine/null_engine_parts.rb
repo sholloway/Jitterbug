@@ -41,7 +41,7 @@ module Jitterbug
         super
       end
       
-      def save_as(type,path)
+      def save_as(path)
       end
     end
   end

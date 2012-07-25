@@ -22,13 +22,16 @@ end
 
 command_options = {:sketch_dir => global_opts[:dir], 
   :output_dir => global_opts[:output],
-  :environment=>Jitterbug::Env::OSXEnv.new()}
+  :environment => Jitterbug::Env::OSXEnv.new(),
+  :cmd_line_args => ARGV.clone}
   
 begin  
   commands = Jitterbug::Command::Map.commandline_map    
   command_stmt = cmd.downcase.to_sym  
   command = commands[command_stmt]
-  response = command.new(command_options).process
+  response = command.new(command_options).process 
+  #could possibly pass ARGV as a param to cmd.process, then cmd would just expect an array. 15 touch points
+  #would prefer to pass it throught the constructor, however that is currently taking an options hash
   puts response.message 
 rescue => e
 	puts e.message

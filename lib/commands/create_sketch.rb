@@ -8,10 +8,8 @@ module Jitterbug
      def process
       sketch_name = @options[:cmd_line_args].first 
       sketch_dir = @options[:sketch_dir]       
-      create_sketch(sketch_name, sketch_dir)
-            
+      create_sketch(sketch_name, sketch_dir)            
       engine = build_engine()
-      puts "working dir: #{sketch_dir}/#{sketch_name}"
  		  lm = Jitterbug::Layers::Sketch.new(engine,{:working_dir => "#{sketch_dir}/#{sketch_name}", 
  			  :output_dir => @options[:output_dir],
  			  :env => @options[:environment]}).
@@ -54,7 +52,7 @@ module Jitterbug
         engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
         engine[:camera] = Jitterbug::GraphicsEngine::Camera.new
         engine[:frustum] = Jitterbug::GraphicsEngine::Frustum.new
-        engine[:compositor] = Jitterbug::GraphicsEngine::LayerCompositor.new
+        engine[:compositor] = Jitterbug::GraphicsEngine::CoreImageLayerCompositor.new
         engine[:frame_processor] = Jitterbug::GraphicsEngine::LinearFrameProcessor.new
         engine[:render_loop] = Jitterbug::GraphicsEngine::SingleImageRenderLoop.new                      
         return engine

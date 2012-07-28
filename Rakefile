@@ -51,8 +51,10 @@ GUI_BUILD_VERSION = '1'
 GUI_IDENTIFIER 	= "com.#{COMPANY}.#{GUI_NAME}"
 TERM_IDENTIFIER = "com.#{COMPANY}.#{TERM_NAME}"
 
+$: << '.' #for ruby 1.9
 require 'build_scripts/debug_utilities'
 require 'build_scripts/ruby_test_runner.rb'
+require 'build_scripts/renderer_test_runner.rb'
 require 'build_scripts/utilities'
 require 'build_scripts/osx_terminal_framework'
 require 'build_scripts/osx_terminal_app'

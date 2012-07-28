@@ -5,6 +5,7 @@ module Jitterbug
     end
     
     class RenderLoop < EnginePart      
+      attr_accessor :default_frame_output_name
       def run_loop    
         raise Exception.new("Do not instantiate Jitterbug::GraphicsEngine::RenderLoop directly.")          
       end

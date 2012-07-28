@@ -1,0 +1,17 @@
+Leverage OpenImageIO's idiff tool to compare images.
+Can be installed with homebrew.
+
+The idiff program will return a code that can be used by scripts to indicate the results:
+0 OK: the images match within the warning and error thresholds.
+1 Warning: the errors differ a little, but within error thresholds.
+2 Failure: the errors differ a lot, outside error thresholds.
+3 The images weren’t the same size and couldn’t be compared.
+4 File error: could not find or open input files, etc.
+
+All tests follow the pattern of:
+cmd = %x{idiff #{first image} #{second image}}
+$?.exitstatus.should == 0
+
+Need to think through about how to save the images I want to compare to and if I should generate error images or a log file.
+
+Look at construct for making tests touching the file system easier.

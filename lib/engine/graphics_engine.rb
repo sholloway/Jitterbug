@@ -23,6 +23,12 @@ module Jitterbug
         super({})
       end
       
+      def Engine.from_hash(input = {})
+        engine = Engine.new
+        engine.merge!(input)
+        return engine
+      end
+      
       def bind_sketch(sketch)
         self.each_value do |part| 
           part.layers = sketch.layers
@@ -34,9 +40,10 @@ module Jitterbug
       
       def unbind
         self.each_value do |part| 
-          part.layers = nil
-          part.logger = nil
-          part.engine = nil
+          part.layers = ''
+          part.logger = ''
+          part.engine = ''
+          part.sketch_options = ''
         end
       end
 

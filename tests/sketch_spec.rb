@@ -132,8 +132,19 @@ describe Jitterbug::Layers::Sketch do
 			lm.delete(id)
 			lm.save
 			lm.number_of_layers.should == 1
-		end
+		end		
 	end
+	
+	describe "restore layer" do
+	  #should have a cmd for this and be able to do it on the command line
+		it "should have a way to restore a layer that is currently in the trash"		
+		it "should remove the layer from the trash"
+		it "should use the original layer id once restored"
+		it "should use the original layer name once restored"
+		it "should copy the script back to it's original path once restored"
+		it "should restore a layer specified by layer id"
+		it "should restore a layer specified by layer name"
+  end
 	
 	describe "sketch.yml i/o" do
 		it "should save the layer data to layer.yml" do 

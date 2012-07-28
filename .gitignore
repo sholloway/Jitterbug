@@ -7,3 +7,6 @@ docs/
 .DS_Store
 ext/.DS_Store
 ext/bin
+.swp
+.swo
+temp

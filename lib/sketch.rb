@@ -2,9 +2,12 @@
 require 'yaml'
 require 'fileutils'
 
+if defined?(YAML::ENGINE) 
+  YAML::ENGINE.yamler = 'syck' #for ruby 1.9.3. Don't know exactly yet what the bug is with psyck parser
+end
 
 module Jitterbug
-	module Layers
+	module Layers #TODO - change this... To Sketch?
 		class Layer 
 			attr_accessor :id,:visible, :order, :script, :active, :name
 			attr_accessor :type #can be :two_dim, :three_dim
@@ -20,12 +23,57 @@ module Jitterbug
 			end
 		end
 		
+		#do I want to backup scripts? How far do you go with that? Would be easier to just put a sketch in a git repo.
+		class Script
+		  attr_accessor :path
+		  attr_reader :content
+		  def initialize(path=nil)
+		    @dirty = false
+		    @path = path
+	    end
+	    
+	    def content=(new_script_content)
+	      unless new_script_content.nil? || new_script_content.empty?
+          @dirty = true
+          @content = new_script_content
+        end
+      end
+      
+	    def save
+	      if dirty?
+	        open(@path,'w'){|f| f << @content}
+        end
+	      @dirty = false	      
+      end
+      
+      def load
+        if (File.exists?(@path))
+          @content = fetch_script
+          @dirty = false
+        else
+          raise Exception.new("Bad path on Script. #{@path} could not be found.")
+        end
+      end
+      
+      def dirty?
+        @dirty
+      end
+      
+      private
+      def fetch_script
+        file = ''
+        open(@path,'r'){|f| file = f.read}
+        return file
+      end
+	  end
+		
 		LayersData = Struct.new(:layers,:layer_counter,:graphics_engine)
 		
 		# I need to seperate this into two classes. Sketch and SketchController
-		class Sketch
+		class Sketch #change this to Controller?
 			include Jitterbug::Layers
-			attr_reader :options, :logger, :layers, :engine
+			attr_reader :options, :logger, :layers, :engine, :background
+			attr_accessor :width, :height
 			def initialize(rendering_engine,options={}) # by default relative to output_dir					
 					@options = {
 						:working_dir=>false, #must be set, by default everything else is relative to this.
@@ -48,7 +96,8 @@ module Jitterbug
 						:layers_file_backup =>"sketch.yml.bak",
 						:logs => "logs",
 						:logger => true,
-						:env => nil} #allow mocking of the logger
+						:env => nil} 
+						
 					@options.merge!(options)
 					@layers = {}
 					@layer_counter = 0
@@ -64,8 +113,14 @@ module Jitterbug
 				    @engine.bind_sketch(self) 
           end
 					validate
-					return self
-			end			
+					return  
+			end	
+			
+			#I've got to really think throught the color management system. 
+			#I want to be able to have symbols and strings for common names, but also RGBA, CYMK and HSBA.
+			def background(color)
+			  @background = color
+			end		
 			
 			def load()		
 				error("The layer file: #{@options[:working_dir]}/#{@options[:layers_file]} does not exist.", 
@@ -76,7 +131,13 @@ module Jitterbug
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
-				@engine = parsed.graphics_engine
+	
+				if parsed.graphics_engine.instance_of?(Jitterbug::GraphicsEngine::Engine)
+				  @engine = parsed.graphics_engine
+			  else #for ruby 1.9.3			    
+			    @engine = Jitterbug::GraphicsEngine::Engine.from_hash(parsed.graphics_engine)			    			    
+		    end	
+				
 				@engine.bind_sketch(self)
 				return self
 			end
@@ -92,7 +153,10 @@ module Jitterbug
 				
 				@engine.unbind
 				data = LayersData.new(@layers,@layer_counter,@engine)
-				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") {|f| f.write(data.to_yaml) } 
+				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") do |f| 				  
+				  yaml_str = data.to_yaml
+				  f.write(yaml_str) 
+			  end
 				@engine.bind_sketch(self)
 				return self
 			end

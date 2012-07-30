@@ -74,7 +74,7 @@ describe Jitterbug::Layers::Sketch do
 			id = lm.create_new_layer(name).selected_layer.id
 			File.exists?("#{@full_dir}/scripts/my_layer.rb").should == true
 			layer = lm.get_layer(id)
-			layer.script.should == "#{@full_dir}/scripts/my_layer.rb"
+			layer.script.path.should == "#{@full_dir}/scripts/my_layer.rb"
 		end
 		
 		it "should increment scripts names" do
@@ -137,7 +137,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "restore layer" do
 	  #should have a cmd for this and be able to do it on the command line
-		it "should have a way to restore a layer that is currently in the trash"		
+		it "should have a way to restore a layer that is currently in the trash"	
 		it "should remove the layer from the trash"
 		it "should use the original layer id once restored"
 		it "should use the original layer name once restored"
@@ -168,7 +168,7 @@ describe Jitterbug::Layers::Sketch do
 			parsed.layers['layer_1'].order.should == 1
 			parsed.layers['layer_1'].active.should == true
 			parsed.layers['layer_1'].visible.should == true
-			parsed.layers['layer_1'].script.should == "#{@full_dir}/scripts/my_layer.rb"
+			parsed.layers['layer_1'].script.path.should == "#{@full_dir}/scripts/my_layer.rb"
 			#:id,:visible, :order, :script, :active, :name
 		end
 		
@@ -188,7 +188,7 @@ describe Jitterbug::Layers::Sketch do
 			lm2.get_layer('layer_1').order.should == 1
 			lm2.get_layer('layer_1').active.should == true
 			lm2.get_layer('layer_1').visible.should == true
-			lm2.get_layer('layer_1').script.should == "#{@full_dir}/scripts/my_layer.rb"
+			lm2.get_layer('layer_1').script.path.should == "#{@full_dir}/scripts/my_layer.rb"
 		end
 		
 		it "should back up an existing sketch.yml before doing a save" do 

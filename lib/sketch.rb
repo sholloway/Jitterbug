@@ -178,7 +178,7 @@ module Jitterbug
 				layer_name = (name.nil?)? original_layer.name : name
 				create_new_layer(layer_name)	#this selects the new layer			
 				new_layer = selected_layer
-				FileUtils.cp original_layer.script, new_layer.script				
+				FileUtils.cp original_layer.script.path, new_layer.script.path				
 				save
 				return self
 			end
@@ -199,7 +199,7 @@ module Jitterbug
 				delete_layers = []
 				layers do |layer|
 					if layer.active 
-						FileUtils.mv layer.script, "#{@options[:working_dir]}/#{@options[:trash]}/#{File.basename(layer.script)}"
+						FileUtils.mv layer.script.path, "#{@options[:working_dir]}/#{@options[:trash]}/#{File.basename(layer.script.path)}"
 						delete_layers << layer.id
 					end
 				end				
@@ -288,7 +288,7 @@ module Jitterbug
 			def rename_layer(id, new_name)
 				layer = get_layer(id)
 				new_script = rename_script(id, new_name)
-				layer.script = new_script
+				layer.script.path = new_script
 				layer.name = new_name
 				return self
 			end
@@ -368,8 +368,8 @@ module Jitterbug
 			
 			def make_script(id)		
 				script_path = generate_script_path(get_layer(id).name)				
-				FileUtils.touch(script_path)
-				get_layer(id).script = File.expand_path(script_path)
+				FileUtils.touch(script_path)				
+				get_layer(id).script = Script.new(File.expand_path(script_path))
 			end
 			
 			def generate_script_path(name)				
@@ -387,7 +387,7 @@ module Jitterbug
 			
 			def rename_script(id, new_name)
 				new_script_path = generate_script_path(new_name)
-				old_script_path = get_layer(id).script
+				old_script_path = get_layer(id).script.path
 				FileUtils.mv old_script_path, new_script_path 
 				return new_script_path
 			end

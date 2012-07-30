@@ -1,7 +1,9 @@
 module Jitterbug
   module GraphicsEngine
     class GLSLSketchAPI < SketchAPI
-      def rect()
+      # Draw a rectangle
+      def rect(x,y,width,height)
+        
       end
     end
   end

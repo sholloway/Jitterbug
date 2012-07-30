@@ -15,3 +15,33 @@ $?.exitstatus.should == 0
 Need to think through about how to save the images I want to compare to and if I should generate error images or a log file.
 
 Look at construct for making tests touching the file system easier.
+
+Important: Turns out idiff needs X11. Need to think about the ramifications of depending on it. 
+Look at http://opensourcevfx.org/ for other possibilities. Might be able to depend on OpenImageIO directly with Macruby.
+
+Observation:
+Robert Hogan has his sketches where he can pause them and then move the camera within the 3D scene. Something to consider. 
+Would change the architecture a bit.
+
+Watch Ben Fry's talk along with the Cinder guy.
+
+Don't forget about the work I've already done with WebGL. Can use that for a guideline of setting up shaders.
+
+Next steps:
+Get pixels flowing.
+	API -> SceneGraph -> Spatial Partition -> Culler -> Render -> ImageProcessor -> Image 
+	
+1. Write basic API code for def rect(x,y,width,height)
+	Need stroke, fill, rect_mode, bind to shader (Want to reference a structure of shaders. Don't have multiple copies floating around.)
+2. Write SceneGraph
+	Need add_geometry 
+3. Spatial Partition
+	Just need to add all geometry to the culler at this point.
+4. Renderer
+	Need a way of managing shaders. Part of Geometry class?
+	Combine the work done on JBOpenGLView + WebGL
+	Render to Framebuffer
+5. ImageProcessor
+	Get pixels from Framebuffer
+	Persist as a PNG image
+	

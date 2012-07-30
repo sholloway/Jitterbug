@@ -68,8 +68,9 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
     describe "rect(x,y,width,height)" do
       describe "rectangle mode = " do
         it "should renderer a rectangle" do
+          @sketch.engine[:render_loop].default_frame_output_name = "frame1"
           foreground = @sketch.select('Foreground')
-          foreground.script = "rect(10,10,100,100)"
+          foreground.script.content = "rect(10,10,100,100)"
           @sketch.render
           File.exists?(File.join(@full_dir,"outputs","images","frame1.png")).should == true
         end

@@ -51,7 +51,7 @@ module Jitterbug
           @content = fetch_script
           @dirty = false
         else
-          raise Exception.new("Bad path on Script. #{@path} could not be found.")
+          raise Exception.new("Bad path on Layer's Script. #{@path} could not be found.")
         end
       end
       
@@ -72,7 +72,7 @@ module Jitterbug
 		# I need to seperate this into two classes. Sketch and SketchController
 		class Sketch #change this to Controller?
 			include Jitterbug::Layers
-			attr_reader :options, :logger, :layers, :engine, :background
+			attr_reader :options, :logger, :render_logger, :layers, :engine, :background
 			attr_accessor :width, :height
 			def initialize(rendering_engine,options={}) # by default relative to output_dir					
 					@options = {
@@ -96,6 +96,7 @@ module Jitterbug
 						:layers_file_backup =>"sketch.yml.bak",
 						:logs => "logs",
 						:logger => true,
+						:render_logger =>true,
 						:env => nil} 
 						
 					@options.merge!(options)
@@ -104,14 +105,14 @@ module Jitterbug
 					
 					if @options[:logger] == true
 						@logger = Jitterbug::Logging::JitterLogger.new(@options,"jitterbug.log")
-					else
+					else					  
 						@logger = @options[:logger]
 					end
 					
 					unless rendering_engine.nil?
 				    @engine = rendering_engine				  
-				    @engine.bind_sketch(self) 
           end
+          
 					validate
 					return  
 			end	
@@ -138,7 +139,6 @@ module Jitterbug
 			    @engine = Jitterbug::GraphicsEngine::Engine.from_hash(parsed.graphics_engine)			    			    
 		    end	
 				
-				@engine.bind_sketch(self)
 				return self
 			end
 			
@@ -157,7 +157,10 @@ module Jitterbug
 				  yaml_str = data.to_yaml
 				  f.write(yaml_str) 
 			  end
-				@engine.bind_sketch(self)
+				
+				#save all scripts to disk
+				layers{|current_layer| current_layer.script.save()}
+				
 				return self
 			end
 			
@@ -314,14 +317,20 @@ module Jitterbug
 			end
 			
 			def render							
-				@logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log")
-				@logger.info "Prepping renderer."											 								
+			  if (@options[:render_logger] == true)
+				  @render_logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log") 				  
+			  else
+			    @render_logger = @options[:render_logger]
+		    end
+		    
+				@render_logger.info "Prepping renderer."											 								
 			  if @engine.assembled? 
+			    @engine.bind_sketch(self)
 			    @engine.render()  
 		    else
 		      raise Exception.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
 	      end
-				@logger.info "Rendering complete."
+				@render_logger.info "Rendering complete."
 				return self
 			end
 			

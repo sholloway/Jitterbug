@@ -10,7 +10,7 @@ TERM_MACOS_DIR 		  = File.join(TERM_CONTENTS_DIR, 'MacOS')
 TERM_FRAMEWORKS_DIR	= File.join(TERM_CONTENTS_DIR, 'Frameworks')
 
 COPY_TERMINAL_FILES = FileList["resources/images/*.tiff", 
-  "resources/images/*.icns", 
+  "resources//*.icns", 
   "resources/*.strings",
 	"English.lproj/*.strings"]
 

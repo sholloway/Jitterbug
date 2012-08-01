@@ -50,6 +50,10 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
 
   describe "Functionality" do
     before(:each) do
+      @logger = Logger.new(STDOUT)
+  		@logger.level = Logger::DEBUG
+  		@logger.datetime_format = "%H:%M:%S"
+  		  		
       @test_dir = File.expand_path(File.dirname(__FILE__))
   		@full_dir = File.join(@test_dir,"test_sketch")
   		FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir	
@@ -57,7 +61,7 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
       cmd = Jitterbug::Command::CreateGLSLImageSketch.new({:sketch_dir => @test_dir, :cmd_line_args => [@sketch_name], :output_dir => "output"})
       cmd.process
       
-      @sketch = Sketch.new(nil,{:working_dir => @full_dir,:logger => @logger})
+      @sketch = Sketch.new(nil,{:working_dir => @full_dir,:logger => @logger, :render_logger=>@logger})
       @sketch.load
     end
     
@@ -67,10 +71,14 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
     
     describe "rect(x,y,width,height)" do
       describe "rectangle mode = " do
-        it "should renderer a rectangle" do
+        it "should renderer a rectangle",:focus=>true do
           @sketch.engine[:render_loop].default_frame_output_name = "frame1"
           foreground = @sketch.select('Foreground')
-          foreground.script.content = "rect(10,10,100,100)"
+          foreground.script.content = %{
+          puts "######################ran the script###################################"
+          rect(10,10,100,100)
+          }
+          @sketch.save
           @sketch.render
           File.exists?(File.join(@full_dir,"outputs","images","frame1.png")).should == true
         end

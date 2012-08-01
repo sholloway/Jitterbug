@@ -30,15 +30,17 @@ module Jitterbug
       end
       
       def bind_sketch(sketch)
+        @logger = sketch.logger
         self.each_value do |part| 
           part.layers = sketch.layers
-          part.logger = sketch.logger
+          part.logger = sketch.render_logger          
           part.engine = self 
-          part.sketch_options = sketch.options
+          part.sketch_options = sketch.options          
         end
       end
       
       def unbind
+        @logger = nil
         self.each_value do |part| 
           part.layers = ''
           part.logger = ''
@@ -69,7 +71,8 @@ module Jitterbug
       end
       
       def render
-         self[:render_loop].run_loop()  
+        @logger.debug("graphics engine.render() called")
+        self[:render_loop].run_loop()  
       end
 
       private

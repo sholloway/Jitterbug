@@ -18,7 +18,7 @@ describe Jitterbug::Layers::Sketch do
     @engine[:image_processor] = Jitterbug::NullGraphicsEngine::NullImage.new
     @engine[:renderer] = Jitterbug::NullGraphicsEngine::NullRenderer.new
     @engine[:scene_graph] = Jitterbug::GraphicsEngine::SceneGraph.new
-    @engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialDataPartition.new
+    @engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
     @engine[:sketch_api] = Jitterbug::GraphicsEngine::SketchAPI.new
     @engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
     @engine[:camera] = Jitterbug::GraphicsEngine::Camera.new

@@ -27,7 +27,7 @@ module Jitterbug
        engine[:image_processor] = Jitterbug::NullGraphicsEngine::NullImage.new
        engine[:renderer] = Jitterbug::NullGraphicsEngine::NullRenderer.new
        engine[:scene_graph] = Jitterbug::GraphicsEngine::SceneGraph.new
-       engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialDataPartition.new
+       engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
        engine[:sketch_api] = Jitterbug::GraphicsEngine::SketchAPI.new
        engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
        engine[:camera] = Jitterbug::GraphicsEngine::Camera.new
@@ -47,7 +47,7 @@ module Jitterbug
         engine[:image_processor] = Jitterbug::GraphicsEngine::PNGImage.new
         engine[:renderer] = Jitterbug::GraphicsEngine::GLSLRenderer.new
         engine[:scene_graph] = Jitterbug::GraphicsEngine::SceneGraph.new
-        engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialDataPartition.new
+        engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
         engine[:sketch_api] = Jitterbug::GraphicsEngine::GLSLSketchAPI.new
         engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
         engine[:camera] = Jitterbug::GraphicsEngine::Camera.new

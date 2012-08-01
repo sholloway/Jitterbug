@@ -40,6 +40,10 @@ module Jitterbug
 			def close
 				@logger.close
 			end
+			
+			def debug?
+			  @logger.debug?
+		  end
 		end	
 	end
 end

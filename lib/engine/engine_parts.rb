@@ -1,8 +1,11 @@
+
 module Jitterbug
   module GraphicsEngine
     class EnginePart
       attr_accessor :logger, :layers, :engine, :sketch_options
     end
+    
+    require 'scene_graph'
     
     class RenderLoop < EnginePart      
       attr_accessor :default_frame_output_name
@@ -65,10 +68,68 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       end
     end
         
-    class SceneGraph < EnginePart   
-      #reset the SG     
-      def init()
+    class Node
+      # I might be able to support 2d & 3d by just having differnt transformation implementations.
+      attr_accessor :transform_local, 
+        :transform_world, 
+        :render_state, #what are these states?
+        :parent, #the parent of the node
+        :position, #do I need this in addition to the transform world?
+        :meta_data_hash,#catch all for storing meta data for animation or anything else
+        :lable; #place holder for storing text that could be rendered. Possibly be better to just use meta_data_hash
+        
+      attr_reader :id, # a sketch unique integer
+        :name, #a string
+        :children; # array of children nodes
+      
+      def initialize(id,name)
+        @id = id
+        @name = name
+        @parent = nil
+        @children =  []
       end
+      
+      #needs to return some kind of shape to represent the bounding volume of the node and all of it's children      
+      def boundary()
+      end      
+      
+      def add_child(node)
+        node.parent = self
+        @children << node
+      end
+      
+      # node_locator could be either id or name
+      def detach_child(node_locator)
+      end
+    end
+    
+    class LightNode < Node      
+      #GeometryNode's must be leaves
+      def add_child
+        raise Exception.new("LightNode cannont have children")
+      end
+    end
+    
+    class CameraNode < Node
+      #GeometryNode's must be leaves
+      def add_child
+        raise Exception.new("CameraNode cannont have children")
+      end
+    end
+    
+    class GeometryNode < Node 
+      attr_reader :geometry
+      #GeometryNode's must be leaves
+      def add_child
+        raise Exception.new("GeometryNode cannont have children")
+      end  
+      
+      def bind(geometry)
+        @geometry = geometry
+      end         
+    end
+    
+    class Geometry
     end
     
     class SpatialDataPartition < EnginePart
@@ -85,15 +146,15 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
     
     class SketchAPI < EnginePart      
       def bind(scene_graph)
-        @scene_graph = scene_graph
+        @scene_graph = scene_graph        
       end
       
       def run(layer)        
         begin
-          @logger.info("About to evaluate layer: #{layer.name}")            
-          @logger.info("#{layer.script}")
-          script_content = fetch_script(layer.script)
-          instance_eval(script_content)
+          @logger.debug("SketchAPI: About to evaluate layer: #{layer.name}")                      
+          layer.script.load
+          @logger.debug("SketchAPI:\n#{layer.script.content}")
+          instance_eval(layer.script.content)
         rescue => e
           #put in logger
           @logger.error "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -107,14 +168,20 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
       
       private
       def fetch_script(path)
-        file = ''
-        open(path,'r'){|f| file = f.read}
+        file = open(path,'r'){|f| f.read}
         return file
       end
     end
     
     class Culler < EnginePart
-      attr_reader :visible_lights, :visible_geometry      
+      attr_reader :visible_lights, 
+        :visible_geometry, 
+        :active_cameras; #should it be all active cameras or all cameras? Can there be more than one active camera?   
+      def initialize()
+        @visible_lights = []
+        @visible_geometry = []
+        @active_cameras = []
+      end
     end
     
     class Camera < EnginePart

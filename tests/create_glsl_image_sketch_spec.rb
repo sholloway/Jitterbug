@@ -20,7 +20,7 @@ describe Jitterbug::Command::CreateGLSLImageSketch do
 		FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir		
 	end
   
-  it "should build the engine with PNGImage part", :focus =>true do    
+  it "should build the engine with PNGImage part" do    
     @sketch.engine[:image_processor].instance_of?(Jitterbug::GraphicsEngine::PNGImage).should == true 
   end
   

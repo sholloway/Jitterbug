@@ -18,12 +18,12 @@ Look at construct for making tests touching the file system easier.
 
 Important: Turns out idiff needs X11. Need to think about the ramifications of depending on it. 
 Look at http://opensourcevfx.org/ for other possibilities. Might be able to depend on OpenImageIO directly with Macruby.
+Try doing a brew update. There might be a mountain lion build.
+
 
 Observation:
 Robert Hogan has his sketches where he can pause them and then move the camera within the 3D scene. Something to consider. 
 Would change the architecture a bit.
-
-Watch Ben Fry's talk along with the Cinder guy.
 
 Don't forget about the work I've already done with WebGL. Can use that for a guideline of setting up shaders.
 
@@ -44,4 +44,13 @@ Get pixels flowing.
 5. ImageProcessor
 	Get pixels from Framebuffer
 	Persist as a PNG image
+	
+Need to have a GLSLSceneGraph? Or just a GLSLGeometry Node?
+	Needs to maintain VBO, possibly vertex indices list and pointer to a shader and textures
+
+Need to think through 2D API. Do I want to draw on the screen by projecting everything or do I want to create 3D geometry?
+Could also use billboards.
+Start with projection just to keep moving forward.
+
+Look into integrating ARB_debug_output extension, as an alternative to glError.
 	

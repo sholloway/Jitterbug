@@ -14,16 +14,23 @@ module Jitterbug
       end
     end
     
-    class NullSpatialDataPartition < Jitterbug::GraphicsEngine::SpatialDataPartition
+    class NullSpatialPartition < Jitterbug::GraphicsEngine::SpatialDataPartition
       def initialize
         super
       end
       
-      def construct(scene_graph)        
+      def construct(scene_graph)   
+        @scene_graph = scene_graph     
       end
       
       def cull(culler)     
-        #should return all geometry   
+        #should return all geometry 
+        @logger.debug("NullSpatialPartition: begining cull")  
+        #traverse and grab all of the geometry nodes, light nodes, and camera nodes
+        
+        
+        @logger.debug("implement traversal to grab lights and geometry from scene graph")
+        @logger.debug("NullSpatialPartition: ending cull")  
       end
     end
     

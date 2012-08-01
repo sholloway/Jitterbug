@@ -7,6 +7,9 @@ module Jitterbug
       end
       
       def composite
+        @logger.debug("CoreImageLayerCompositor: beginning composite")
+        @logger.debug("CoreImageLayerCompositor: implement composit logic")
+        @logger.debug("CoreImageLayerCompositor: ending composite")
       end
     end
   end

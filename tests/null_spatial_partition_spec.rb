@@ -33,7 +33,12 @@ describe Jitterbug::NullGraphicsEngine::NullSpatialPartition do
       @culler.visible_geometry.count.should == 2
     end
     
-    it "should include all lights"
-    it "should include all cameras"
+    it "should include all lights" do 
+      @culler.visible_lights.count.should == 2
+    end
+    
+    it "should include all cameras" do 
+      @culler.active_cameras.count.should == 1
+    end
   end
 end

@@ -27,11 +27,21 @@ module Jitterbug
         #should return all geometry 
         @logger.debug("NullSpatialPartition: begining cull")  
         #traverse and grab all of the geometry nodes, light nodes, and camera nodes
-        
-        
+        @scene_graph.breadth_first_traversal([@scene_graph.world_node()],lambda{|current_node| keep_everything(current_node,culler)})        
         @logger.debug("implement traversal to grab lights and geometry from scene graph")
         @logger.debug("NullSpatialPartition: ending cull")  
       end
+      
+      private
+      def keep_everything(current_node,culler)
+        case current_node.class.to_s
+        when "Jitterbug::GraphicsEngine::LightNode" then culler.visible_lights << current_node
+        when "Jitterbug::GraphicsEngine::CameraNode" then culler.active_cameras << current_node
+        when "Jitterbug::GraphicsEngine::GeometryNode" then culler.visible_geometry << current_node
+        else 
+          @logger.error("NullSpatialPartition: keep_everything() - A node of unknown type was added to the scene graph. It was type #{current_node.class}")
+        end
+      end      
     end
     
     class NullLayerCompositor < Jitterbug::GraphicsEngine::LayerCompositor

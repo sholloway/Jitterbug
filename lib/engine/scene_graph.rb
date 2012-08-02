@@ -47,8 +47,7 @@ module Jitterbug
             breadth_first_traversal([world_node()], lambda {|current_node| stat_collector(current_node, stats);})
             return stats
           end
-
-          private
+          
           # Breadth first tree traversal of the scene graph. Executes the lambda "visitor" for every node.
           # Usage Example:
           # breadth_first_traversal([world_node()], lambda {|current_node| stat_collector(current_node, stats);})
@@ -64,6 +63,7 @@ module Jitterbug
             @logger.debug("SceneGraph: Ending breadth_first_traversal")
           end
 
+          private
           def stat_collector(node, stats)
             @logger.debug("SceneGraph: Beginning stat_collector")
             return if node.nil?

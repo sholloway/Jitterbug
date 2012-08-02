@@ -10,7 +10,7 @@ describe "Image Generation with GLSL" do
     cmd = Jitterbug::Command::CreateGLSLImageSketch.new({:sketch_dir => @test_dir, :cmd_line_args => [@sketch_name], :output_dir => "output"})
     cmd.process
     
-    @sketch = Jitterbug::Layers::Sketch.new(nil,{:working_dir => @full_dir,:logger => @logger})
+    @sketch = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @full_dir,:logger => @logger})
     @sketch.load
   end 
   

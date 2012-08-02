@@ -12,7 +12,7 @@ describe Jitterbug::Command::CreateGLSLImageSketch do
     cmd = Jitterbug::Command::CreateGLSLImageSketch.new({:sketch_dir => @test_dir, :cmd_line_args => [@sketch_name], :output_dir => "output"})
     cmd.process
     
-    @sketch = Sketch.new(nil,{:working_dir => @full_dir,:logger => @logger})
+    @sketch = Controller.new(nil,{:working_dir => @full_dir,:logger => @logger})
     @sketch.load
   end 
   

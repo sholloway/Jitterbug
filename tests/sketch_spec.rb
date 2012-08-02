@@ -4,10 +4,10 @@ Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
 require 'fileutils'
 require 'logger'
 
-include Jitterbug::Layers
+include Jitterbug::Sketch::Validation
 include Jitterbug::Sketch
 
-describe Jitterbug::Layers::Sketch do
+describe Jitterbug::Sketch::Controller do
 	before(:all) do 
 		@logger = Logger.new(STDOUT)
 		@logger.level = Logger::DEBUG
@@ -43,7 +43,7 @@ describe Jitterbug::Layers::Sketch do
 		
 	describe "new layer" do
 		it "should create a new layer with provided name" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			lm.number_of_layers.should == 0
 			name = "My Layer"
 			lm.create_new_layer(name)
@@ -52,7 +52,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should add ~count of the layer name if the layer name already exists"	do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			name = "My Layer"
 			id1 = lm.create_new_layer(name).selected_layer.id
 			id2 = lm.create_new_layer(name).selected_layer.id
@@ -68,7 +68,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should create a new ruby script" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			File.exists?("#{@full_dir}/scripts/my_layer").should == false
 			name = "My Layer"
 			id = lm.create_new_layer(name).selected_layer.id
@@ -78,7 +78,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should increment scripts names" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			name = "My Layer"
 			lm.create_new_layer(name).
 			  create_new_layer(name).
@@ -92,7 +92,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 
 		it "should rename the ruby script when the layer is renamed" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			name = "My Layer"
 			id1 = lm.create_new_layer(name).selected_layer.id
 			
@@ -105,7 +105,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "deleting a layer" do
 		it "should remove the layer from the layers cache" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			name = "My Layer"
 			id = lm.create_new_layer(name).selected_layer.id
 			lm.number_of_layers.should == 1
@@ -114,7 +114,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should move the layer's script to the trash"	do	
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			name = "My Layer"
 			id = lm.create_new_layer(name).selected_layer.id			
 			lm.delete_layer(id)
@@ -123,7 +123,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should work with both layer name and id" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			lm.add("A")
 			lm.add("B")
 			id = lm.add("C").selected_layer.id
@@ -148,7 +148,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "sketch.yml i/o" do
 		it "should save the layer data to layer.yml" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			name = "My Layer"
 			id = lm.create_new_layer(name).selected_layer.id			
 			lm.save
@@ -173,13 +173,13 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should load the layer data from layer.yml" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			name = "My Layer"
 			id = lm.create_new_layer(name).selected_layer.id	
 			
 			lm.save
 			
-			lm2 = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
+			lm2 = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})
 			lm2.load
 			
 			lm2.number_of_layers.should == 1
@@ -192,7 +192,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should back up an existing sketch.yml before doing a save" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
 			lm.create_new_layer("My Layer")				
 			lm.save
 			
@@ -203,7 +203,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should be able to restore the layer.yml from the backup" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
 			lm.create_new_layer("My Layer")				
 			lm.save #create backup of empty layer.yml
 			lm.create_new_layer("Another Layer")
@@ -215,7 +215,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should swap the layer.yml with layer.yml.bak when doing a restore" do
-		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
+		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})				
 			lm.create_new_layer("My Layer")				
 			lm.save #create backup of empty layer.yml
 			lm.create_new_layer("Another Layer")
@@ -236,7 +236,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "select" do 		
 		it "should de-activate all other layers" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A")
 			id2 = lm.create_new_layer("B")
 			id3 = lm.create_new_layer("C")
@@ -258,7 +258,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should make the specified layer active" do 
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id	
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			id3 = lm.create_new_layer("C").selected_layer.id	
@@ -278,14 +278,14 @@ describe Jitterbug::Layers::Sketch do
 		end
 		
 		it "should accept layer id" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			lm.select(id1)
 			lm.get_layer(id1).active.should == true
 		end
 		
 		it "should accept layer name" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			lm.create_new_layer("B").
 			  create_new_layer("C").
@@ -299,7 +299,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "move" do
 		it "should decrease the order of a selected layer when moving up" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			id3 = lm.create_new_layer("C").selected_layer.id	
@@ -328,7 +328,7 @@ describe Jitterbug::Layers::Sketch do
 		
 		
 		it "should move a selected layer down"		do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			id3 = lm.create_new_layer("C").selected_layer.id	
@@ -372,7 +372,7 @@ describe Jitterbug::Layers::Sketch do
 		
 	describe "clean" do
 		it "should empty the trash bin" do
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			lm.save
@@ -389,7 +389,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 
 		it "should empty output dir" do
-		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
+		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :render_logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			lm.save
@@ -416,7 +416,7 @@ describe Jitterbug::Layers::Sketch do
 		  mock_env = double("RenderEnv")
 		  mock_env.stub(:bootstrap).and_return(mock_bootstrap)		  
 		  
-		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :env=>mock_env})	
+		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :env=>mock_env})	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save
@@ -427,7 +427,7 @@ describe Jitterbug::Layers::Sketch do
 	  end	  
 	  
 	  it "should empty all" do
-	    lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+	    lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
 			lm.save
@@ -456,7 +456,7 @@ describe Jitterbug::Layers::Sketch do
 	
 	describe "clone" do
 		it "should copy layer to the foreground" do 		  
-			lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+			lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save
@@ -466,7 +466,7 @@ describe Jitterbug::Layers::Sketch do
 		end
 				
 		it "should select the new layer" do 
-		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save
@@ -476,7 +476,7 @@ describe Jitterbug::Layers::Sketch do
 	  end
 	  
 		it "should name the new layer" do
-		  lm = Sketch.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
+		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
 			lm.save

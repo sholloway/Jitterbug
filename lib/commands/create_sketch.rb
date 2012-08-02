@@ -10,7 +10,7 @@ module Jitterbug
       sketch_dir = @options[:sketch_dir]       
       create_sketch(sketch_name, sketch_dir)            
       engine = build_engine()
- 		  lm = Jitterbug::Layers::Sketch.new(engine,{:working_dir => "#{sketch_dir}/#{sketch_name}", 
+ 		  lm = Jitterbug::Sketch::Controller.new(engine,{:working_dir => "#{sketch_dir}/#{sketch_name}", 
  			  :output_dir => @options[:output_dir],
  			  :env => @options[:environment]}).
  			  create_new_layer("Background").

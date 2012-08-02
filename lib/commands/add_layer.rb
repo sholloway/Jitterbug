@@ -5,7 +5,7 @@ module Jitterbug
       def process
          unless ARGV.nil? || ARGV.empty?
     		    command_options[:new_layers] = ARGV.dup
-      		  lm = Jitterbug::Layers::Sketch.new(:working_dir => @options[:sketch_dir], 
+      		  lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
               :output_dir => @options[:output_dir],
        			  :env => @options[:environment])
       			lm.load

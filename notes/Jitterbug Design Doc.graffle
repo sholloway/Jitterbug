@@ -28860,7 +28860,7 @@ Data Structure}</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>ExpandedCanvases</key>
 		<array>
 			<dict>
@@ -28885,7 +28885,7 @@ Data Structure}</string>
 		<key>SidebarWidth</key>
 		<integer>198</integer>
 		<key>Zoom</key>
-		<real>1.5800000429153442</real>
+		<real>1</real>
 		<key>ZoomValues</key>
 		<array>
 			<array>

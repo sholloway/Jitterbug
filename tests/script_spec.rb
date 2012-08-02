@@ -3,7 +3,7 @@ Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
 
 require "construct"
 
-describe Jitterbug::Layers::Script do
+describe Jitterbug::Sketch::Script do
   include Construct::Helpers
   
   it "should load the content into memory" do
@@ -12,7 +12,7 @@ describe Jitterbug::Layers::Script do
       contents = "puts 'hello world'"
       dir.file filename, contents
       filepath = File.expand_path(filename)
-      script = Jitterbug::Layers::Script.new(filepath)
+      script = Jitterbug::Sketch::Script.new(filepath)
       script.content.nil?.should == true
       script.load
       script.content.should == contents
@@ -25,7 +25,7 @@ describe Jitterbug::Layers::Script do
       content = "puts 'another test'"
       dir.file filename, content
       filepath = File.expand_path(filename)
-      script = Jitterbug::Layers::Script.new(filepath)
+      script = Jitterbug::Sketch::Script.new(filepath)
 
       script.content="something different"
       script.save
@@ -42,7 +42,7 @@ describe Jitterbug::Layers::Script do
       content = "puts 'another test'"
       dir.file filename, content
       filepath = File.expand_path(filename)
-      script = Jitterbug::Layers::Script.new(filepath)
+      script = Jitterbug::Sketch::Script.new(filepath)
 
       script.content=nil
       script.save
@@ -59,7 +59,7 @@ describe Jitterbug::Layers::Script do
       contents = "puts 'hello world'"
       dir.file filename, contents
       filepath = File.expand_path(filename)
-      script = Jitterbug::Layers::Script.new(filepath)
+      script = Jitterbug::Sketch::Script.new(filepath)
       script.dirty?.should == false
       script.content = "crazy bit of strange"
       script.dirty?.should == true

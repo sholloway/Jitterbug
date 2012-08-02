@@ -4,7 +4,7 @@ module Jitterbug
     class CopyLayer < Base
       def process
         id = ARGV.shift
-        lm = Jitterbug::Layers::Sketch.new(:working_dir => @options[:sketch_dir], 
+        lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
           :output_dir => @options[:output_dir],
    			  :env => @options[:environment])
         lm.load

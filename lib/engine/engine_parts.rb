@@ -2,7 +2,7 @@
 module Jitterbug
   module GraphicsEngine
     class EnginePart
-      attr_accessor :logger, :layers, :engine, :sketch_options
+      attr_accessor :logger, :layers, :engine, :sketch_options, :width, :height
     end
     
     require 'scene_graph'

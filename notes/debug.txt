@@ -21,5 +21,7 @@ Tools to use for profiling on the command line
 	macrubyd
 		The macruby debugger for debugging ruby scripts. Can this be used with an application?
 		
+	Look into integrating ARB_debug_output extension, as an alternative to glError.
+		
 Thoughts:
 	Can I use lldb to better effect if I compile the ruby scripts to ObjC?

@@ -1,0 +1,34 @@
+Next steps:
+Get pixels flowing.
+	API -> SceneGraph -> Spatial Partition -> Culler -> Render -> ImageProcessor -> Image 
+	
+1. Write basic API code for def rect(x,y,width,height)
+	Need stroke, fill, rect_mode, bind to shader (Want to reference a structure of shaders. Don't have multiple copies floating around.)
+2. Write SceneGraph
+	Need add_geometry 
+3. Spatial Partition
+	Just need to add all geometry to the culler at this point.
+4. Renderer
+	Need a way of managing shaders. Part of Geometry class?
+	Combine the work done on JBOpenGLView + WebGL
+	Render to Framebuffer
+5. ImageProcessor
+	Get pixels from Framebuffer
+	Persist as a PNG image
+
+Need to think through 2D API. Do I want to draw on the screen by projecting everything or do I want to create 3D geometry?
+Could also use billboards.
+Start with projection just to keep moving forward.
+
+Current Bug/Challenge
+The compile is broken.
+
+Error Message:
+Command failed with status (127)
+
+Possible Reasons
+Upgrading to Mountain Lion broke the compile.
+All the refactoring broke the compile.
+
+Strategy to Resolve:
+Just try to compile a single class and slowly build it back up. Need better error messages.

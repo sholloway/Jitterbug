@@ -24,33 +24,3 @@ Try doing a brew update. There might be a mountain lion build.
 Observation:
 Robert Hogan has his sketches where he can pause them and then move the camera within the 3D scene. Something to consider. 
 Would change the architecture a bit.
-
-Don't forget about the work I've already done with WebGL. Can use that for a guideline of setting up shaders.
-
-Next steps:
-Get pixels flowing.
-	API -> SceneGraph -> Spatial Partition -> Culler -> Render -> ImageProcessor -> Image 
-	
-1. Write basic API code for def rect(x,y,width,height)
-	Need stroke, fill, rect_mode, bind to shader (Want to reference a structure of shaders. Don't have multiple copies floating around.)
-2. Write SceneGraph
-	Need add_geometry 
-3. Spatial Partition
-	Just need to add all geometry to the culler at this point.
-4. Renderer
-	Need a way of managing shaders. Part of Geometry class?
-	Combine the work done on JBOpenGLView + WebGL
-	Render to Framebuffer
-5. ImageProcessor
-	Get pixels from Framebuffer
-	Persist as a PNG image
-	
-Need to have a GLSLSceneGraph? Or just a GLSLGeometry Node?
-	Needs to maintain VBO, possibly vertex indices list and pointer to a shader and textures
-
-Need to think through 2D API. Do I want to draw on the screen by projecting everything or do I want to create 3D geometry?
-Could also use billboards.
-Start with projection just to keep moving forward.
-
-Look into integrating ARB_debug_output extension, as an alternative to glError.
-	

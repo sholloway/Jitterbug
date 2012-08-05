@@ -10,6 +10,7 @@ module Jitterbug
       #at this point we're macruby dependent... can't call with rspec
       def create_graphics_renderer
         @logger.debug "Creating OpenGL context."
+=begin
         @app = NSApplication.sharedApplication
         @app.delegate = AppDelegate.new
         size = [0, 0, 1280, 768] #must pull this from layer_manager.options
@@ -30,6 +31,7 @@ module Jitterbug
 
         window.display
         window.orderFrontRegardless                                       
+=end
       end   
     end
     

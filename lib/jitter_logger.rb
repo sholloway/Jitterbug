@@ -8,8 +8,8 @@ module Jitterbug
 			# Otherwise it should create a log file.
 			# The log file should live in sketch/logs. However, what about creating a sketch?
 			def initialize(options,name)
-				@options = options
-				log_file_name = File.expand_path("#{@options[:working_dir]}/#{@options[:logs]}")
+				@options = options			
+				log_file_name = File.expand_path("#{@options[:working_dir]}/#{@options[:logs]}")			
 				file = open("#{log_file_name}/#{name}", File::WRONLY | File::APPEND | File::CREAT)
 				@logger = Logger.new(file)
 				@logger.level = Logger::DEBUG

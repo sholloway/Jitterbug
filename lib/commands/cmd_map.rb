@@ -16,7 +16,7 @@ module Jitterbug
   module Command
     class Map
       def Map.commandline_map
-        @@commands = {:create => Jitterbug::Command::CreateSketch,
+        @@commands = {:create => Jitterbug::Command::CreateGLSLImageSketch,
           :viz => Jitterbug::Command::VisualizeSketch,
           :select => Jitterbug::Command::SelectLayer,
           :add => Jitterbug::Command::AddLayer,

@@ -8,14 +8,14 @@ end
 
 module Jitterbug
   module Sketch
-    LayersData = Struct.new(:layers,:layer_counter,:graphics_engine)
+    LayersData = Struct.new(:layers,:layer_counter,:graphics_engine, :width, :height)
     
     class Controller #change this to Controller?
 			include Jitterbug::Sketch::Validation
 			attr_reader :options, :logger, :render_logger, :layers, :engine, :background
 			attr_accessor :width, :height
 			
-			def initialize(rendering_engine,options={}) # by default relative to output_dir					
+			def initialize(rendering_engine=nil,options={}) # by default relative to output_dir					
 					@options = {
 						:working_dir=>false, #must be set, by default everything else is relative to this.
 						:layers_file=>"sketch.yml", 
@@ -38,13 +38,18 @@ module Jitterbug
 						:logs => "logs",
 						:logger => true,
 						:render_logger =>true,
-						:env => nil} 
-						
+						:env => nil} 		
+					@width = nil
+					@height = nil				
 					@options.merge!(options)
+					if (@options[:working_dir] == false)
+					  raise StandardError.new("The working directory was not set in the Sketch Controller.")
+				  end
+					
 					@layers = {}
 					@layer_counter = 0
 					
-					if @options[:logger] == true
+					if @options[:logger] == true					  
 						@logger = Jitterbug::Logging::JitterLogger.new(@options,"jitterbug.log")
 					else					  
 						@logger = @options[:logger]
@@ -73,10 +78,12 @@ module Jitterbug
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
+	      @width = parsed.width
+	      @height = parsed.height
 	
 				if parsed.graphics_engine.instance_of?(Jitterbug::GraphicsEngine::Engine)
 				  @engine = parsed.graphics_engine
-			  else #for ruby 1.9.3			    
+			  else #for ruby 1.9.3		    
 			    @engine = Jitterbug::GraphicsEngine::Engine.from_hash(parsed.graphics_engine)			    			    
 		    end	
 				
@@ -93,7 +100,7 @@ module Jitterbug
 				end
 				
 				@engine.unbind
-				data = LayersData.new(@layers,@layer_counter,@engine)
+				data = LayersData.new(@layers,@layer_counter,@engine, @width, @height)
 				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") do |f| 				  
 				  yaml_str = data.to_yaml
 				  f.write(yaml_str) 
@@ -264,7 +271,8 @@ module Jitterbug
 			    @render_logger = @options[:render_logger]
 		    end
 		    
-				@render_logger.info "Prepping renderer."											 								
+				@render_logger.info "Prepping renderer."
+															 								
 			  if @engine.assembled? 
 			    @engine.bind_sketch(self)
 			    @engine.render()  

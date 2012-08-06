@@ -3,7 +3,7 @@ framework 'Cocoa'
 framework 'AppKit'
 framework 'OpenGL'
 
-require File.join(File.expand_path(File.dirname(__FILE__)),"..","macos_jitterbug")
+#require File.join(File.expand_path(File.dirname(__FILE__)),"..","macos_jitterbug")
 
 
 Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }

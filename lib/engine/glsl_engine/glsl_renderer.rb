@@ -9,8 +9,13 @@ module Jitterbug
       end
       
       private
-      def done_rendering()
+      def done_rendering(sender)
+        puts "got in done_rendering"
         @rendering = false
+        sender.window.close
+        #This kills macruby
+        #NSApp.performSelector("stop:", withObject:nil, afterDelay:ANIMATION_DURATION)
+        NSApplication.sharedApplication.stopModal
       end
       
       #at this point we're macruby dependent... can't call with rspec
@@ -18,7 +23,7 @@ module Jitterbug
         @logger.debug "Creating OpenGL context."
         
         @app = NSApplication.sharedApplication
-        @app.delegate = AppDelegate.new(method(:done_rendering))
+        @app.delegate = AppDelegate.new()
         
         if (@width.nil? || @height.nil?)
           @logger.error("The width & height was not set on the sketch.")
@@ -28,24 +33,22 @@ module Jitterbug
         size = [0, 0, @width, @height] 
 
         window = NSWindow.alloc.initWithContentRect(size,
-            styleMask:NSTitledWindowMask | NSClosableWindowMask,
-            backing:NSBackingStoreBuffered,
-            defer:false)
+            styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask),
+            backing: NSBackingStoreBuffered,
+            defer: false)
         window.title      = 'OS X: Jitterbug OpenGL Window'
-        window.level      = NSNormalWindowLevel #NSModalPanelWindowLevel
-        window.delegate   = @app.delegate
+        window.level      = NSNormalWindowLevel
+        window.delegate   = AppDelegate.new()
+        
+        close_button = window.standardWindowButton(NSWindowCloseButton,forStyleMask: NSClosableWindowMask)
+        close_button.setEnabled(true)
+        close_button.target = self
+        close_button.action = "done_rendering:"
 
-        #gut this...
-        #create the render entirely in ruby to get it working. Then re-implement by droping down to Obj-C++
-=begin        
-        glview = JBOpenGLView.alloc.initWithFrame(size)
-        @renderer = JBOfflineRenderer.alloc.init
-        glview.setRenderer(@renderer)
-        window.contentView.addSubview(glview)
-=end
         begin
           view = JBOpenGLView.alloc.initWithFrame(size)
           view_renderer = GLRenderer.new
+          view_renderer.logger = @logger
           view.setRenderer(view_renderer)
           
           #view.logger = @logger
@@ -53,20 +56,20 @@ module Jitterbug
         
           window.display
           window.orderFrontRegardless  
-        
-          while(@rendering)
-            #wait for window to close
-          end
+          #window.makeKeyAndOrderFront(self)
+          NSApplication.sharedApplication.runModalForWindow(window)   
         rescue => error
           @logger.error(error.message)
         end
         
+        puts "Didn't kill the entire thread"
         #need some kind of callback so the main thread will wait until the window has been closed.                                     
       end   
     end
     
     require File.join(File.expand_path(File.dirname(__FILE__)),"..","..","..","macos_jitterbug")
     class GLRenderer < ::JBRenderer      
+      attr_accessor :logger
       def render
           glClearColor(0.0, 0.0, 1.0, 0.0)
         	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -75,16 +78,11 @@ module Jitterbug
     end
     
     class AppDelegate
-      def initialize(callback)
-        @callback = callback
+      def initialize()
+        
       end
       
       def applicationDidFinishLaunching(notification)    
-      end
-
-      def windowWillClose(notification)              
-        #exit
-        @callback.call
       end
     end
   end

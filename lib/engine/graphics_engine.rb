@@ -23,9 +23,13 @@ module Jitterbug
         super({})
       end
       
-      def Engine.from_hash(input = {})
+      def Engine.from_hash(input = {})        
         engine = Engine.new
-        engine.merge!(input)
+        if (input.key?("delegate_dc_obj")) #more ruby 1.9.3 hackery
+          engine.merge!(input["delegate_dc_obj"])
+        else
+          engine.merge!(input)
+        end
         return engine
       end
       

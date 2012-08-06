@@ -21,8 +21,7 @@ Could also use billboards.
 Start with projection just to keep moving forward.
 
 Current Bug/Challenge
-The NSWindow that is being launched by the renderer doesn't have a Kill button.
+Clean task is not working.
 
-Possible Reasons:
-NSWindow is miss configured
-Possibly doesn't work is there is no view attached.
+Possible reason.
+Not specifying an engine.

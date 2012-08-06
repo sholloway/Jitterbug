@@ -7,7 +7,8 @@ TERM_FRAMEWORK_SRC = FileList['ext/osx/*.mm','ext/osx/*.m','osx_terminal_build/b
 TERM_FRAMEWORK_TARGET = TERM_FRAMEWORK_SRC.ext('o')
 TERM_FRAMEWORK_COMPILER = 'clang'
 TERM_FRAMEWORKS_DEPENDENCIES = "-framework OpenGL -framework Foundation -framework Cocoa -framework Macruby -framework AppKit" 
-TERM_MACRUBY = "/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
+#TERM_MACRUBY = "/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/include/ruby-1.9.2"
+TERM_MACRUBY = "/Library/Frameworks/MacRuby.framework/Headers"
 TERM_STATIC_INCLUDES = '/Users/sholloway/Dropbox/Jitterbug/ext/vendor/glm-0.9.2.3'
 TERM_INCLUDES = %{-Iext -I#{TERM_MACRUBY} -I#{TERM_STATIC_INCLUDES} }
 
@@ -15,7 +16,8 @@ TERM_COMPILE_LANG_OPTS = "-ObjC++ -fobjc-gc"
 TERM_LINK_LANG_OPTS = "-ObjC++ -fobjc-gc -flat_namespace"
 TERM_DEBUG_OPTS = "-undefined suppress"
 TERM_ARCH_OPTS = "-arch x86_64"
-TERM_LIBS = "-L. -L/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/lib -lmacruby"
+#TERM_LIBS = "-L. -L/Library/Frameworks/MacRuby.framework/Versions/0.10/usr/lib -lmacruby"
+TERM_LIBS = "-L. -L/Library/Frameworks/MacRuby.framework/Macruby"
 TERM_RUBY_BUNDLE = "-I#{TERM_MACRUBY}/ruby.h -I#{TERM_MACRUBY}/ruby/defines.h -I#{TERM_MACRUBY}/ruby/config.h"
 
 rule '.o' => '.mm' do |t|  

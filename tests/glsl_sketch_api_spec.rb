@@ -1,3 +1,11 @@
+framework 'Foundation'
+framework 'Cocoa'
+framework 'AppKit'
+framework 'OpenGL'
+
+require File.join(File.expand_path(File.dirname(__FILE__)),"..","macos_jitterbug")
+
+
 Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }
 Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
 
@@ -72,7 +80,11 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
     describe "rect(x,y,width,height)" do
       describe "rectangle mode = " do
         it "should renderer a rectangle",:focus=>true do
+          
+          
           @sketch.engine[:render_loop].default_frame_output_name = "frame1"
+          @sketch.width = 480
+          @sketch.height = 300
           foreground = @sketch.select('Foreground')
           foreground.script.content = %{
           puts "######################ran the script###################################"

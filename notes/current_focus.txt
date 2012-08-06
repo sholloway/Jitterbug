@@ -21,14 +21,8 @@ Could also use billboards.
 Start with projection just to keep moving forward.
 
 Current Bug/Challenge
-The compile is broken.
+The NSWindow that is being launched by the renderer doesn't have a Kill button.
 
-Error Message:
-Command failed with status (127)
-
-Possible Reasons
-Upgrading to Mountain Lion broke the compile.
-All the refactoring broke the compile.
-
-Strategy to Resolve:
-Just try to compile a single class and slowly build it back up. Need better error messages.
+Possible Reasons:
+NSWindow is miss configured
+Possibly doesn't work is there is no view attached.

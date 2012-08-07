@@ -11,4 +11,5 @@
 
 - (void) setRenderer:(JBRenderer*) renderer;
 - (void) setSize:(GLuint) width height:(GLuint) height;
+- (void) pause;
 @end

@@ -11,7 +11,9 @@
 - (void) setRenderer:(JBRenderer*) renderer
 {
 	_renderer = renderer;
+	[_renderer setSize:imageWidth height:imageHeight];
 	[_renderer setFramebuffer:framebuffer];
+	[_renderer setParent:self];
 }
 
 - (void) setSize:(GLuint) width height:(GLuint) height
@@ -47,12 +49,20 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 
 - (id) initWithFrame:(NSRect)frameRect
 {
+	//Try this eventually to help with aliasing
+	// [NSOpenGLPFAAccelerated,
+	//    NSOpenGLPFADoubleBuffer,
+	 //   NSOpenGLPFADepthSize, 24,
+	  //  NSOpenGLPFAAlphaSize, 8,
+	 //   NSOpenGLPFAColorSize, 32,
+	  //  NSOpenGLPFANoRecovery,
+	  //  kCGLPFASampleBuffers, 1, kCGLPFASamples, 2,
+	  //  0]
 	//need to go over each of these
 	NSOpenGLPixelFormatAttribute attrs[] =
 	{
 		NSOpenGLPFADoubleBuffer,
-		NSOpenGLPFADepthSize, 
-		24,		
+		NSOpenGLPFADepthSize,24,		
 		NSOpenGLPFAOpenGLProfile,
 		NSOpenGLProfileVersion3_2Core,	// Must specify the 3.2 Core Profile to use OpenGL 3.2	
 		0
@@ -100,6 +110,11 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	CVDisplayLinkStart(displayLink);
 }
 
+- (void) pause
+{
+	CVDisplayLinkStop(displayLink);
+}
+
 //prep OpenGL
 - (void) initGL
 {
@@ -137,6 +152,11 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
                               GL_COLOR_ATTACHMENT0,  
                               GL_RENDERBUFFER, 
                               renderbuffer);
+
+	GLenum status;
+	status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+	NSAssert1(status == GL_FRAMEBUFFER_COMPLETE, @"The Renderbuffer is not ready to draw. Status was: %i", status); //is the renderbuffer ready for use?
+	   	
 }
 
 - (void) printHardwareSpecs
@@ -176,7 +196,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	CGLLockContext((CGLContextObj)[[self openGLContext] CGLContextObj]);
 	
 	@try{
-		[_renderer render];
+		[_renderer render];		
 	}
 	@catch(NSException *exception){
 		NSLog(@"main: Caught %@: %@", [exception name], [exception reason]);

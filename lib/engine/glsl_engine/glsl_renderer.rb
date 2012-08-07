@@ -55,7 +55,8 @@ module Jitterbug
           window.display
           window.orderFrontRegardless  
 
-          NSApplication.sharedApplication.runModalForWindow(window)   #this blocks 
+          #this blocks the macruby thread
+          NSApplication.sharedApplication.runModalForWindow(window)   
         rescue => error
           @logger.error(error.message)
         end
@@ -65,7 +66,7 @@ module Jitterbug
       end   
     end
     
-    require File.join(File.expand_path(File.dirname(__FILE__)),"..","..","..","macos_jitterbug")
+    #require File.join(File.expand_path(File.dirname(__FILE__)),"..","..","..","macos_jitterbug")
     class GLRenderer < ::JBRenderer      
       attr_accessor :logger
       
@@ -82,7 +83,12 @@ module Jitterbug
         	activateOffScreenFrameBuffer()
         	glClearColor(0.0, 1.0, 0.0, 0.0) #green
         	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        	glFlush       	
+        	glFlush  
+        	
+        	outputActiveFramebuffer  
+        	# this doesn't fit the LinearFrameProcessor design. That class should have this responsibility   	
+        	# it should set how many frames to render
+        	stop 
       end
     end
     

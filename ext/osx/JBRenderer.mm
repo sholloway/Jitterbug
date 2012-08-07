@@ -7,6 +7,21 @@
 	return self;
 }
 
+- (void) setFramebuffer:(GLuint)fbo
+{
+	framebuffer = fbo;
+}
+
+- (void) activateSystemFrameBuffer
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+- (void) activateOffScreenFrameBuffer
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+}
+
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
 	glViewport(0, 0, width, height);
@@ -18,16 +33,6 @@
 - (void) render
 {
 	//override
-}
-
-- (void) setLayers:(NSArray *)scripts
-{
-	layerScripts = scripts;
-}
-
-- (NSArray *) getLayers
-{
-	return layerScripts;
 }
 
 - (void) dealloc

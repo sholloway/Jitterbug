@@ -1,3 +1,9 @@
+Links:
+http://www.songho.ca/opengl/gl_fbo.html
+
+Local Path:
+/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/
+
 Options for copying data between frame buffers.
 - glBlitFramebuffer
 - glReadPixels
@@ -12,6 +18,22 @@ Need to get the pixels from the FBO
 
 Pieces
 CIContext - destination to draw
+Framebuffer - The final rendering destination of the OpenGL pipeline. A collection of 2D arrays or storages utilized by OpenGL; colour buffers, depth buffer, stencil buffer and accumulation buffer. This default framebuffer is called window-system-provided framebuffer. 
 
+In OpenGL 3.x you can create non-displayable FBO's. These FBO's can be attached to two types of images. Textures and Image(RenderBuffer). 
+If is faster to switch the attached image to the FBO than to create a new FBO. Use glFramebufferRenderbuffer to switch the attached renderbuffer.
 
 Steps:
+Change JBOpenGLView to use a FBO.
+- set up FBO
+- Draw to FBO
+- Swap FBO to active buffer
+
+Write FBO to Something the compositor can use.
+Write Image to disk
+
+Change to leverage shaders
+- render the geometry in the culler
+- create programs
+- create VBOs?
+- push to GPU

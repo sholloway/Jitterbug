@@ -27,7 +27,7 @@ module Jitterbug
           return
         end
         
-        size = [0, 0, @width, @height] 
+        size = [0, 0, self.width, self.height] 
 
         window = NSWindow.alloc.initWithContentRect(size,
             styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask),
@@ -44,6 +44,7 @@ module Jitterbug
 
         begin
           view = JBOpenGLView.alloc.initWithFrame(size)
+          view.setSize(self.width, height: self.height)
           view_renderer = GLRenderer.new
           view_renderer.logger = @logger
           view.setRenderer(view_renderer)
@@ -67,10 +68,21 @@ module Jitterbug
     require File.join(File.expand_path(File.dirname(__FILE__)),"..","..","..","macos_jitterbug")
     class GLRenderer < ::JBRenderer      
       attr_accessor :logger
+      
+      
       def render
-          glClearColor(0.0, 0.0, 1.0, 0.0)
-        	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+          #draw something to the screen (Just for the hell of it...)
+          activateSystemFrameBuffer() 
+          
+          glClearColor(1.0, 0.0, 0.0, 0.0) #red
+        	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
         	glFlush
+        	
+        	#draw something else to my renderbuffer (This should be rendered to an image by PNGImage)
+        	activateOffScreenFrameBuffer()
+        	glClearColor(0.0, 1.0, 0.0, 0.0) #green
+        	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        	glFlush       	
       end
     end
     

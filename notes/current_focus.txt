@@ -15,6 +15,8 @@ Get pixels flowing.
 5. ImageProcessor
 	Get pixels from Framebuffer
 	Persist as a PNG image
+	
+After the initial pipeline is in place, my next step should probably be to nail down the color definition of the system.	
 
 Need to think through 2D API. Do I want to draw on the screen by projecting everything or do I want to create 3D geometry?
 Could also use billboards.

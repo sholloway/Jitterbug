@@ -4,12 +4,16 @@
 @interface JBRenderer : NSObject {	
 	GLuint viewWidth;
 	GLuint viewHeight;
+	GLuint framebuffer;
 	NSArray *layerScripts;
 }
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height;
 - (void) render;
 - (void) dealloc;
-- (void) setLayers:(NSArray *)scripts;
-- (NSArray *) getLayers;
+
+//window-system-provided framebuffer
+- (void) activateSystemFrameBuffer;
+- (void) activateOffScreenFrameBuffer;
+- (void) setFramebuffer:(GLuint)fbo;
 @end

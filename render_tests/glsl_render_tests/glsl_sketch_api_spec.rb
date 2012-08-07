@@ -80,8 +80,6 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
     describe "rect(x,y,width,height)" do
       describe "rectangle mode = " do
         it "should renderer a rectangle",:focus=>true do
-          
-          
           @sketch.engine[:render_loop].default_frame_output_name = "frame1"
           @sketch.width = 480
           @sketch.height = 300

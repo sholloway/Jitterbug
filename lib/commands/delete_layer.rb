@@ -4,9 +4,9 @@ module Jitterbug
     class DeleteLayer < Base
       def process
         unless ARGV.nil? || ARGV.empty?  			  
-  			  lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+  			  lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
             :output_dir => @options[:output_dir],
-     			  :env => @options[:environment])
+     			  :env => @options[:environment]})
     			lm.load
     			ARGV.each{|layer_name| lm.delete(layer_name)}
     			lm.save

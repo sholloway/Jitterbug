@@ -43,7 +43,7 @@ module Jitterbug
 					@height = nil				
 					@options.merge!(options)
 					if (@options[:working_dir] == false)
-					  raise StandardError.new("The working directory was not set in the Sketch Controller.")
+					  raise StandardError.new("The working directory for the sketch must be set.")
 				  end
 					
 					@layers = {}

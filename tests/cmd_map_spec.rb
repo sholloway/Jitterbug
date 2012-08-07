@@ -7,7 +7,7 @@ describe Jitterbug::Command::Map do
   end
   
   it 'should map :create to Jitterbug::Command::CreateSketch' do
-    @map[:create].should be Jitterbug::Command::CreateSketch
+    @map[:create].should be Jitterbug::Command::CreateGLSLImageSketch
   end
   
   it 'should map :viz => Jitterbug::Command::VisualizeSketch' do

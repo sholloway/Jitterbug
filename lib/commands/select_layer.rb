@@ -3,9 +3,9 @@ module Jitterbug
   module Command
     class SelectLayer < Base
       def process
-        lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+        lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
    			  :output_dir => @options[:output_dir],
-   			  :env => @options[:environment])  	
+   			  :env => @options[:environment]})  	
    			layer_id = ARGV.first		  			
   			lm.load.
   			  select(layer_id)

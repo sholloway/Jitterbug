@@ -7,9 +7,9 @@ module Jitterbug
   			if clean_type.nil?
   			  clean_type = :all
   		  end  			
-        lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+        lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
           :output_dir => @options[:output_dir],
-   			  :env => @options[:environment])
+   			  :env => @options[:environment]})
   			case clean_type.downcase.to_sym
   				when :trash
   					lm.clean(:trash)

@@ -20,8 +20,18 @@ Need to think through 2D API. Do I want to draw on the screen by projecting ever
 Could also use billboards.
 Start with projection just to keep moving forward.
 
-Current Bug/Challenge
+Current Bug/Challenges
+Cannot execute tests that rely on glsl_renderer due to it instantiates a modal window.
 Clean task is not working.
 
-Possible reason.
-Not specifying an engine.
+Don't forget, I've already solved the issue of getting pixels from a FBO before. Look at code on the iMac. That's how I
+did the Stanford bunny.
+
+If I can find a way to run tests that render out I think it would ultimately save me a bunch of time. 
+Manual Testing Feedback Loop
+- rake clobber
+- rake
+- jb create blah
+- jb render
+- manually close all frames
+- look at log/image/screen

@@ -1,0 +1,17 @@
+Options for copying data between frame buffers.
+- glBlitFramebuffer
+- glReadPixels
+- glCopyBufferSubData
+
+Pipeline:(LinearFrameProcessor)
+SketchAPI 	-> SceneGraph 	-> SpatialPartition	-> Culler -> Renderer 	-> Compositor 	-> Image
+Domain 		-> Domain		-> Domain			-> Domain -> FBO		-> CoreImage	-> ImageIO
+
+Challenge
+Need to get the pixels from the FBO
+
+Pieces
+CIContext - destination to draw
+
+
+Steps:

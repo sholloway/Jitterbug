@@ -3,9 +3,9 @@ module Jitterbug
   module Command
     class RevertSketch < Base
       def process
-        lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+        lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
           :output_dir => @options[:output_dir],
-   			  :env => @options[:environment])
+   			  :env => @options[:environment]})
   			lm.load
   			lm.revert 
   			lm.logger.close 			

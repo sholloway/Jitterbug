@@ -8,9 +8,9 @@ module Jitterbug
         if ARGV.size != 2
   		    return CommandResponse.new(Jitterbug::Resources::Text::Main::Rename)  		    
   	    end
-  	    lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+  	    lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
           :output_dir => @options[:output_dir],
-   			  :env => @options[:environment])
+   			  :env => @options[:environment]})
   			lm.load
   			original_name = ARGV.shift
   			new_name = ARGV.shift

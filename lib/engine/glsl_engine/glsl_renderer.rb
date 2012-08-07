@@ -10,11 +10,8 @@ module Jitterbug
       
       private
       def done_rendering(sender)
-        puts "got in done_rendering"
         @rendering = false
         sender.window.close
-        #This kills macruby
-        #NSApp.performSelector("stop:", withObject:nil, afterDelay:ANIMATION_DURATION)
         NSApplication.sharedApplication.stopModal
       end
       
@@ -56,8 +53,8 @@ module Jitterbug
         
           window.display
           window.orderFrontRegardless  
-          #window.makeKeyAndOrderFront(self)
-          NSApplication.sharedApplication.runModalForWindow(window)   
+
+          NSApplication.sharedApplication.runModalForWindow(window)   #this blocks 
         rescue => error
           @logger.error(error.message)
         end

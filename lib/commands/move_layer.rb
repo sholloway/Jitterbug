@@ -6,17 +6,17 @@ module Jitterbug
         direction = ARGV.shift
         case direction.downcase.to_sym				
   				when :closer
-  					lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+  					lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
               :output_dir => @options[:output_dir],
-       			  :env => @options[:environment])
+       			  :env => @options[:environment]})
   					lm.load					
   					lm.move_closer
   					lm.save
   					lm.logger.close
   				when :away
-  					lm = Jitterbug::Sketch::Controller.new(:working_dir => @options[:sketch_dir], 
+  					lm = Jitterbug::Sketch::Controller.new(nil,{:working_dir => @options[:sketch_dir], 
               :output_dir => @options[:output_dir],
-       			  :env => @options[:environment])
+       			  :env => @options[:environment]})
   					lm.load					
   					lm.move_farther_away
   					lm.save

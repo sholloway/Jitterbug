@@ -42,8 +42,8 @@ module Jitterbug
           # The renderer should render the viewable objects and generate an image for the layer
           @engine[:renderer].camera = @engine[:camera]
           @engine[:renderer].add_lights(@engine[:culler].visible_lights)
-          @engine[:renderer].add_geometry(@engine[:culler].visible_geometry)          
-          @engine[:renderer].render()
+          @engine[:renderer].add_geometry(@engine[:culler].visible_geometry)                              
+          @engine[:renderer].render()          
           
           # Store the image along with compositing filter chain at the layer compositor
           frame = @engine[:renderer].raw_rendered_frame

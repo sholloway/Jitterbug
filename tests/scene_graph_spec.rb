@@ -1,6 +1,4 @@
-Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }
-Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
-
+require './tests/test_prep.rb'
 require './tests/scene_graph_helper'
 
 RSpec.configure do |rs|

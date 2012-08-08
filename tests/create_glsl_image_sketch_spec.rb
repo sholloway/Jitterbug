@@ -1,5 +1,4 @@
-Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }
-Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
+require './tests/test_prep.rb'
 
 describe Jitterbug::Command::CreateGLSLImageSketch do
   #The problem is that the directory being created doesn't match what is expected. 

@@ -40,7 +40,7 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
     end
     
     class Renderer < EnginePart
-      attr_accessor :camera, :raw_rendered_frame
+      attr_accessor :camera, :raw_rendered_frame, :number_of_frames_to_render
       def initialize        
         @visible_lights = []
         @visible_geometry = []

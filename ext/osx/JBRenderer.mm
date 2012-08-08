@@ -17,7 +17,8 @@
 
 - (void) stop
 {
-	[parent pause];
+	[parent pause]; //stop rendering
+	[[parent window] performClose:self]; //close the window
 }
 
 - (void) setFramebuffer:(GLuint)fbo

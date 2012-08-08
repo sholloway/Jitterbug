@@ -1,5 +1,5 @@
 TERM_ARCH 		    = '-arch x86_64'
-TERM_FRAMEWORKS 	= "-framework MacRuby -framework Foundation -framework AppKit"
+TERM_FRAMEWORKS 	= "-framework CoreGraphics -framework MacRuby -framework Foundation -framework AppKit"
 TERM_GCFLAGS      = '-fobjc-gc-only'
 TERM_COMPILER     = 'clang'
 

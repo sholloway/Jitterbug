@@ -3,20 +3,19 @@ module Jitterbug
     class GLSLRenderer < Renderer
       def render
         @logger.debug("GLSLRenderer: begining render")
-        @rendering = true
         create_graphics_renderer
         @logger.debug("GLSLRenderer: ending render")
       end
       
       private
       def done_rendering(sender)
-        puts "got in done_rendering"
-        @rendering = false
+        self.raw_rendered_frame = @view_renderer.renderedFrame # I worry about getting a reference. Might need to do a copy...
+        puts self.raw_rendered_frame
         sender.window.close
         NSApplication.sharedApplication.stopModal
       end
       
-      #at this point we're macruby dependent... can't call with rspec
+      #This method is gigantic. Refactor
       def create_graphics_renderer
         @logger.debug "Creating OpenGL context."
         
@@ -46,9 +45,9 @@ module Jitterbug
         begin
           view = JBOpenGLView.alloc.initWithFrame(size)
           view.setSize(self.width, height: self.height)
-          view_renderer = GLRenderer.new   
-          view_renderer.logger = @logger
-          view.setRenderer(view_renderer)
+          @view_renderer = GLRenderer.new   
+          @view_renderer.logger = @logger
+          view.setRenderer(@view_renderer)
           
           #view.logger = @logger
           window.contentView.addSubview(view)
@@ -63,12 +62,11 @@ module Jitterbug
         end
         
         puts "Didn't kill the entire thread"
-        #need some kind of callback so the main thread will wait until the window has been closed.                                     
       end   
     end
     
     class GLRenderer < ::JBRenderer      
-      attr_accessor :logger, :number_of_frames_to_render
+      attr_accessor :logger
       
       def initialize
         super
@@ -90,7 +88,7 @@ module Jitterbug
       	glFlush  
       	
       	outputActiveFramebuffer  
-      	# this doesn't fit the LinearFrameProcessor design. That class should have this responsibility   	
+      	# this doesn't fit the SingleImageRenderLoop design. That class should have this responsibility   	
       	# it should set how many frames to render
         
         stop 

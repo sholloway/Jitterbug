@@ -58,7 +58,8 @@ module Jitterbug
         super
       end
       
-      def save_as(path)
+      def save_to_disk()
+        @logger.debug("NullImage - save_to_disk was called")
       end
     end
   end

@@ -2,7 +2,7 @@
 module Jitterbug
   module GraphicsEngine
     class EnginePart
-      attr_accessor :logger, :layers, :engine, :sketch_options, :width, :height
+      attr_accessor :logger, :layers, :engine, :sketch_options, :width, :height,
     end
     
     require 'scene_graph'
@@ -23,9 +23,9 @@ module Jitterbug
     end
     
     class Image < EnginePart
-      attr_accessor :raw_pixels
+      attr_accessor :raw_pixels, :path, :name, :extension
                   
-      def save_as(path)    
+      def save_to_disk()    
 =begin
 Core Image Notes:
 Three main components:
@@ -40,7 +40,7 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
     end
     
     class Renderer < EnginePart
-      attr_accessor :camera, :raw_rendered_frame, :number_of_frames_to_render
+      attr_accessor :camera, :raw_rendered_frame
       def initialize        
         @visible_lights = []
         @visible_geometry = []
@@ -192,9 +192,14 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
     end
     
     class LayerCompositor < EnginePart
-      attr_reader :raw_rendered_frame      
+      attr_reader :raw_rendered_frame, :frames      
+      def initialize
+        @frames = [] #probably needs to be a hash, due to non-linear rendering loops.
+      end
       
+      #frame = CGImageRef
       def add(frame, layer)
+        @frames << [frame, layer]
       end
       
       def composite

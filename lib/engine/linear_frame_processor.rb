@@ -3,8 +3,7 @@ module Jitterbug
   module GraphicsEngine
     #Executes the frame in a single thread
     class LinearFrameProcessor < FrameProcessor
-      attr_accessor :engine
-      attr_reader :raw_rendered_frame
+      attr_accessor :engine, :raw_rendered_frame
             
       def process
         @logger.debug("LinearFrameProcessor: beginning process")
@@ -47,6 +46,7 @@ module Jitterbug
           
           # Store the image along with compositing filter chain at the layer compositor
           frame = @engine[:renderer].raw_rendered_frame
+          puts "In the LinearFrameProcessor the rendered frame is: #{frame}"
           @engine[:compositor].add(frame, layer) # add image filter chain to Layer class
         end
         
@@ -54,7 +54,7 @@ module Jitterbug
         @engine[:compositor].composite()
         
         # Should output
-        @raw_rendered_frame = @engine[:compositor].raw_rendered_frame
+        @engine[:frame_processor].raw_rendered_frame = @engine[:compositor].raw_rendered_frame
         @logger.debug("LinearFrameProcessor: ending process")
       end
     end

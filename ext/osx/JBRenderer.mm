@@ -111,20 +111,29 @@
                       imageWidth:viewWidth 
                       imageHeight:viewHeight];
     
-    
-	
-    CGImageRef imageRef = [ImageUtilities createRGBImageFromBufferData:pixels 
+    //try doing all of this in Ruby to get pass pointer/casting issues
+				_framebufferImageRef = pixels;
+	/*
+    _framebufferImageRef = [ImageUtilities createRGBImageFromBufferData:pixels 
                                         imageWidth:viewWidth 
                                         imageHeight:viewHeight];
+	
+	NSLog(@"Inside JBRenderer the _framebufferImageRef is %@", _framebufferImageRef);
+    NSAssert(_framebufferImageRef != 0, @"cgImageFromPixelBuffer failed");
+    */
 
-    NSAssert( imageRef != 0, @"cgImageFromPixelBuffer failed");
-    
-    [ImageUtilities createTIFFImageFileOnDesktop:imageRef];
+	
+    //[ImageUtilities createTIFFImageFileOnDesktop:imageRef];
 
-    CGImageRelease(imageRef);
-    free(pixels);
+    //CGImageRelease(imageRef);
+    //free(pixels);
 }
 
+//is this going to leak on Macruby?
+- (void *) renderedFrame
+{
+	return _framebufferImageRef;
+}
 
 - (void) dealloc
 {	

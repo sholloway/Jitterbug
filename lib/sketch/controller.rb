@@ -264,6 +264,8 @@ module Jitterbug
 				return self
 			end
 			
+			# YUCK. Refactor this method. Consider having composite validation rules for the renderer.
+			# If I go that route, replace the current sketch load validation with the same pattern.
 			def render							
 			  if (@options[:render_logger] == true)
 				  @render_logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log") 				  
@@ -272,12 +274,15 @@ module Jitterbug
 		    end
 		    
 				@render_logger.info "Prepping renderer."
-															 								
+				if self.width.nil? || self.width < 1 || self.height.nil? || self.height < 1
+				  raise StandardError.new("Could not render. The sketch does not have a valid width and height set. Check the sketch.yml file.")
+				end					 								
+				
 			  if @engine.assembled? 
 			    @engine.bind_sketch(self)
 			    @engine.render()  
 		    else
-		      raise Exception.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
+		      raise StandardError.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
 	      end
 				@render_logger.info "Rendering complete."
 				return self

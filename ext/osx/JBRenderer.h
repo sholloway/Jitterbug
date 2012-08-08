@@ -7,6 +7,8 @@
 	GLuint framebuffer;
 	NSArray *layerScripts;
 	id parent;
+	
+	void* _framebufferImageRef;
 }
 
 - (void) setSize:(uint)width height:(uint)height;
@@ -22,4 +24,5 @@
 - (void) outputActiveFramebuffer;
 - (void) setParent: p;
 - (void) stop;
+- (void *) renderedFrame; //Must return id rather than CGImageRef since macruby doesn't recognize CGImage
 @end

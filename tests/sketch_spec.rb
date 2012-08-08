@@ -418,6 +418,8 @@ describe Jitterbug::Sketch::Controller do
 		  lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger, :env=>mock_env})	
 			id1 = lm.create_new_layer("A")	
 			id2 = lm.create_new_layer("B")
+			lm.width = 200
+			lm.height = 200
 			lm.save
 			lm.render
 			File.exists?("#{@full_dir}/logs/render.log").should == true
@@ -429,6 +431,8 @@ describe Jitterbug::Sketch::Controller do
 	    lm = Controller.new(@engine,{:working_dir => @full_dir,:logger=>@logger})	
 			id1 = lm.create_new_layer("A").selected_layer.id		
 			id2 = lm.create_new_layer("B").selected_layer.id	
+			lm.width = 200
+			lm.height = 200
 			lm.save
 			
 			lm.delete(id1)

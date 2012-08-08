@@ -10,7 +10,6 @@ module Jitterbug
       private
       def done_rendering(sender)
         self.raw_rendered_frame = @view_renderer.renderedFrame # I worry about getting a reference. Might need to do a copy...
-        puts self.raw_rendered_frame
         sender.window.close
         NSApplication.sharedApplication.stopModal
       end
@@ -60,8 +59,6 @@ module Jitterbug
         rescue => error
           @logger.error(error.message)
         end
-        
-        puts "Didn't kill the entire thread"
       end   
     end
     

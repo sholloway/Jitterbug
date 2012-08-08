@@ -156,7 +156,6 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
           @logger.debug("SketchAPI:\n#{layer.script.content}")
           instance_eval(layer.script.content)
         rescue => e
-          #put in logger
           @logger.error "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
           @logger.error "An exception was raised while running layer #{layer.name}"
           @logger.error e.message
@@ -164,12 +163,6 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
           @logger.error "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
           raise StandardError.new("The user script '#{layer.name}' threw an error. Please see ./logs/render.log for details.")
         end
-      end
-      
-      private
-      def fetch_script(path)
-        file = open(path,'r'){|f| f.read}
-        return file
       end
     end
     

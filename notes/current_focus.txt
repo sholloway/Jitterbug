@@ -12,9 +12,12 @@ Get pixels flowing.
 	Need a way of managing shaders. Part of Geometry class?
 	Combine the work done on JBOpenGLView + WebGL
 	Render to Framebuffer
-5. ImageProcessor
 	Get pixels from Framebuffer
-	Persist as a PNG image
+5. Compositor
+	Execute each frame's filter chain
+	Create a single image from the stack
+6. ImageProcessor
+	Persist as an image to the file system
 	
 After the initial pipeline is in place, my next step should probably be to nail down the color definition of the system.	
 
@@ -23,11 +26,9 @@ Could also use billboards.
 Start with projection just to keep moving forward.
 
 Current Bug/Challenges
-Cannot execute tests that rely on glsl_renderer due to it instantiates a modal window.
-Clean task is not working.
-
-Don't forget, I've already solved the issue of getting pixels from a FBO before. Look at code on the iMac. That's how I
-did the Stanford bunny.
+Need to have full acceptance tests for rendering output.
+	Mountain Lion removed X11 integration. So leveraging OpenImageIO will be a pain for developers. However, for me, might not matter.
+	If I leverage that, might set me up for a large headache if Apple breaks it in the future.
 
 If I can find a way to run tests that render out I think it would ultimately save me a bunch of time. 
 Manual Testing Feedback Loop
@@ -37,3 +38,12 @@ Manual Testing Feedback Loop
 - jb render
 - manually close all frames
 - look at log/image/screen
+
+Next Milestone: (Composite 2 layers)
+Steps:
+1. Get SketchAPI rect actually working.
+	requires implementing a fill method, so rects can have different colors.
+2. Integrate shaders into Renderer
+	Need a way to dynamically create shader programs and link them on the fly
+	Need to make sure to delete shaders & programs
+3. Implement Compositing logic

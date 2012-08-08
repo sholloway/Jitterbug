@@ -35,26 +35,4 @@ Current Image Process:
 # glReadPixels writes things from bottom to top, but we need a top to bottom representation, so we must flip the buffer contents.
 # I don't like this. This should be done on the GPU using OpenCL. 
 # GLM has matrix inverse functions. Should look into that after getting the pipeline working.
--flipImageData 
 
-# use CoreGraphics to format from raw pixels to an internal Bitmap
--createRGBImageFromBufferData
-	CGColorSpaceCreateWithName
-	CGBitmapContextCreate
-	CGBitmapContextCreateImage
-		
-# use ImageIO to save the file
--createTIFFImageFileOnDesktop
-	CFURLCreateWithFileSystemPath
-	CGImageDestinationCreateWithURL
-	CGImageDestinationAddImage
-	CGImageDestinationFinalize
-
-Write FBO to Something the compositor can use.
-Write Image to disk
-
-Change to leverage shaders
-- render the geometry in the culler
-- create programs
-- create VBOs?
-- push to GPU

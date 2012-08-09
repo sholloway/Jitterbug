@@ -3,14 +3,16 @@ module Jitterbug
     class GLSLRenderer < Renderer
       def render
         @logger.debug("GLSLRenderer: begining render")
+        verify_inputs
         create_graphics_renderer
+        launch_graphical_application
         @logger.debug("GLSLRenderer: ending render")
       end
       
       private
-      def done_rendering(sender)
-        self.raw_rendered_frame = @view_renderer.renderedFrame # I worry about getting a reference. Might need to do a copy...
-        sender.window.close
+      def done_rendering(button)
+        self.raw_rendered_frame = @view_renderer.renderedFrame
+        button.window.close
         NSApplication.sharedApplication.stopModal
       end
       
@@ -20,46 +22,38 @@ module Jitterbug
         
         @app = NSApplication.sharedApplication
         @app.delegate = AppDelegate.new()
-        
-        if (@width.nil? || @height.nil?)
-          @logger.error("The width & height was not set on the sketch.")
-          return
-        end
-        
-        size = [0, 0, self.width, self.height] 
-
-        window = NSWindow.alloc.initWithContentRect(size,
+        size = [0, 0, self.width, self.height]
+        @window = NSWindow.alloc.initWithContentRect(size,
             styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask),
             backing: NSBackingStoreBuffered,
             defer: false)
-        window.title      = 'OS X: Jitterbug OpenGL Window'
-        window.level      = NSNormalWindowLevel
-        window.delegate   = AppDelegate.new()
+        @window.title      = 'OS X: Jitterbug OpenGL Window'
+        @window.level      = NSNormalWindowLevel
+        @window.delegate   = AppDelegate.new()
         
-        close_button = window.standardWindowButton(NSWindowCloseButton,forStyleMask: NSClosableWindowMask)
+        close_button = @window.standardWindowButton(NSWindowCloseButton,forStyleMask: NSClosableWindowMask)
         close_button.setEnabled(true)
         close_button.target = self
         close_button.action = "done_rendering:"
 
-        begin
-          view = JBOpenGLView.alloc.initWithFrame(size)
-          view.setSize(self.width, height: self.height)
-          @view_renderer = GLRenderer.new   
-          @view_renderer.logger = @logger
-          view.setRenderer(@view_renderer)
-          
-          #view.logger = @logger
-          window.contentView.addSubview(view)
+        view = JBOpenGLView.alloc.initWithFrame(size)
+        view.setSize(self.width, height: self.height)
+        @view_renderer = GLRenderer.new   
+        @view_renderer.logger = @logger
+        view.setRenderer(@view_renderer)
         
-          window.display
-          window.orderFrontRegardless  
-
-          #this blocks the macruby thread
-          NSApplication.sharedApplication.runModalForWindow(window)   
-        rescue => error
-          @logger.error(error.message)
-        end
+        @window.contentView.addSubview(view)
       end   
+      
+      def verify_inputs
+        raise StandardError.new ("The width & height was not set on the sketch.") if (@width.nil? || @height.nil?)
+      end
+      
+      def launch_graphical_application
+        @window.display
+        @window.orderFrontRegardless  
+        NSApplication.sharedApplication.runModalForWindow(@window)
+      end
     end
     
     class GLRenderer < ::JBRenderer      

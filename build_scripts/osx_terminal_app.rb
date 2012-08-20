@@ -9,6 +9,8 @@ TERM_RESOURCE_DIR 	= File.join(TERM_CONTENTS_DIR, 'Resources')
 TERM_MACOS_DIR 		  = File.join(TERM_CONTENTS_DIR, 'MacOS')
 TERM_FRAMEWORKS_DIR	= File.join(TERM_CONTENTS_DIR, 'Frameworks')
 
+TERM_GLSL_SHADER_DIR = File.join(TERM_RESOURCE_DIR, 'shaders/glsl')
+
 COPY_TERMINAL_FILES = FileList["resources/images/*.tiff", 
   "resources//*.icns", 
   "resources/*.strings",
@@ -28,8 +30,16 @@ task :copy_osx_terminal_files do
   COPY_OSX_RUBY_CODE.each{|dir| copy_flat dir, "#{TERM_RESOURCE_DIR}"} 
 end
 
+task :copy_osx_terminal_glsl_shaders do
+  mkdir_p TERM_GLSL_SHADER_DIR
+  ["resources/shaders/glsl"].each do |dir| 
+    copy_flat dir, "#{TERM_GLSL_SHADER_DIR}", "vert"
+    copy_flat dir, "#{TERM_GLSL_SHADER_DIR}", "frag"
+  end
+end
+
 # Create the Application Bundle and compile the main.m file
-file File.join(TERM_MACOS_DIR, TERM_NAME) => [:copy_osx_terminal_files, :copy_osx_terminal_frameworks] do |t|
+file File.join(TERM_MACOS_DIR, TERM_NAME) => [:copy_osx_terminal_files, :copy_osx_terminal_frameworks, :copy_osx_terminal_glsl_shaders] do |t|
 	mkdir_p("#{TERM_MACOS_DIR}", :verbose => false)		
 	sh "#{TERM_COMPILER} #{TERM_MAIN} -L#{TERM_FRAMEWORKS_DIR} -o #{t.name} #{TERM_ARCH} #{TERM_FRAMEWORKS} #{TERM_GCFLAGS}"
 end

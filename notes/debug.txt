@@ -25,3 +25,15 @@ Tools to use for profiling on the command line
 		
 Thoughts:
 	Can I use lldb to better effect if I compile the ruby scripts to ObjC?
+	
+#check for glError code in header	
+grep 0x0502 /System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/gl3.h
+
+#see if there is bridge support for an OpengGL function
+grep glBindFragDataLocation /System/Library/Frameworks/OpenGL.framework/Resources/BridgeSupport/OpenGL.bridgesupport
+
+getShaderParameter
+grep GLsizeiptr /System/Library/Frameworks/OpenGL.framework/Versions/A/Headers/gl3.h
+
+workflow
+jb clean | (pushd /Users/sholloway/Documents/Code/Jitterbug && rake clobber && rake && popd && jb render)

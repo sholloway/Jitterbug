@@ -1,0 +1,49 @@
+General:
+2D API should be implemented as 3D geometry viewed directly on. 
+Leverage mvp = projection * view * model for placement.
+Affine Transformations to shape rectangle from a square.
+Keep in mind that every shape needs a bounding box for the SP and Culler.
+
+Rectangle Mode:
+CORNER, CORNERS, CENTER, or RADIUS
+
+Primitive Definition:
+primitive = [-1.0,-1.0, #upper left corner
+1.0,-1.0, #upper right corner
+1.0, 1.0, #lower right corner
+-1.0, 1.0] #lower left corner
+This means the origin is at 0,0 before Translation
+
+Concepts:
+World Origin #The world's origin point (0,0,0)
+Local Origin #The geometry's origin point. 
+
+Available Operations:
+SetLocalOrigin() #how do I do this? Similar to rotating around a point.
+Translation
+Rotation
+Scaling
+
+Be default should do operations in the order of:
+Look at Hill's book on Affine Transformations
+1. SetLocalOrigin based on RECT_MODE
+2. Translate to World Origin
+3. Rotate
+4. Scale
+5. Translate to final destination
+
+In CENTER:
+The syntax rectMode(CENTER) draws the image from its center point and uses the third and forth parameters of rect() to specify the image's width and height.
+rect(x,y,total_width, total_height)
+
+In CORNER:
+The default mode is rectMode(CORNER), which specifies the location to be the upper left corner of the shape and uses the third and fourth parameters of rect() to specify the width and height. 
+
+
+In CORNERS:
+The syntax rectMode(CORNERS) uses the first and second parameters of rect() to set the location of one corner and uses the third and fourth parameters to set the opposite corner. 
+
+In RADIUS:
+The syntax rectMode(RADIUS) draws the image from its center point and uses the third and forth parameters of rect() to specify half of the image's width and height.
+
+  

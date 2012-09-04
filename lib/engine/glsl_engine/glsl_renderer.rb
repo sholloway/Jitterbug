@@ -40,6 +40,7 @@ module Jitterbug
         view.setSize(self.width, height: self.height)
         @view_renderer = GLRenderer.new   
         @view_renderer.logger = @logger
+        @view_renderer.geometry = @visible_geometry
         view.setRenderer(@view_renderer)
         
         @window.contentView.addSubview(view)
@@ -57,14 +58,38 @@ module Jitterbug
     end
     
     class GLRenderer < ::JBRenderer      
-      attr_accessor :logger
+      attr_accessor :logger, :geometry
       
       def initialize
         super
-        @current_frame = 0
       end  
             
+      #overrides the Obj-c method
       def render
+        activateOffScreenFrameBuffer      
+        glViewport(0, 0, width, height) #pull out of here        
+        
+        glClearColor(0.0, 1.0, 0.0, 0.0) #green but should come from sketch...
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)  
+        
+        unless @geometry.empty?        
+          @geometry.each do |geo_node|
+            puts "in the geometry loop"          
+           # geo_node.geometry.shader_manager = BlackShit.new
+            geo_node.geometry.shader_manager.draw(self)      
+            puts "finished geometry loop"
+          end
+        end       
+       
+       glFinish()
+       #looks like either the OpenGL context is not availible to non-children of JBRenderer or something wonky is happending with scope
+       #or even possibly Garbage Collection.
+       
+        outputActiveFramebuffer
+        glFinish()
+        
+        stop
+=begin 
         #draw something to the screen (Just for the hell of it...)
         activateSystemFrameBuffer() 
         
@@ -83,8 +108,46 @@ module Jitterbug
       	# it should set how many frames to render
         
         stop 
+=end
       end  
+      
+      #overrides the Obj-c method
+      def setupShaders
+        @geometry.each{|geometry_node| geometry_node.geometry.shader_manager.register(self)}          
+      end
+        
+      def tearDownShaders
+        @geometry.each{|geometry_node| geometry_node.geometry.shader_manager.checkout(self)} 
+      end
+      
+      def check_shader_compile_status
+        #figure out...
+      end    
+      
+      def registry
+        if @registry.nil?
+          logger.debug('GLRenderer: Initializing the registry')
+          @registry = {} 
+        end
+        return @registry
+      end
+          
     end
+    
+    class BlackShit < Jitterbug::GraphicsEngine::GLSL::ShaderManager
+      def initialize
+        super
+        @name = :rect_2d_shader_manager
+      end
+      
+      def draw(renderer)
+        puts "about to make some black shit"
+        glClearColor(0.0, 0.0, 0.0, 0.0)
+      	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glFlush()
+      end
+    end
+    
     
     class AppDelegate
       def initialize()

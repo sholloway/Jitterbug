@@ -10,3 +10,4 @@ ext/bin
 .swp
 .swo
 temp
+**/*.pdf

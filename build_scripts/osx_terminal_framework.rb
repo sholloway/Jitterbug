@@ -8,7 +8,7 @@ TERM_FRAMEWORK_TARGET = TERM_FRAMEWORK_SRC.ext('o')
 TERM_FRAMEWORK_COMPILER = 'clang'
 TERM_FRAMEWORKS_DEPENDENCIES = "-framework CoreGraphics -framework OpenGL -framework Foundation -framework Cocoa -framework Macruby -framework AppKit" 
 TERM_MACRUBY = "/Library/Frameworks/MacRuby.framework/Headers"
-TERM_STATIC_INCLUDES = '/Users/sholloway/Dropbox/Jitterbug/ext/vendor/glm-0.9.2.3' #FIX THIS
+TERM_STATIC_INCLUDES = './ext/vendor/glm-0.9.2.3' 
 TERM_INCLUDES = %{-Iext -I#{TERM_MACRUBY} -I#{TERM_STATIC_INCLUDES} }
 
 TERM_COMPILE_LANG_OPTS = "-ObjC++ -fobjc-gc"

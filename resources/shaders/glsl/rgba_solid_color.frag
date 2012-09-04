@@ -1,6 +1,8 @@
+#version 150 core
 precision mediump float;
-varying lowp vec4 v_color; // Input - Color RGBA (0-1)
+uniform lowp vec4 v_color; // Input - Color RGBA (0-1)
+out vec4 FragColor;
 
 void main() {
-   gl_FragColor = v_color;
+   FragColor = v_color;
 }

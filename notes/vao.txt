@@ -1,0 +1,20 @@
+Using the OpenGL 3.2 core forces us to use VAO's. Here are some thoughts.
+
+Resources:
+http://www.opengl.org/wiki/Tutorial2:_VAOs,_VBOs,_Vertex_and_Fragment_Shaders_%28C_/_SDL%29 
+The OpengGL Sample pack: opgl3-vao sample
+
+A Vertex Array Object (VAO) is an object which contains one or more Vertex Buffer Objects and is designed to store the information for a complete rendered object. 
+
+A Vertex Buffer Object (VBO) is a memory buffer in the high speed memory of your video card designed to hold information about vertices. VBOs can also store information such as normals, texcoords, indicies, etc.
+
+Current Issues
+- I think my current issue is due to the complexity of dealing with pointers between ruby and Obj-C.
+- Further complicating things is the projection of the vert shader onto screen space. 
+
+Steps forward:
+- Change the rectangle vertex definition to use 3D verts (x,y,z)
+- Simplify the shader to not project.
+- Leverage a MPV matrix definition through GLM
+- Move the ShaderManager code into Obj-C to remove Pointer complexity.
+- Abstract the Objective-C piece to handle generic shaders and meshes

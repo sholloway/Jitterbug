@@ -1,0 +1,42 @@
+Jitterbug needs a shading pipeline. This pipeline should be agnostic to the actually rendering implementation. (GLSL, OpenShadingLanguage,My Own)
+
+GLSL Considerations:
+	CMD hooks for generating shaders
+	Simplify Shader design
+		Define common structures in a header file. Specify structs in in/out blocks.
+		Vertex Shaders should always define gl_PerVertex out block.
+
+Considerations:
+Got to somehow know what to bind to VBO's at Renderer setup time and what to bind to uniforms and attributes.
+	Possibly leverage factories bound to GLSLShaderProgram instances. These factories would have GL functions in them.
+	This factory should be "registered" with the Renderer and "checked out" on dealloc.
+	Should create the VBO, Shaders, Program, attach shaders and bind inputs. Should try to optimize Program management, 
+	the same one isn't instantiated more than once. 
+	To do that, need to seperate the shader from the vbo. 
+		
+		
+Basic Pipeline
+Array Buffer -> Vertex Shader -> Geometry Shader -> Fragment Shader -> glDrawBuffers Indirect Tables -> Framebuffer
+
+Basic Flow:
+Create array of vertices
+Create Vertex Array
+	glGenVertexArrays
+	glBindVertexArray
+
+Create Vertex Buffer
+	glGenBuffers
+	glBindBuffers
+	glBufferData
+	
+Read shader files into memory
+	InitShader
+	glUseProgram
+	
+Bind shader variables and uniforms
+	glGetAttributeLocation
+	glEnableVertextAttribArray
+	glVertexAttribPointer
+	
+When ready to draw
+	glDrawArrays

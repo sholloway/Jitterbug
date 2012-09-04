@@ -10,9 +10,24 @@
 	return self;
 }
 
+- (int) width
+{
+	return viewWidth;
+}
+
+- (int) height
+{
+	return viewHeight;
+}
+
 - (void) setParent: p;
 {
 	parent = p;
+}
+
+- (id) getParent
+{
+	return parent;
 }
 
 - (void) stop
@@ -63,18 +78,35 @@
 	viewHeight = height;	
 }
 
+// Is there a similar concept to Abstract Class in Obj-C?
+// Perhaps I should only have the header file for JBRender.
 - (void) render
 {
 	//override
 }
 
-- (void)debug_this_sob
+- (void) setupShaders
+{
+	//override 	
+}
+
+- (void) tearDownShaders
+{
+	//override
+}
+
++ (void)debug_this_sob
 {
 	GLenum theError = GL_NO_ERROR;
     theError = glGetError();
     NSAssert1(theError == GL_NO_ERROR, @"OpenGL error 0x%04X", theError);
 }
 
+//only used internally
+- (const GLubyte*)glGetStringiShim:(GLuint) index
+{
+	return glGetStringi(GL_EXTENSIONS,index);
+}
 
 - (void) outputActiveFramebuffer
 {		
@@ -93,14 +125,12 @@
     glPixelStorei(GL_PACK_SKIP_ROWS, 0);
     glPixelStorei(GL_PACK_SKIP_PIXELS, 0);
 
-	
-	
 	glReadPixels( 0,0, //lower left corner of a rectangular block of pixels
                   viewWidth, viewHeight, //width and height of image
                   GL_BGRA, //format of the pixel data
                   GL_UNSIGNED_INT_8_8_8_8_REV, //data type of the pixel data
                   pixels); //output
-	[self debug_this_sob];
+	[JBRenderer debug_this_sob];
 	
 	
     //glPopClientAttrib();
@@ -137,7 +167,7 @@
 
 - (void) dealloc
 {	
-	[layerScripts release];
+	[self tearDownShaders];
 	[super dealloc];
 }
 @end

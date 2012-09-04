@@ -115,7 +115,6 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	CVDisplayLinkStop(displayLink);
 }
 
-//prep OpenGL
 - (void) initGL
 {
 	// Make this openGL context current to the thread
@@ -124,11 +123,15 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	
 	// Synchronize buffer swaps with vertical refresh rate
 	GLint swapInt = 1;
-	[[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
-	
-	[self printHardwareSpecs];
-	
+	[[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];	
+	//[self printHardwareSpecs];	
 	[self setupBuffers];
+	[self setupShaders];
+}
+
+- (void) setupShaders
+{
+	[_renderer setupShaders];
 }
 
 //Set up a renderbuffer to write the frame to.

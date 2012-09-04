@@ -21,6 +21,20 @@ module Jitterbug
         @program_parameters << ShaderParameter.new(:uniform, name)
         return self
       end
+      
+      def vertex_shader
+        return load("./resources/shaders/#{vertex_shader_path}")
+      end
+      
+      def frag_shader
+        return load ("./resources/shaders/#{fragment_shader_path}")
+      end
+      
+      private
+      def load(path)
+        raise Exception.new("Could not load shader. Bad path. Path provided was: #{path}") unless(File.exists?(path))          
+        return open(path,'r'){|f| f.read}        
+      end
     end
         
     module RectangleModes
@@ -47,6 +61,10 @@ module Jitterbug
           @green = green
           @blue = blue
           @alpha = alpha         
+        end
+        
+        def to_objc
+          #return JBColor.alloc.initWithRed(red.to_f andGreen:green.to_f andBlue:blue.to_f andAlpha:alpha.to_f)
         end
       end
     end
@@ -88,8 +106,8 @@ module Jitterbug
         @logger.debug("GLSLSketchAPI: current color_mode: #{@render_state.color_mode}")
         #need to use factories rather than if/else and case statements. 
         #this pattern will be repeated on other api methods.
-        color = 
-        case @render_state.color_mode
+      
+        color = case @render_state.color_mode
         when Jitterbug::GraphicsEngine::Color::ColorModes::RGB then
           #need to handle both color names and explicit values.
           #also need to handle 0-1 and 0-255 ranges
@@ -123,9 +141,10 @@ module Jitterbug
       def rect(x,y,width,height)
         @logger.debug("GLSLSketchAPI: rect() was called")
         #build a program
-        vert_shader = "shaders/glsl/rect2d.vert"
-        fragment_shader = "shaders/glsl/rgba_solid_color.frag"
+        vert_shader = "rect2d.vert"
+        fragment_shader = "rgba_solid_color.frag"
         
+        #this could be simplified with blocks & structs
         program = GLSLShaderProgram.new(vert_shader, fragment_shader).
           add_attribute(:a_position).
           add_attribute(:a_vertex_color). 
@@ -148,13 +167,50 @@ module Jitterbug
 
         #manipulate the scene graph
         geo_node = Jitterbug::GraphicsEngine::GeometryNode.new(@scene_graph.increment_node_counter(), "rectangle #{incr_rect_counter}")        
-        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices)
-  
-        geometry.render_state = @render_state        
+        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices)  
+        geometry.render_state = @render_state     
+        geometry.shader_manager = Jitterbug::GraphicsEngine::GLSL::Rect2DShader.new   
         geo_node.bind(geometry)
 
         #need to think through groups controlled by the script. Maybe a begin/end or block
         @scene_graph.world_node().add_child(geo_node)        
+      end
+      
+      #create a method to just get a working GLSL 1.5 example
+      def sample()
+        @logger.debug("GLSLSketchAPI: sample() was called")
+        vert_shader = "sample.vert"
+        fragment_shader = "sample.frag"
+        
+        #generate rectangle (CORNER_MODE)
+        
+
+        vertices = [-1.0,-1.0, #upper left corner
+          1.0,-1.0, #upper right corner
+          1.0, 1.0, #lower right corner
+          -1.0, 1.0] #lower left corner
+          
+        indicies = [
+          0, 1, 2, #1st triangle
+          2, 3, 0  #2nd triangle
+          ]
+          
+        program = GLSLShaderProgram.new(vert_shader, fragment_shader)
+        geo_node = Jitterbug::GraphicsEngine::GeometryNode.new(@scene_graph.increment_node_counter(), "sample #{incr_rect_counter}")        
+        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies)  
+        geometry.render_state = @render_state   
+        
+        shader_manager = GLSLShaderManager.alloc.init
+        @logger.debug("GLSLSketchAPI: about to call setVertexShader")
+        shader_manager.setVertexShader(program.vertex_shader)
+        @logger.debug("GLSLSketchAPI: about to call setFragmentShader")
+        shader_manager.setFragmentShader(program.frag_shader)
+        geometry.shader_manager = shader_manager
+        
+        geo_node.bind(geometry)
+
+        @scene_graph.world_node().add_child(geo_node)
+        @logger.debug("GLSLSketchAPI: end sample()")
       end
       
       private

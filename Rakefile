@@ -58,6 +58,7 @@ require 'build_scripts/renderer_test_runner.rb'
 require 'build_scripts/utilities'
 require 'build_scripts/osx_terminal_framework'
 require 'build_scripts/osx_terminal_app'
+require 'build_scripts/native_tasks.rb'
 
 task :default => :create_foxtrot
 

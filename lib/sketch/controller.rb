@@ -7,86 +7,90 @@ if defined?(YAML::ENGINE)
 end
 
 module Jitterbug
-  module Sketch
-    LayersData = Struct.new(:layers,:layer_counter,:graphics_engine, :width, :height)
-    
-    class Controller #change this to Controller?
+	module Sketch
+		LayersData = Struct.new(:layers,:layer_counter,:graphics_engine, :width, :height)
+
+		class Controller
 			include Jitterbug::Sketch::Validation
 			attr_reader :options, :logger, :render_logger, :layers, :engine, :background
 			attr_accessor :width, :height
 			
 			def initialize(rendering_engine=nil,options={}) # by default relative to output_dir					
-					@options = {
-						:working_dir=>false, #must be set, by default everything else is relative to this.
-						:layers_file=>"sketch.yml", 
-						:scripts_dir=>"scripts", 
-						:support_scripts => "lib", # ruby scripts dir to support the primary layer scripts
-						:vendor => "vendor", #place third party dependencies here like gems
-						:resources_dir=>"resources", #shaders, models, images, movies, filters and audio are relative to this by default
-						:shaders_dir=>"shaders",
-						:models_dir=>"models",
-						:images_dir=>"images",
-						:movies_dir=>"movies",
-						:image_filters_dir=>"filters",				
-						:audio_dir=>"audio",
-						:output_dir=>"output",
-						:image_output_dir=>"images", # by default relative to output_dir
-						:video_output_dir=>"video", # by default relative to output_dir
-						:data_output_dir=>"data",
-						:trash => "trash",
-						:layers_file_backup =>"sketch.yml.bak",
-						:logs => "logs",
-						:logger => true,
-						:render_logger =>true,
-						:env => nil} 		
-					@width = nil
-					@height = nil				
-					@options.merge!(options)
-					if (@options[:working_dir] == false)
-					  raise StandardError.new("The working directory for the sketch must be set.")
-				  end
-					
-					@layers = {}
-					@layer_counter = 0
-					
-					if @options[:logger] == true					  
-						@logger = Jitterbug::Logging::JitterLogger.new(@options,"jitterbug.log")
-					else					  
-						@logger = @options[:logger]
-					end
-					
-					unless rendering_engine.nil?
-				    @engine = rendering_engine				  
-          end
-          
-					validate
-					return  
+				@options = {
+					:working_dir=>false, #must be set, by default everything else is relative to this.
+					:layers_file=>"sketch.yml", 
+					:scripts_dir=>"scripts", 
+					:support_scripts => "lib", # ruby scripts dir to support the primary layer scripts
+					:vendor => "vendor", #place third party dependencies here like gems
+					:resources_dir=>"resources", #shaders, models, images, movies, filters and audio are relative to this by default
+					:shaders_dir=>"shaders",
+					:models_dir=>"models",
+					:images_dir=>"images",
+					:movies_dir=>"movies",
+					:image_filters_dir=>"filters",				
+					:audio_dir=>"audio",
+					:output_dir=>"output",
+					:image_output_dir=>"images", # by default relative to output_dir
+					:video_output_dir=>"video", # by default relative to output_dir
+					:data_output_dir=>"data",
+					:trash => "trash",
+					:layers_file_backup =>"sketch.yml.bak",
+					:logs => "logs",
+					:logger => true,
+					:render_logger =>true,
+					:env => nil
+				} 		
+
+				@width = nil
+				@height = nil				
+				@options.merge!(options)
+
+				if (@options[:working_dir] == false)
+					raise StandardError.new("The working directory for the sketch must be set.")
+				end
+
+				@layers = {}
+				@layer_counter = 0
+
+				if @options[:logger] == true					  
+					@logger = Jitterbug::Logging::JitterLogger.new(@options,"jitterbug.log")
+				else					  
+					@logger = @options[:logger]
+				end
+
+				unless rendering_engine.nil?
+					@engine = rendering_engine				  
+				end
+
+				validate
+				return  
 			end	
-			
+
 			#I've got to really think throught the color management system. 
 			#I want to be able to have symbols and strings for common names, but also RGBA, CYMK and HSBA.
 			def background(color)
-			  @background = color
+				@background = color
 			end		
 			
+			#Load the layers file into memory.
 			def load()		
 				error("The layer file: #{@options[:working_dir]}/#{@options[:layers_file]} does not exist.", 
 					!File.exist?("#{@options[:working_dir]}/#{@options[:layers_file]}"))
-					
+
 				file = File.open("#{@options[:working_dir]}/#{@options[:layers_file]}")
 				parsed = YAML.load(file)
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
-	      @width = parsed.width
-	      @height = parsed.height
-	
+				@width = parsed.width
+				@height = parsed.height
+
 				if parsed.graphics_engine.instance_of?(Jitterbug::GraphicsEngine::Engine)
-				  @engine = parsed.graphics_engine
-			  else #for ruby 1.9.3		    
-			    @engine = Jitterbug::GraphicsEngine::Engine.from_hash(parsed.graphics_engine)			    			    
-		    end	
-				
+					@engine = parsed.graphics_engine
+			  	else #for ruby 1.9.3		    
+			  		@engine = Jitterbug::GraphicsEngine::Engine.from_hash(parsed.graphics_engine)			    			    
+			  	end	
+
 				return self
 			end
 			
@@ -102,9 +106,9 @@ module Jitterbug
 				@engine.unbind
 				data = LayersData.new(@layers,@layer_counter,@engine, @width, @height)
 				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") do |f| 				  
-				  yaml_str = data.to_yaml
-				  f.write(yaml_str) 
-			  end
+					yaml_str = data.to_yaml
+					f.write(yaml_str) 
+				end
 				
 				#save all scripts to disk
 				layers{|current_layer| current_layer.script.save()}
@@ -139,9 +143,9 @@ module Jitterbug
 			def to_s
 				msg = "Sketch:"
 				@layers.
-					values.
-					sort{ |a,b| a.order <=> b.order}.
-					each{|layer| msg = msg + "\n\t"+layer.to_s}
+				values.
+				sort{ |a,b| a.order <=> b.order}.
+				each{|layer| msg = msg + "\n\t"+layer.to_s}
 				return msg
 			end
 			
@@ -195,21 +199,21 @@ module Jitterbug
 			def selected_layer
 				@layers.values.find{|layer| layer.active == true}
 			end
-						
+
 			# iterate over the layers in sorted order
 			def layers(&block)
 				@layers.
-					values.
-					sort{ |a,b| a.order <=> b.order}.
-					each(&block)
+				values.
+				sort{ |a,b| a.order <=> b.order}.
+				each(&block)
 			end
 			
 			# move the selected layer farther away from the viewer
 			def move_farther_away
 				layer = selected_layer()
 				if layer.nil?
-				  return self
-			  end
+					return self
+				end
 				sorted_layers = @layers.values.sort{|a, b| a.order <=> b.order}
 				index = sorted_layers.index{|a| a.id.eql?(layer.id)}				
 				return if index.nil? || index == sorted_layers.size - 1
@@ -224,8 +228,8 @@ module Jitterbug
 			def move_closer
 				layer = selected_layer()
 				if layer.nil?
-				  return self
-			  end
+					return self
+				end
 				sorted_layers = @layers.values.sort{|a, b| a.order <=> b.order}
 				index = sorted_layers.index{|a| a.id.eql?(layer.id)}				
 				return if index.nil? || index == sorted_layers.size - 1
@@ -251,13 +255,13 @@ module Jitterbug
 				when :trash
 					clean_trash
 				when :output
-				  clean_output										
+					clean_output										
 				when :logs
-				  clean_logs
+					clean_logs
 				when :all
-				  clean_logs
-				  clean_output
-				  clean_trash
+					clean_logs
+					clean_output
+					clean_trash
 				else
 					raise StandardError.new "Layers Management does not have a clean type of #{type}"
 				end
@@ -266,46 +270,49 @@ module Jitterbug
 			
 			# YUCK. Refactor this method. Consider having composite validation rules for the renderer.
 			# If I go that route, replace the current sketch load validation with the same pattern.
-			def render							
-			  if (@options[:render_logger] == true)
-				  @render_logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log") 				  
-			  else
-			    @render_logger = @options[:render_logger]
-		    end
-		    
+			def render					
+				# Create a logger specific for rendering if one hasn't been set		
+				if (@options[:render_logger] == true)
+					@render_logger = Jitterbug::Logging::JitterLogger.new(@options,"render.log") 				  
+				else
+					@render_logger = @options[:render_logger]
+				end
+
+				# Validate the sketch size
 				@render_logger.info "Prepping renderer."
 				if self.width.nil? || self.width < 1 || self.height.nil? || self.height < 1
-				  raise StandardError.new("Could not render. The sketch does not have a valid width and height set. Check the sketch.yml file.")
+					raise StandardError.new("Could not render. The sketch does not have a valid width and height set. Check the sketch.yml file.")
 				end					 								
 				
-			  if @engine.assembled? 
-			    @engine.bind_sketch(self)
-			    @engine.render()  
-		    else
-		      raise StandardError.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
-	      end
+				if @engine.assembled? 
+					@engine.bind_sketch(self)
+					@engine.render()  
+				else
+					raise StandardError.new("Could not render. The rendering engine is not fully assembled. Missing parts: #{@engine.missing_pieces}")
+				end
+				
 				@render_logger.info "Rendering complete."
 				return self
 			end
 			
 			private
 			def clean_trash
-			  FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",force=true)
+				FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:trash]}",:force=>true)
 				FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:trash]}")
-		  end
-		  
-		  def clean_output
-		    FileUtils.rm_rf("#{@options[:working_dir]}/#{@options[:output_dir]}")								
+			end
+
+			def clean_output
+				FileUtils.rm_rf("#{@options[:working_dir]}/#{@options[:output_dir]}")								
 				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/images")
 				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/video")
 				FileUtils.mkdir_p("#{@options[:working_dir]}/#{@options[:output_dir]}/data")				
-	    end
-	    
-	    def clean_logs
-	      FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",force=true)
+			end
+
+			def clean_logs
+				FileUtils.remove_dir("#{@options[:working_dir]}/#{@options[:logs]}",:force=>true)
 				FileUtils.mkdir("#{@options[:working_dir]}/#{@options[:logs]}")
-      end
-      
+			end
+
 			def validate				
 				validate_working_dir(@options)
 				validate_layers_file(@options)
@@ -354,5 +361,5 @@ module Jitterbug
 				return new_script_path
 			end			
 		end
-  end
+	end
 end

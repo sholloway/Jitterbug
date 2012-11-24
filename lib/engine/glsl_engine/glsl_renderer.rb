@@ -29,7 +29,7 @@ module Jitterbug
             defer: false)
         @window.title      = 'OS X: Jitterbug OpenGL Window'
         @window.level      = NSNormalWindowLevel
-        @window.delegate   = AppDelegate.new()
+        @window.delegate   = AppDelegate.new() #this is probably a bug... Need to share the delegate?
         
         close_button = @window.standardWindowButton(NSWindowCloseButton,forStyleMask: NSClosableWindowMask)
         close_button.setEnabled(true)

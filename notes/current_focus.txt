@@ -42,7 +42,9 @@ Manual Testing Feedback Loop
 Next Milestone: (Composite 2 layers)
 Steps:
 1. Get SketchAPI rect actually working.
-	requires implementing a fill method, so rects can have different colors.
+	Expand GLSLSketchAPI.sample() & GLSLShaderManager into a robust design.
+	Requires implementing a fill method, so rects can have different colors.
+	Need affine transformations to move rectangels around
 2. Integrate shaders into Renderer
 	Need a way to dynamically create shader programs and link them on the fly
 	Need to make sure to delete shaders & programs

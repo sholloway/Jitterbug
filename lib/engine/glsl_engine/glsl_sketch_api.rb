@@ -177,14 +177,18 @@ module Jitterbug
       end
       
       #create a method to just get a working GLSL 1.5 example
+      #create a method to just get a working GLSL 1.5 example
+      #What is happening here is that a single rect is created.
+      #A geometery node is created and assigned an Obj-C++ Shader Manager.
+      #The geometry node is then added to the scene graph.
+      #If I expand this sample into a robust design, I don't want to create a unique Shader Manager
+      #for every geo-node.
       def sample()
         @logger.debug("GLSLSketchAPI: sample() was called")
         vert_shader = "sample.vert"
         fragment_shader = "sample.frag"
         
         #generate rectangle (CORNER_MODE)
-        
-
         vertices = [-1.0,-1.0, #upper left corner
           1.0,-1.0, #upper right corner
           1.0, 1.0, #lower right corner
@@ -200,7 +204,7 @@ module Jitterbug
         geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies)  
         geometry.render_state = @render_state   
         
-        shader_manager = GLSLShaderManager.alloc.init
+        shader_manager = GLSLNodeRenderer.alloc.init
         @logger.debug("GLSLSketchAPI: about to call setVertexShader")
         shader_manager.setVertexShader(program.vertex_shader)
         @logger.debug("GLSLSketchAPI: about to call setFragmentShader")

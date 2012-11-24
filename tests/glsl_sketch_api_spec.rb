@@ -9,7 +9,7 @@ framework 'OpenGL'
 Dir['./lib','./lib/**'].reject{|f| !File.directory?(f)}.map{|dir| $:.unshift(dir) }
 Dir['./vendor/**/*.rb','./lib/**/*.rb'].map {|f| require f}
 
-describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
+describe Jitterbug::GraphicsEngine::GLSLSketchAPI, :focus=>true do
   describe "The API" do 
     before(:each) do 
       @api = Jitterbug::GraphicsEngine::GLSLSketchAPI.new

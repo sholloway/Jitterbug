@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface GLSLShaderManager : NSObject {	
+@interface GLSLNodeRenderer : NSObject {	
 	NSString *vertexShader;
 	NSString *fragmentShader;
 	GLint program;
@@ -31,5 +31,5 @@
 - (void) checkout:(id)ruby_renderer;
 
 - (bool) validateProgram:(GLint) program;
--(void) checkShaderCompileStatus:(GLint)shader shaderName:(NSString *)shaderName;
+- (void) checkShaderCompileStatus:(GLint)shader shaderName:(NSString *)shaderName;
 @end

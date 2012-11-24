@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#import "GLSLShaderManager.h"
+#import "GLSLNodeRenderer.h"
 
 #define getGLError()									\
 {														\
@@ -18,7 +18,7 @@
 	}													\
 }
 
-@implementation GLSLShaderManager
+@implementation GLSLNodeRenderer
 - (id) init
 {
 	self = [super init];
@@ -28,7 +28,7 @@
 	rotationOrigin = glm::vec2(0.f);
 	tranlationOrigin = glm::vec2(0.f, 4.f);
 	tranlationCurrent = glm::vec2(0.f, 4.f);
-	NSLog(@"Done initializing GLSLShaderManager");
+	NSLog(@"Done initializing GLSLNodeRenderer");
 	return self;
 }
 

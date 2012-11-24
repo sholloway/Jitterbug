@@ -14,27 +14,30 @@ describe Jitterbug::Sketch::Controller do
 		
 		@engine = Jitterbug::GraphicsEngine::Engine.new()
 
-    @engine[:image_processor] = Jitterbug::NullGraphicsEngine::NullImage.new
-    @engine[:renderer] = Jitterbug::NullGraphicsEngine::NullRenderer.new
-    @engine[:scene_graph] = Jitterbug::GraphicsEngine::SceneGraph.new
-    @engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
-    @engine[:sketch_api] = Jitterbug::GraphicsEngine::SketchAPI.new
-    @engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
-    @engine[:camera] = Jitterbug::GraphicsEngine::Camera.new
-    @engine[:frustum] = Jitterbug::GraphicsEngine::Frustum.new
-    @engine[:compositor] = Jitterbug::NullGraphicsEngine::NullLayerCompositor.new
-    @engine[:frame_processor] = Jitterbug::GraphicsEngine::LinearFrameProcessor.new
-    @engine[:render_loop] = Jitterbug::GraphicsEngine::SingleImageRenderLoop.new                      
-    
+	    @engine[:image_processor] = Jitterbug::NullGraphicsEngine::NullImage.new
+	    @engine[:renderer] = Jitterbug::NullGraphicsEngine::NullRenderer.new
+	    @engine[:scene_graph] = Jitterbug::GraphicsEngine::SceneGraph.new
+	    @engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
+	    @engine[:sketch_api] = Jitterbug::GraphicsEngine::SketchAPI.new
+	    @engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
+	    @engine[:camera] = Jitterbug::GraphicsEngine::Camera.new
+	    @engine[:frustum] = Jitterbug::GraphicsEngine::Frustum.new
+	    @engine[:compositor] = Jitterbug::NullGraphicsEngine::NullLayerCompositor.new
+	    @engine[:frame_processor] = Jitterbug::GraphicsEngine::LinearFrameProcessor.new
+	    @engine[:render_loop] = Jitterbug::GraphicsEngine::SingleImageRenderLoop.new  
 	end
 	
 	before(:each) do
-			@test_dir = File.expand_path(File.dirname(__FILE__))
-			@full_dir = File.join(@test_dir,"validation_sketch")
-			FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir	
-			@sketch_name = "validation_sketch"
-			create_sketch(@sketch_name, @test_dir)	
-		end
+		@test_dir = File.expand_path(File.dirname(__FILE__))
+		@full_dir = File.join(@test_dir,"validation_sketch")
+		FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir	
+		@sketch_name = "validation_sketch"
+		
+		cmd = Jitterbug::Command::CreateGLSLImageSketch.new({:sketch_dir => @test_dir, 
+			:cmd_line_args => [@sketch_name], 
+			:output_dir => "output"})
+    	cmd.process
+	end
 		
 	after(:each) do		
 		FileUtils.remove_dir(@full_dir,force=true) if File.directory? @full_dir		

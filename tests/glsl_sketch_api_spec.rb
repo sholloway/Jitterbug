@@ -97,8 +97,8 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
       end
     end
     
-    describe "fill", :focus=>true do
-      it "should set the render state current fill color", :focus=>true do 
+    describe "fill" do
+      it "should set the render state current fill color" do 
         script = mock(:content => 'fill(color(0,10,20,255))', :load=>nil)
         layer = mock(:script=>script, :name=>'test layer')
 
@@ -112,14 +112,14 @@ describe Jitterbug::GraphicsEngine::GLSLSketchAPI do
         color.instance_of?(Jitterbug::GraphicsEngine::Color::RGB).should == true
       end
       
-      it "should raise an exception if the color is nil" do
+      it "should raise an exception if the color is nil"  do
         script = mock(:content => 'fill(nil)', :load=>nil)
         layer = mock(:script=>script, :name=>'test layer')
 
         expect{@sketch_api.run(layer)}.to raise_error       
       end
       
-      it "should raise an exception if the color is not descended from the color base class" do
+      it "should raise an exception if the color is not descended from the color base class", :focus=>true do
         broken_script = %{
           class BadColor
           end

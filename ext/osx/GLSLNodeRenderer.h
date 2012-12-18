@@ -1,18 +1,21 @@
 #import <Foundation/Foundation.h>
 @interface GLSLNodeRenderer : NSObject {	
+	id<NSObject> renderState;
 	NSString *vertexShader;
 	NSString *fragmentShader;
 	GLint program;
+	GLint indicesCount;
 	GLsizei vertexCount;
 	GLsizeiptr positionSize;
 	glm::vec2 *positionData;
+
 
 	GLsizei elementCount;
 	GLsizeiptr elementSize;
 	GLushort *elementData;
 	
 	GLuint elementBufferName, arrayBufferName, vertexArrayName;
-	GLint uniformMVP, uniformDiffuse, attribPosition;
+	GLint uniformMVP, uniformDiffuse, attribPosition, width, height;
 	
 	glm::vec2 rotationOrigin;
 	glm::vec2 rotationCurrent;
@@ -21,10 +24,7 @@
 	id<NSObject> geometryNode;
 }
 
-- (void)setVertexShader:(NSString *)str;
-- (void)setFragmentShader:(NSString *)str;
-- (void)setGeometryNode:(id<NSObject>)gnode;
-
+-(void) bindGeometry:(id) glsl_geometry;
 //Rendering Methods
 - (void) register:(id)ruby_renderer;
 - (void) draw:(id)ruby_renderer;

@@ -1,8 +1,12 @@
 #version 150 core
-precision mediump float;
-uniform lowp vec4 v_color; // Input - Color RGBA (0-1)
+
+precision mediump int;
+precision highp float;
+
+uniform vec4 Diffuse;
 out vec4 FragColor;
 
-void main() {
-   FragColor = v_color;
+void main()
+{
+	FragColor = Diffuse;
 }

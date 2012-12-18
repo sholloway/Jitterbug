@@ -70,7 +70,7 @@ module Jitterbug
     end
     
     class RenderState      
-      attr_accessor :current_fill_color, :current_stroke_color, :rect_mode, :color_mode, :enable_stroking, :enable_fill
+      attr_accessor :current_fill_color, :current_stroke_color, :rect_mode, :color_mode, :enable_stroking, :enable_fill, :width, :height
       
       def initialize
         @enable_stroking = true
@@ -138,42 +138,40 @@ module Jitterbug
       
       # Draw a rectangle
       # Ignore rect_mode until entire pipe line is functioning
-      def rect(x,y,width,height)
-        @logger.debug("GLSLSketchAPI: rect() was called")
+      def rect(x,y,rec_width,rec_height)
+        @logger.debug("GLSLSketchAPI: rect(#{x},#{y},#{rec_width},#{rec_height}) was called")
         #build a program
         vert_shader = "rect2d.vert"
         fragment_shader = "rgba_solid_color.frag"
         
-        #this could be simplified with blocks & structs
-        program = GLSLShaderProgram.new(vert_shader, fragment_shader).
-          add_attribute(:a_position).
-          add_attribute(:a_vertex_color). 
-          add_uniform(:u_resolution).
-          add_uniform(:v_color)          
-        
-        #generate rectangle (CORNER_MODE)
-        x1 = x;
-        x2 = x + width;
-        y1 = y;
-        y2 = y + height;
-
-        vertices = [
-          x1, y1,
-          x2, y1,
-          x1, y2,
-          x1, y2,
-          x2, y1,
-          x2, y2]
+        #create the verticies, with x,y at the upper left corner
+        vertices = [x,y, #upper left corner
+          x+rec_width,y, #upper right corner
+          x, y-rec_height, #lower left corner
+          x+rec_width,y-rec_height] #lower right corner
+          
+        indicies = [
+          0,1,2, #1st triangle
+          2,3,1  #2nd triangle
+        ]
 
         #manipulate the scene graph
-        geo_node = Jitterbug::GraphicsEngine::GeometryNode.new(@scene_graph.increment_node_counter(), "rectangle #{incr_rect_counter}")        
-        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices)  
-        geometry.render_state = @render_state     
-        geometry.shader_manager = Jitterbug::GraphicsEngine::GLSL::Rect2DShader.new   
+        program = GLSLShaderProgram.new(vert_shader, fragment_shader)
+        geo_node = Jitterbug::GraphicsEngine::GeometryNode.new(@scene_graph.increment_node_counter(), "rect #{incr_rect_counter}")        
+        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies)  
+        @render_state.width = width
+        @render_state.height = height
+        geometry.render_state = @render_state   
+        
+        #need to rename this yet again...  to GLSL2DNodeRenderer
+        shader_manager = GLSLNodeRenderer.alloc.init
+        shader_manager.bindGeometry(geometry)
+        geometry.shader_manager = shader_manager
+        
         geo_node.bind(geometry)
 
-        #need to think through groups controlled by the script. Maybe a begin/end or block
-        @scene_graph.world_node().add_child(geo_node)        
+        @scene_graph.world_node().add_child(geo_node)
+        @logger.debug("GLSLSketchAPI: end rect()")    
       end
       
       #create a method to just get a working GLSL 1.5 example
@@ -183,16 +181,32 @@ module Jitterbug
       #The geometry node is then added to the scene graph.
       #If I expand this sample into a robust design, I don't want to create a unique Shader Manager
       #for every geo-node.
+      #
+      #Need a way to batch GPU calls.
+      #For example, if I've got a thousand rects, I need to optimize that and not have a GLSLGeomerty for every call.
+      #Perhaps I should have 2 calls.
+      # rect(x,y,width,height)
+      # rect([x,y,width,height])
+      #
+      # or 
+      # begin
+      #   while(true)
+      #     rect(x,x, width, height)
+      # end
+
+      #next steps
+      # make rect call work
+      # handle batch rects.
       def sample()
         @logger.debug("GLSLSketchAPI: sample() was called")
         vert_shader = "sample.vert"
         fragment_shader = "sample.frag"
         
         #generate rectangle (CORNER_MODE)
-        vertices = [-1.0,-1.0, #upper left corner
-          1.0,-1.0, #upper right corner
-          1.0, 1.0, #lower right corner
-          -1.0, 1.0] #lower left corner
+        vertices = [-1.0,-1.0, # lower left
+          1.0,-1.0,            # lower right
+          1.0, 1.0,            # upper right
+          -1.0, 1.0]           # upper left
           
         indicies = [
           0, 1, 2, #1st triangle
@@ -204,11 +218,10 @@ module Jitterbug
         geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies)  
         geometry.render_state = @render_state   
         
+        #need to rename this yet again...  to GLSL2DNodeRenderer
         shader_manager = GLSLNodeRenderer.alloc.init
-        @logger.debug("GLSLSketchAPI: about to call setVertexShader")
-        shader_manager.setVertexShader(program.vertex_shader)
-        @logger.debug("GLSLSketchAPI: about to call setFragmentShader")
-        shader_manager.setFragmentShader(program.frag_shader)
+      
+        shader_manager.bindGeometry(geometry)
         geometry.shader_manager = shader_manager
         
         geo_node.bind(geometry)

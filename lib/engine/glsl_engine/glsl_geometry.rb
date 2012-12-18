@@ -17,7 +17,6 @@ module Jitterbug
       
       def shader_manager=sm
         @shader_manager = sm
-        sm.setGeometryNode(self)
       end
       
       def to_s

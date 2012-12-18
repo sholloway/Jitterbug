@@ -38,55 +38,66 @@
 	[super dealloc];
 }
 
-- (void)setVertexShader:(NSString *)str
-{	
-	NSLog(@"About to set Vertex Shader");
-	self->vertexShader = str;
-}
-
-- (void)setFragmentShader:(NSString *)str
+-(void) bindGeometry:(id) glsl_geometry
 {
-	NSLog(@"About to set Fragment Shader");
-	self->fragmentShader = str;
-}
+	self->vertexShader = (NSString *)[[glsl_geometry program] vertex_shader];
+	NSAssert(self->vertexShader != NULL,@"The vertex shader was not loaded in GLSLNodeRenderer.");
 
-- (void)setGeometryNode:(id<NSObject>)gnode
-{
-	self->geometryNode = gnode;
+	self->fragmentShader = (NSString *)[[glsl_geometry program] frag_shader];
+	NSAssert(self->fragmentShader, @"The fragment shader was not loaded GLSLNodeRenderer.");
+
+	self->renderState = [glsl_geometry render_state];
+	NSAssert(self->renderState != NULL, @"The render state could not be loaded GLSLNodeRenderer.");
+
+	self->width = (GLint)[(NSNumber *)[self->renderState width] intValue];
+	self->height = (GLint)[(NSNumber *)[self->renderState height] intValue];
+
+	NSAssert(self->width != NULL && self->width > 0, @"The width was not set in GLSLNodeRenderer.");
+	NSAssert(self->height != NULL && self->height > 0, @"The height was not set in GLSLNodeRenderer.");
+
+	//Create the mesh
+	NSLog(@"Begin mesh generation");
+	NSArray *rbVerts = (NSArray *)[glsl_geometry vertices];
+	NSLog(@"%@", rbVerts);
+	NSAssert(rbVerts != NULL, @"rbVerts cannot be null");
+	vertexCount = [rbVerts count]; 
+	
+	NSAssert(vertexCount == 8, @"vertexCount is wrong");
+	
+	NSLog(@"About to create position array");
+	int newVertArraySize = (vertexCount/2);
+	positionSize =  newVertArraySize * sizeof(glm::vec2); 
+	positionData = (glm::vec2 *)malloc(positionSize);
+
+	for (int index = 0; index < newVertArraySize; ++index)
+	{
+		float x = [(NSNumber *)[rbVerts objectAtIndex: (index+index)] floatValue];
+		float y = [(NSNumber *)[rbVerts objectAtIndex: (index+index+1)] floatValue];
+		positionData[index] = glm::vec2(x,y);		
+	}
+	
+	NSLog(@"About to create element array");
+	NSArray *rbIndicies = (NSArray *)[glsl_geometry indicies];
+	NSLog(@"%@",rbIndicies);
+	NSAssert(rbIndicies != NULL, @"rbIndicies cannot be null");
+
+	self->indicesCount = [rbIndicies count];
+	elementSize = self->indicesCount * sizeof(GLushort);
+	elementData = (GLushort *)malloc(elementSize);
+	for (int index = 0; index < self->indicesCount; ++index)
+	{
+		elementData[index] = [(NSNumber *) [rbIndicies objectAtIndex: index] floatValue];
+	}
+	NSLog(@"got to the end of bindGeometry");
 }
 
 - (void) register:(id)ruby_renderer
 {
 	NSLog(@"About to register the OpenGL components");
-	//Create the mesh
-	
-	vertexCount = 4;	
-	//id verticies = [self->geometryNode vertices];
-	//vertexCount = [(NSNumber *)[verticies length] integerValue];
-	
-	NSLog(@"About to create position array");
-	positionSize = vertexCount * sizeof(glm::vec2);
-	positionData = (glm::vec2 *)malloc(positionSize);
-	positionData[0] = glm::vec2(-1.0f,-1.0f);
-	positionData[1] = glm::vec2( 1.0f,-1.0f);
-	positionData[2] = glm::vec2( 1.0f, 1.0f);
-	positionData[3] = glm::vec2(-1.0f, 1.0f);
-	
-	NSLog(@"About to create element array");
-	elementCount = 6;
-	elementSize = elementCount * sizeof(GLushort);
-	elementData = (GLushort *)malloc(elementSize);
-	elementData[0] = 0;
-	elementData[1] = 1;
-	elementData[2] = 2;
-	elementData[3] = 2;
-	elementData[4] = 3;
-	elementData[5] = 0;
 	
 	//load the shaders
 	GLint vertShader = glCreateShader(GL_VERTEX_SHADER);getGLError();	
-//GLAPI void APIENTRY glShaderSource (GLuint shader, GLsizei count, const GLchar* *string, const GLint *length);
-//glShaderSource(shader, 1, &source, NULL);
+
 	const GLchar *vsource = (GLchar *)[self->vertexShader cStringUsingEncoding:NSASCIIStringEncoding];
 	glShaderSource(vertShader,1, &vsource, NULL);getGLError();
 	glCompileShader(vertShader);getGLError();         
@@ -112,7 +123,6 @@
 	
 	glUseProgram(self->program);
 		//set the color from the current fill color
-		id<NSObject> renderState = [self->geometryNode render_state];
 		id<NSObject> fillColor = [renderState current_fill_color];
 		float red = [[fillColor red] floatValue];
 		float green = [[fillColor green] floatValue];
@@ -203,7 +213,7 @@
 	glm::mat4 mvp = projection * view * model;
 
 	// Set the display viewport
-	glViewport(0, 0, 640, 480);
+	glViewport(0, 0, self->width, self->height);
 
 	// Clear color buffer with black
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -217,7 +227,7 @@
 
 	// Bind vertex array & draw 
 	glBindVertexArray(vertexArrayName);
-		glDrawElements(GL_TRIANGLES, elementCount, GL_UNSIGNED_SHORT, 0);
+		glDrawElements(GL_TRIANGLES, self->indicesCount, GL_UNSIGNED_SHORT, 0);
 	glBindVertexArray(0);
 
 	// Unbind program

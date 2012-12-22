@@ -1,4 +1,7 @@
 Next steps:
+Understand how to use MVP matrix projection
+Upgrade GLM to 0.94...
+
 Get pixels flowing.
 	API -> SceneGraph -> Spatial Partition -> Culler -> Render -> ImageProcessor -> Image 
 	
@@ -45,6 +48,8 @@ Steps:
 	Expand GLSLSketchAPI.sample() & GLSLShaderManager into a robust design.
 	Requires implementing a fill method, so rects can have different colors.
 	Need affine transformations to move rectangels around
+	Got to establish a coordinate system.
+	Integrate Camera
 2. Integrate shaders into Renderer
 	Need a way to dynamically create shader programs and link them on the fly
 	Need to make sure to delete shaders & programs

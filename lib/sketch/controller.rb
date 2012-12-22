@@ -8,12 +8,11 @@ end
 
 module Jitterbug
 	module Sketch
-		LayersData = Struct.new(:layers,:layer_counter,:graphics_engine, :width, :height)
+		LayersData = Struct.new(:layers,:layer_counter,:graphics_engine)
 
 		class Controller
 			include Jitterbug::Sketch::Validation
 			attr_reader :options, :logger, :render_logger, :layers, :engine, :background
-			attr_accessor :width, :height
 			
 			def initialize(rendering_engine=nil,options={}) # by default relative to output_dir					
 				@options = {
@@ -41,8 +40,6 @@ module Jitterbug
 					:env => nil
 				} 		
 
-				@width = nil
-				@height = nil				
 				@options.merge!(options)
 
 				if (@options[:working_dir] == false)
@@ -82,8 +79,6 @@ module Jitterbug
 				file.close
 				@layers = parsed.layers
 				@layer_counter = parsed.layer_counter
-				@width = parsed.width
-				@height = parsed.height
 
 				if parsed.graphics_engine.instance_of?(Jitterbug::GraphicsEngine::Engine)
 					@engine = parsed.graphics_engine
@@ -104,7 +99,7 @@ module Jitterbug
 				end
 				
 				@engine.unbind
-				data = LayersData.new(@layers,@layer_counter,@engine, @width, @height)
+				data = LayersData.new(@layers,@layer_counter,@engine)
 				File.open("#{@options[:working_dir]}/#{@options[:layers_file]}", "w") do |f| 				  
 					yaml_str = data.to_yaml
 					f.write(yaml_str) 
@@ -280,10 +275,6 @@ module Jitterbug
 
 				# Validate the sketch size
 				@render_logger.info "Prepping renderer."
-				if self.width.nil? || self.width < 1 || self.height.nil? || self.height < 1
-					raise StandardError.new("Could not render. The sketch does not have a valid width and height set. Check the sketch.yml file.")
-				end					 								
-				
 				if @engine.assembled? 
 					@engine.bind_sketch(self)
 					@engine.render()  

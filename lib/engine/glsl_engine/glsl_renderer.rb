@@ -3,7 +3,6 @@ module Jitterbug
     class GLSLRenderer < Renderer
       def render
         @logger.debug("GLSLRenderer: begining render")
-        verify_inputs
         create_graphics_renderer
         launch_graphical_application
         @logger.debug("GLSLRenderer: ending render")
@@ -22,7 +21,7 @@ module Jitterbug
         
         @app = NSApplication.sharedApplication
         @app.delegate = AppDelegate.new()
-        size = [0, 0, self.width, self.height]
+        size = [0, 0, self.camera.width, self.camera.height]
         @window = NSWindow.alloc.initWithContentRect(size,
             styleMask: (NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSTexturedBackgroundWindowMask),
             backing: NSBackingStoreBuffered,
@@ -37,18 +36,15 @@ module Jitterbug
         close_button.action = "done_rendering:"
 
         view = JBOpenGLView.alloc.initWithFrame(size)
-        view.setSize(self.width, height: self.height)
+        view.setSize(self.camera.width, height: self.camera.height)
         @view_renderer = GLRenderer.new   
         @view_renderer.logger = @logger
         @view_renderer.geometry = @visible_geometry
+        @view_renderer.camera = self.camera
         view.setRenderer(@view_renderer)
         
         @window.contentView.addSubview(view)
       end   
-      
-      def verify_inputs
-        raise StandardError.new ("The width & height was not set on the sketch.") if (@width.nil? || @height.nil?)
-      end
       
       def launch_graphical_application
         @window.display
@@ -58,7 +54,7 @@ module Jitterbug
     end
     
     class GLRenderer < ::JBRenderer      
-      attr_accessor :logger, :geometry
+      attr_accessor :logger, :geometry, :camera
       
       def initialize
         super
@@ -69,7 +65,7 @@ module Jitterbug
         activateOffScreenFrameBuffer      
         glViewport(0, 0, width, height) #pull out of here        
         
-        glClearColor(0.0, 1.0, 0.0, 0.0) #green but should come from sketch...
+        glClearColor(1.0, 1.0, 1.0, 0.0) #white but should come from sketch...
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)  
         
         unless @geometry.empty?        
@@ -89,26 +85,6 @@ module Jitterbug
         glFinish()
         
         stop
-=begin 
-        #draw something to the screen (Just for the hell of it...)
-        activateSystemFrameBuffer() 
-        
-        glClearColor(1.0, 0.0, 0.0, 0.0) #red
-      	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-      	glFlush
-      	
-      	#draw something else to my renderbuffer (This should be rendered to an image by PNGImage)
-      	activateOffScreenFrameBuffer()
-      	glClearColor(0.0, 1.0, 0.0, 0.0) #green
-      	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-      	glFlush  
-      	
-      	outputActiveFramebuffer  
-      	# this doesn't fit the SingleImageRenderLoop design. That class should have this responsibility   	
-      	# it should set how many frames to render
-        
-        stop 
-=end
       end  
       
       #overrides the Obj-c method

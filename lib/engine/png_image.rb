@@ -11,7 +11,9 @@ module Jitterbug
         raise StandardError.new("The raw_pixels was not set") if @raw_pixels.nil?
        # raise StandardError.new("PNGImage requires raw_pixels to be a CGImageRef instance.\nIt was an instance of #{@raw_pixels.class}.") if !@raw_pixels.instance_of? CGImageRef
         
-        image_ref = createRGBImageFromBufferData(@raw_pixels, width, height)
+        image_ref = createRGBImageFromBufferData(@raw_pixels, 
+          self.engine[:camera].width, 
+          self.engine[:camera].height);
         
         myImageDest = CGImageDestinationCreateWithURL(NSURL.fileURLWithPath("#{path}/#{name}.#{extension}",false),
           "public.png", #encoding to use
@@ -30,7 +32,7 @@ module Jitterbug
          #should just have to load the CoreGraphics framework...
          framework 'CoreGraphics'
          framework 'Quartz'
-          cSpace = CGColorSpaceCreateWithName (::KCGColorSpaceGenericRGB);
+         cSpace = CGColorSpaceCreateWithName (::KCGColorSpaceGenericRGB);
           #NSAssert( cSpace != NULL, @"CGColorSpaceCreateWithName failure");
 
           bitmap = CGBitmapContextCreate(imageData, 

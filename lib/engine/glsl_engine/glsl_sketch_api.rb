@@ -70,7 +70,7 @@ module Jitterbug
     end
     
     class RenderState      
-      attr_accessor :current_fill_color, :current_stroke_color, :rect_mode, :color_mode, :enable_stroking, :enable_fill, :width, :height
+      attr_accessor :current_fill_color, :current_stroke_color, :rect_mode, :color_mode, :enable_stroking, :enable_fill
       
       def initialize
         @enable_stroking = true
@@ -145,10 +145,11 @@ module Jitterbug
         fragment_shader = "rgba_solid_color.frag"
         
         #create the verticies, with x,y at the upper left corner
+        #This assumes that the coordinate system is 0,0 in the upper left hand corner.
         vertices = [x,y, #upper left corner
           x+rec_width,y, #upper right corner
-          x, y-rec_height, #lower left corner
-          x+rec_width,y-rec_height] #lower right corner
+          x, y+rec_height, #lower left corner
+          x+rec_width,y+rec_height] #lower right corner
           
         indicies = [
           0,1,2, #1st triangle
@@ -158,9 +159,7 @@ module Jitterbug
         #manipulate the scene graph
         program = GLSLShaderProgram.new(vert_shader, fragment_shader)
         geo_node = Jitterbug::GraphicsEngine::GeometryNode.new(@scene_graph.increment_node_counter(), "rect #{incr_rect_counter}")        
-        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies)  
-        @render_state.width = width
-        @render_state.height = height
+        geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies) 
         geometry.render_state = @render_state   
         
         #need to rename this yet again...  to GLSL2DNodeRenderer

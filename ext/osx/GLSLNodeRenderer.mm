@@ -1,10 +1,10 @@
 #include <OpenGL/gl3.h>
 #include <glm/glm.hpp>
-//#include <glm/gtc/matrix_projection.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #import "GLSLNodeRenderer.h"
+#import "GLSLCameraHelper.h"
 
 #define getGLError()									\
 {														\
@@ -22,13 +22,6 @@
 - (id) init
 {
 	self = [super init];
-			
-	NSLog(@"About to create vectors");
-	rotationCurrent = glm::vec2(0.f);
-	rotationOrigin = glm::vec2(0.f);
-	tranlationOrigin = glm::vec2(0.f, 4.f);
-	tranlationCurrent = glm::vec2(0.f, 4.f);
-	NSLog(@"Done initializing GLSLNodeRenderer");
 	return self;
 }
 
@@ -48,12 +41,6 @@
 
 	self->renderState = [glsl_geometry render_state];
 	NSAssert(self->renderState != NULL, @"The render state could not be loaded GLSLNodeRenderer.");
-
-	self->width = (GLint)[(NSNumber *)[self->renderState width] intValue];
-	self->height = (GLint)[(NSNumber *)[self->renderState height] intValue];
-
-	NSAssert(self->width != NULL && self->width > 0, @"The width was not set in GLSLNodeRenderer.");
-	NSAssert(self->height != NULL && self->height > 0, @"The height was not set in GLSLNodeRenderer.");
 
 	//Create the mesh
 	NSLog(@"Begin mesh generation");
@@ -204,20 +191,43 @@
 - (void) draw:(id)ruby_renderer
 {
 	NSLog(@"About to render the scene");
+	id<NSObject> camera = [ruby_renderer camera];
+	NSAssert(camera != NULL, @"The camera could not be found.");
+
+	GLSLCameraHelper *cameraHelper = [[GLSLCameraHelper alloc] initWithCamera:camera];
+
+	//pull all of this up to the camera
 	// Compute the MVP (Model View Projection matrix)
-	glm::mat4 projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-	glm::mat4 viewTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -self->tranlationCurrent.y));
-	glm::mat4 viewRotateX = glm::rotate(viewTranslate, self->rotationCurrent.y, glm::vec3(-1.f, 0.f, 0.f));
-	glm::mat4 view = glm::rotate(viewRotateX, self->rotationCurrent.x, glm::vec3(0.f, 1.f, 0.f));
+	float fovy = [cameraHelper fovY]; //Specifies the field of view angle, in degrees, in the y direction.
+	float aspectRatio = [cameraHelper aspectRatio];
+	float zNear = [cameraHelper nearClippingPane]; //Specifies the distance from the viewer to the near clipping plane(always positive).
+    float zFar = [cameraHelper farClippingPane]; //Specifies the distance from the viewer to the far clipping plane(always positive).
+
+	//glm::mat4 projection = glm::perspective(fovy, aspectRatio, zNear, zFar);
+	//This should make the upper left hand corner 0,0
+	glm::mat4 projection = glm::ortho(0.0f, (float)[cameraHelper width], 
+		(float)[cameraHelper height], 0.0f, 
+		0.0f,10.0f);
+
+	//glm::mat4 viewTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -self->tranlationCurrent.y));
+	//glm::mat4 viewRotateX = glm::rotate(viewTranslate, self->rotationCurrent.y, glm::vec3(-1.f, 0.f, 0.f));
+	//glm::mat4 view = glm::rotate(viewRotateX, self->rotationCurrent.x, glm::vec3(0.f, 1.f, 0.f));
+	glm::mat4 view = glm::lookAt(
+		[cameraHelper position], //camera's position
+		[cameraHelper target], //camera's target
+		[cameraHelper up] //up vector
+	);
 	glm::mat4 model = glm::mat4(1.0f);
 	glm::mat4 mvp = projection * view * model;
 
 	// Set the display viewport
-	glViewport(0, 0, self->width, self->height);
+	glViewport(0, 0, 
+		[cameraHelper width], 
+		[cameraHelper height]);
 
 	// Clear color buffer with black
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	//glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	//glClear(GL_COLOR_BUFFER_BIT);
 
 	// Bind program
 	glUseProgram(self->program);

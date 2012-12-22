@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 @interface GLSLNodeRenderer : NSObject {	
 	id<NSObject> renderState;
+	id<NSObject> geometryNode;
 	NSString *vertexShader;
 	NSString *fragmentShader;
 	GLint program;
@@ -15,13 +16,7 @@
 	GLushort *elementData;
 	
 	GLuint elementBufferName, arrayBufferName, vertexArrayName;
-	GLint uniformMVP, uniformDiffuse, attribPosition, width, height;
-	
-	glm::vec2 rotationOrigin;
-	glm::vec2 rotationCurrent;
-	glm::vec2 tranlationOrigin;
-	glm::vec2 tranlationCurrent;
-	id<NSObject> geometryNode;
+	GLint uniformMVP, uniformDiffuse, attribPosition;
 }
 
 -(void) bindGeometry:(id) glsl_geometry;

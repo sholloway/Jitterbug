@@ -2,7 +2,7 @@
 module Jitterbug
   module GraphicsEngine
     class EnginePart
-      attr_accessor :logger, :layers, :engine, :sketch_options, :width, :height,
+      attr_accessor :logger, :layers, :engine, :sketch_options
     end
     
     require 'scene_graph'
@@ -178,7 +178,19 @@ Should also write meta data to the image. Date Stamp, Camera inputs? Sketch Name
     end
     
     class Camera < EnginePart
-      attr_accessor :frustum     
+      attr_accessor :fovy, 
+        :near_clipping_pane,  #always positive 
+        :far_clipping_pane,   #always positive
+        :position_point,      #[x,y,z]
+        :target_point,        #[x,y,z]
+        :up_vector,           #[x,y,z]
+        :width,               #the width of the scene in pixels
+        :height,              #the height of the scene in pixels
+        :frustum;   
+
+      def aspect_ratio
+        return width.to_f/height.to_f
+      end  
     end
     
     class Frustum < EnginePart      

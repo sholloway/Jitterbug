@@ -92,7 +92,16 @@ module Jitterbug
         engine[:spatial_data_partition] = Jitterbug::NullGraphicsEngine::NullSpatialPartition.new
         engine[:sketch_api] = Jitterbug::GraphicsEngine::GLSLSketchAPI.new
         engine[:culler] = Jitterbug::GraphicsEngine::Culler.new
-        engine[:camera] = Jitterbug::GraphicsEngine::Camera.new
+        engine[:camera] = Jitterbug::GraphicsEngine::Camera.new 
+        engine[:camera].fovy = 45.0
+        engine[:camera].near_clipping_pane = 0.1
+        engine[:camera].far_clipping_pane = 100.0
+        engine[:camera].position_point = [0.0,0.0,4.0] 
+        engine[:camera].target_point = [0.0,0.0,0.0]    
+        engine[:camera].up_vector = [0.0,1.0,0.0]      
+        engine[:camera].width = 1024         
+        engine[:camera].height = 576 
+
         engine[:frustum] = Jitterbug::GraphicsEngine::Frustum.new
         engine[:compositor] = Jitterbug::GraphicsEngine::CoreImageLayerCompositor.new
         engine[:frame_processor] = Jitterbug::GraphicsEngine::LinearFrameProcessor.new

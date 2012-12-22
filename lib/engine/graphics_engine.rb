@@ -40,8 +40,6 @@ module Jitterbug
           part.logger = sketch.render_logger          
           part.engine = self 
           part.sketch_options = sketch.options   
-          part.width = sketch.width
-          part.height = sketch.height       
         end
       end
       

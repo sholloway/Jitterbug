@@ -3,16 +3,10 @@ General:
 Leverage mvp = projection * view * model for placement.
 Affine Transformations to shape rectangle from a square.
 Keep in mind that every shape needs a bounding box for the SP and Culler.
+	- When using Ortho Projection, how is the view frustum calculated?
 
 Rectangle Mode:
 CORNER, CORNERS, CENTER, or RADIUS
-
-Primitive Definition:
-primitive = [-1.0,-1.0, #upper left corner
-1.0,-1.0, #upper right corner
-1.0, 1.0, #lower right corner
--1.0, 1.0] #lower left corner
-This means the origin is at 0,0 before Translation
 
 Concepts:
 World Origin #The world's origin point (0,0,0)
@@ -45,5 +39,3 @@ The syntax rectMode(CORNERS) uses the first and second parameters of rect() to s
 
 In RADIUS:
 The syntax rectMode(RADIUS) draws the image from its center point and uses the third and forth parameters of rect() to specify half of the image's width and height.
-
-  

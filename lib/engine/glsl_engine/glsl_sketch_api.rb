@@ -138,6 +138,60 @@ module Jitterbug
       
       # Draw a rectangle
       # Ignore rect_mode until entire pipe line is functioning
+=begin
+      Refactor, shader to get the rgb from the vertex array. The goal is to minimize how often 
+      the GPU is passed geometry.
+
+      Single Rectangle:
+      filL(color(...))
+      rect(x,y,width, height)  
+
+      Multiple Rectangles, all the same color:
+      #this works fine if I don't need to interleave different colors
+      fill(color)
+      rect([[x,y,width,height],...])
+
+      Multiple rectangles, different colors
+      # problem with this is storing duplicate colors
+      rect([[x,y,width,height,color],...])
+      
+      #perhaps I should implement all three...
+      #this is where ruby sucks.
+
+      #consider, abstracting triangle creation and rely on that for the rect implementation.
+      #this might allow me to be more strategic about using strips, fans or triangles
+
+      #I need to find a way to not store all the vert's and indices twice. Also, storing all geometry in RAM
+      #will lead to a hard cap as to what can be rendered.
+      #Interleaving verts and indicies might ultimately be more efficent.
+      # Condider the relationship between GLSLShaderProgram, GeometryNode, GLSLGeometry and GLSLNodeRenderer.
+      # Once the SceneGraph, Culler and SP are implemented, the geometry going to the GPU should hopefully
+      # be less than what is potentially generated and stored in the GeometryNode. I've got to be careful
+      # that I don't copy the geomety more than I actually need to.
+
+      #Testing
+      #Create a sketch of a large size that has one rect for each pixel in the image. All with a different color.
+      #Create a sketch of large size with the rect position randomly generated. Need to bench mark how many 
+      #rects the laptop can realistically throw at it verses the iMac.
+
+      Consider a stack approach:
+      Batch.new()
+        .fill(color(...))
+        .rect(...)
+        .rect(...)
+        .rect(...)
+        .fill(color(...))
+        .rect(...)
+
+      Consider a functional approach:
+      batch(BEGIN)
+        fill(color)
+        rect(...)
+        rect(...)
+        fill(color(...))
+        rect(...)
+      batch(END)
+=end
       def rect(x,y,rec_width,rec_height)
         @logger.debug("GLSLSketchAPI: rect(#{x},#{y},#{rec_width},#{rec_height}) was called")
         #build a program
@@ -162,7 +216,6 @@ module Jitterbug
         geometry = Jitterbug::GraphicsEngine::GLSLGeometry.new(program, vertices, indicies) 
         geometry.render_state = @render_state   
         
-        #need to rename this yet again...  to GLSL2DNodeRenderer
         shader_manager = GLSLNodeRenderer.alloc.init
         shader_manager.bindGeometry(geometry)
         geometry.shader_manager = shader_manager
@@ -171,6 +224,9 @@ module Jitterbug
 
         @scene_graph.world_node().add_child(geo_node)
         @logger.debug("GLSLSketchAPI: end rect()")    
+      end
+
+      def triangle(x,y,xx,yy, xxx, yyy)
       end
       
       #create a method to just get a working GLSL 1.5 example

@@ -1,5 +1,8 @@
 Next steps:
-Understand how to use MVP matrix projection
+Make coordinate system configurable. Be able to change the origin to any of the 4 corners. 
+Change the GLSLNodeRender to be specific to the rect method. Make it handle multiple rects. 
+The vertex array needs to store the fill color. This is nessacary to handle 100K rectangles.
+
 Upgrade GLM to 0.94...
 
 Get pixels flowing.
@@ -40,15 +43,16 @@ Manual Testing Feedback Loop
 - jb create blah
 - jb render
 - manually close all frames
-- look at log/image/screen
+- look at log/image/scree
 
 Next Milestone: (Composite 2 layers)
 Steps:
 1. Get SketchAPI rect actually working.
 	Expand GLSLSketchAPI.sample() & GLSLShaderManager into a robust design.
 	Requires implementing a fill method, so rects can have different colors.
-	Need affine transformations to move rectangels around
+	Need affine transformations to move rectangles around
 	Got to establish a coordinate system.
+	Get scene graph actually calculating the model matrix for each shape node
 	Integrate Camera
 2. Integrate shaders into Renderer
 	Need a way to dynamically create shader programs and link them on the fly

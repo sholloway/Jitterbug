@@ -9,7 +9,7 @@ module Jitterbug
       end
       
       private
-      def done_rendering(button)
+      def done_rendering(button)3
         self.raw_rendered_frame = @view_renderer.renderedFrame
         button.window.close
         NSApplication.sharedApplication.stopModal

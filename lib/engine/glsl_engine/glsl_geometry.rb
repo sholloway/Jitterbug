@@ -8,7 +8,7 @@ module Jitterbug
         @program = program
         @vertices = vertices
         @indicies = indicies
-      end
+      end33
       
       def render_state=(rs)
         @render_state = rs.clone

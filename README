@@ -40,6 +40,50 @@ Please use at your own discretion. Drop me a line if you find the program useful
 Copyright (C) 2011-2012 Samuel Holloway. All rights reserved.
 ######################################################################################################################
 Status: Not for use yet.
+Version 0.0.5 - 1.05.2013
+git log --pretty=format:'%Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+----------------------------------------------------------------------------------------------------------------------
+2013-01-05 Samuel Holloway (HEAD, new_engine_design, master) working on batch processing trianlges to the gpu
+2012-12-27 Samuel Holloway added some notes around batch rect() design
+2012-12-22 Samuel Holloway Got 2D Orthographic projection working. Got basic rect method working with solid fill.
+2012-12-18 Samuel Holloway Flushing out the GLSLSektchAPI.rect method. Also made the EnginePart width/height propogate to the SketchAPI Render State
+2012-11-24 Samuel Holloway renamed GLSLShaderMananger to GLSLNodeRenderer
+2012-11-24 Samuel Holloway added .rvmrc to assist with Submlime builds. Also fixed all tests.
+2012-09-03 Samuel Holloway re-worked SketchAPI to leverage Obj-C for OpenGL piece. Got basic shader pipeline integration working.
+2012-08-19 Samuel Holloway added packaging GLSL shaders with application
+2012-08-14 Samuel Holloway working towards better output for OpenGL environment stats on rake list_opengl_info
+2012-08-08 Samuel Holloway refactored a bit
+2012-08-08 Samuel Holloway working on fill & color methods of GLSLSketchAPI
+2012-08-08 Samuel Holloway refactored to get the image creation happening at the Image engine part
+2012-08-07 Samuel Holloway Got the render windows closing automatically. Cleaned up tests.
+2012-08-07 Samuel Holloway got the FBO writing out to an image
+2012-08-07 Samuel Holloway Udated JBOpenGLView to use framebuffers and removed more old code.
+2012-08-07 Samuel Holloway fixed tests
+2012-08-06 Samuel Holloway Got and OpenGL window popping up for each layer
+2012-08-06 Samuel Holloway hooked in OpenGL 3.2
+2012-08-05 Samuel Holloway commented out Cocoa dependency for the moment
+2012-08-05 Samuel Holloway added width/height to all engine parts, started integrating OpenGL to GLSLRenderer
+2012-08-01 Samuel Holloway split apart the sketch.rb file into subcomponents and renamed Sketch to Sketch::Controller
+2012-08-01 Samuel Holloway Flushed out NullSpatialPartition to always include all lights, camera and geometry
+2012-07-31 Samuel Holloway flushed out scene graph, first GLSLSketchAPI function
+2012-07-29 Samuel Holloway created a proper domain object for Script
+2012-07-28 Samuel Holloway Updated the code base to be compatible with ruby 1.9.3. Added tests for GLSL API definition and image diffs using OpenImageIO
+2012-07-25 Samuel Holloway started building GLSL Engine
+2012-07-22 Samuel Holloway renamed layers.yml to sketch.yml
+2012-07-22 Samuel Holloway updated design docs
+2012-07-18 Samuel Holloway removed old code
+2012-07-18 Samuel Holloway removed old layers naming
+2012-07-18 Samuel Holloway expanded Sketch's clean function, revert function
+2012-07-15 Samuel Holloway restored design diagram
+2012-07-15 Samuel Holloway fixed rendering bug
+2012-07-15 Samuel Holloway further refining the graphics engine
+2012-07-08 Samuel Holloway further flushing out the injection based Graphics Engine
+2012-07-08 Samuel Holloway stubbing out new rendering engine
+2012-07-07 Samuel Holloway renamed LayerManager to Sketch
+2012-07-07 Samuel Holloway (layer_based_compositing) committing to enable branching
+2012-02-12 Samuel Holloway removed unused native files
+######################################################################################################################
+Status: Not for use yet.
 Version 0.0.4 - 1.22.2012
 ----------------------------------------------------------------------------------------------------------------------
 - Created rake harness for dtrace and create common D scripts.
